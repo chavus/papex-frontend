@@ -7,7 +7,7 @@ import {
 const papelerias = [
     { 
         id:1, 
-        nombre: "Papeleria Patria"},
+        nombre: "Papeleria Patriaaaaa"},
     {
         id:2,
         nombre: "Papeleria Toños"
