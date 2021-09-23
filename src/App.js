@@ -15,6 +15,7 @@ import CatalogoNegocio from './Pages/CatalogoNegocio'
 import MisPedidos from './Pages/MisPedidos'
 import Perfil from './Pages/Perfil'
 import DetalleNegocio from './Pages/DetalleNegocio';
+import Login from './Pages/Login';
 
 
 function App() {
@@ -31,7 +32,8 @@ function App() {
             </li>
             <li>
               <Link to="/MisPedidos">Mis Pedidos</Link>
-            </li>
+            </li>        
+         
           </ul>
         </nav>
 
@@ -50,6 +52,13 @@ function App() {
           <Route path="/DetalleNegocio/:id">
             <DetalleNegocio />
           </Route>
+          <Route path="/Login">
+            <Login />
+          </Route>            
+          <Route path="/">
+            <h1>inicio</h1>
+          </Route>  
+                 
         </Switch>
       </div>
     </Router>
