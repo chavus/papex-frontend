@@ -1,0 +1,14 @@
+@import '../../assets/global_style.scss';
+
+.navbar{
+    background-color: $dark-blue;
+   
+
+    .navbar-brand{
+            margin-left: 10px;
+            
+            .nav-logo{
+                height: 30px;
+            }
+        }
+}
