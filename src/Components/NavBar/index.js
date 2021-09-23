@@ -8,16 +8,18 @@ import {
 import {
   Link
 } from "react-router-dom";
+import papex from '../../img/papex.png'
+import './styles.scss'
 
 const PapexNav = () => {
   
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
-        <NavbarBrand href="/Home">Papex</NavbarBrand>
+      <Navbar light expand="md">
+        <NavbarBrand href="/Home"><img src={papex} className='nav-logo'/></NavbarBrand>
     
-          <Nav className="mr-auto" navbar>
+          <Nav className="mr-auto navbar">
             <NavItem >
               <Link to="/Home" className='nav-link'>Mis Pedidos</Link>
             </NavItem>
