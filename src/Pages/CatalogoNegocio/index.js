@@ -1,37 +1,25 @@
 import React from "react"
+import {
+    Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, Button, Row, Col
+  } from 'reactstrap';
 
 import {
     Link
 } from 'react-router-dom'
+import ProductCard from "../../Components/Cards";
 
-const papelerias = [
-    { 
-        id:1, 
-        nombre: "Papeleria Patria"},
-    {
-        id:2,
-        nombre: "Papeleria Toños"
-    }
-    ]
+
 
 
 export default function CatalogoNegocio(){
     return(
-      <div>
-        <nav>
-          <ul>
-              {
-                  papelerias.map(papeleria => {
-                      return(
-                        <li>
-                        <Link to={`DetalleNegocio/${papeleria.id}`}>
-                            { papeleria.nombre }</Link>
-                        </li>
-                      )
-                  })
-              }
-          </ul>
-        </nav>
-        </div>
+        <Col xs='12'>
+        <h2>Catalogo</h2>
+        <Row>
+            <ProductCard/>
+            
+        </Row>
+    </Col>
     )
 }
