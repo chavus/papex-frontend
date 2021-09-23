@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+//Colors
+$primary:#33658a;
+$secondary:#f6ae2d;
+$light-gray:#f2f3f5;
+$dark-blue:#2F4858;
+$light-blue:#86BBD8;
+$orange:#F26419;
+
+$colors:(
+    "primary": $primary,
+    "secondary": $secondary,
+    "light-gray":$light-gray,
+    "dark-blue":$dark-blue,
+    "light-blue":$light-blue,
+    "orange":$orange
+);
+
+@each $name, $color in $colors{
+    .color-p-#{$name}{
+        color: $color;
+    }
+    .bg-p-#{$name}{
+        background-color: $color;
+    }
+    .btn-p-#{$name}{
+        background-color: $color;
+        //default paddings
+        :hover{
+            opacity: 65%;
+        }
+    }
+}
+
+.main-padding{
+    padding: 16px 16px;
+}
+
+.p-borders{
+    border-radius: 1px;
+    // border-color: $primary;
+}

@@ -1,13 +1,12 @@
 import react from 'react'
 import logo from './logo.svg';
-import './App.css';
+import './assets/global_style.scss'
+import './App.scss';
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  useParams
 } from "react-router-dom";
 
 // Pages
@@ -15,27 +14,14 @@ import CatalogoNegocio from './Pages/CatalogoNegocio'
 import MisPedidos from './Pages/MisPedidos'
 import Perfil from './Pages/Perfil'
 import DetalleNegocio from './Pages/DetalleNegocio';
-import Login from './Pages/Login';
-
+import Login from  './Pages/Login';
+import PapexNav from './Components/NavBar';
 
 function App() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/CatalogoNegocio">Catalogo de negocios</Link>
-            </li>
-            <li>
-              <Link to="/Perfil">Perfil</Link>
-            </li>
-            <li>
-              <Link to="/MisPedidos">Mis Pedidos</Link>
-            </li>        
-         
-          </ul>
-        </nav>
+       <PapexNav/>
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
@@ -51,10 +37,10 @@ function App() {
           </Route>
           <Route path="/DetalleNegocio/:id">
             <DetalleNegocio />
-          </Route>
+          </Route>   
           <Route path="/Login">
             <Login />
-          </Route>            
+          </Route>                    
           <Route path="/">
             <h1>inicio</h1>
           </Route>  
