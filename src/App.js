@@ -1,6 +1,7 @@
 import react from 'react'
 import logo from './logo.svg';
 import './App.css';
+import './assets/global_style.scss'
 
 import {
   BrowserRouter as Router,
