@@ -36,9 +36,5 @@ const PapexNav = () => {
   );
 }
 
-<<<<<<< HEAD
-export default PapexNav
-=======
 export default PapexNav
 
->>>>>>> main
