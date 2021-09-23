@@ -10,8 +10,6 @@ import {
 import ProductCard from "../../Components/Cards";
 
 
-
-
 export default function CatalogoNegocio(){
     return(
         <Col xs='12'>
