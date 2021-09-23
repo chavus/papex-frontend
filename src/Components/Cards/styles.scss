@@ -1,0 +1,20 @@
+.product-container{
+    display: flex;
+    flex-direction: row;
+    .product-image{
+       
+        object-fit: cover;
+    }
+    .product-body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        .button-div{
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+    }
+   
+}
