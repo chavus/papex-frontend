@@ -16,6 +16,7 @@ import Perfil from './Pages/Perfil'
 import DetalleNegocio from './Pages/DetalleNegocio';
 import Login from  './Pages/Login';
 import PapexNav from './Components/NavBar';
+import Main from './Pages/Main'
 
 function App() {
   return (
@@ -42,7 +43,7 @@ function App() {
             <Login />
           </Route>                    
           <Route path="/">
-            <h1>inicio</h1>
+            <Main/>
           </Route>  
                  
         </Switch>
