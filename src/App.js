@@ -14,8 +14,8 @@ import CatalogoNegocio from './Pages/CatalogoNegocio'
 import MisPedidos from './Pages/MisPedidos'
 import Perfil from './Pages/Perfil'
 import DetalleNegocio from './Pages/DetalleNegocio';
+import Login from  './Pages/Login';
 import PapexNav from './Components/NavBar';
-
 
 function App() {
   return (
@@ -37,7 +37,14 @@ function App() {
           </Route>
           <Route path="/DetalleNegocio/:id">
             <DetalleNegocio />
-          </Route>
+          </Route>   
+          <Route path="/Login">
+            <Login />
+          </Route>                    
+          <Route path="/">
+            <h1>inicio</h1>
+          </Route>  
+                 
         </Switch>
       </div>
     </Router>
