@@ -1,18 +1,45 @@
+@import '../../assets/global_style.scss';
+
 .product-container{
     display: flex;
     flex-direction: row;
+    margin: 10px;
+    align-items: center;
+    justify-content: center;
+    p{
+        margin-bottom: 4px;
+    }
+
     .product-image{
-       
         object-fit: cover;
+        width: 50%;
+        img{
+            max-height: 180px;
+        }
+
     }
     .product-body{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
+        padding: 7px;
         .button-div{
             display: flex;
             justify-content: space-evenly;
+            align-items: center;
+            ul{
+                margin-bottom: 3px;
+                font-size: 0.7rem;
+                padding: 10px;
+                margin-left: 5px;
+            }
+            button{
+                padding: 8px 8px 8px 8px;
+                font-size: 0.9rem;
+                height: 35px;
+                text-align: center;
+            }
         }
 
     }
