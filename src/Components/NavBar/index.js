@@ -32,13 +32,13 @@ const PapexNav = () => {
               <Link to="/CatalogoNegocio" className='nav-link d-none d-sm-block'>Catalogo</Link>
             </NavItem>
             <button className='btn-p-secondary nav-btn d-none d-sm-block'>Cerrar Sesión</button>
-            <div className='nav-item-dropdown'>
+         
               <button className='profile-btn'>
 									<span className="profile">
 										<img src={oscar}/>
 									</span>
 						   </button>
-            </div>
+           
           </Nav>
           
       </Navbar>
