@@ -3,17 +3,21 @@ import {
   Navbar,
   NavbarBrand,
   Nav,
-  NavItem,
+  NavItem
 } from 'reactstrap';
 import {
-  Link
+  Link,
+  useHistory
 } from "react-router-dom";
 import papex from '../../img/papex.png'
 import oscar from '../../img/oscar.jpg'
 import './styles.scss'
 
 const PapexNav = () => {
-  
+  let history = useHistory()
+  function goLogin(){
+    history.push("./Login")
+  }
 
   return (
     <div className='nav-header '>
@@ -30,7 +34,7 @@ const PapexNav = () => {
             <NavItem >
               <Link to="/CatalogoNegocio" className='nav-link d-none d-sm-block'>Catalogo</Link>
             </NavItem>
-            <button className='btn-p-secondary nav-btn d-none d-sm-block'>Cerrar Sesión</button>
+            <button className='btn-p-secondary nav-btn d-none d-sm-block' onClick={goLogin} >Iniciar Sesión</button>
          
               <button className='profile-btn'>
 									<span className="profile">
