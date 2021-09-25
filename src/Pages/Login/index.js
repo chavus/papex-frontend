@@ -1,4 +1,4 @@
-import React , {useState} from 'react'
+import React , {useState, useEffect} from 'react'
 import {  useHistory } from 'react-router-dom'
 import {Col, FormGroup, Button, Label, Input, Form, Alert } from 'reactstrap'
 import logoPapex from '../../img/papex.png'
@@ -6,13 +6,16 @@ import './styles.scss'
 import api from '../../assets/lib/api'
 
 export default function Login(props){
+    
     const [formData, setFormData] = useState({})
-    let history = useHistory()
     const [showMessage, setShowMessage] = useState(true)
     const [messageClass, setMessageClass] = useState("light")
-    const [messageText, setMessageText] = useState(".")
-    
-    //props.changeIsLogin(false)
+    const [messageText, setMessageText] = useState(".")    
+    let history = useHistory()
+
+    useEffect( ()=> {
+      props.changeShowNavBar(false) 
+    } , [] )      
 
     function onInputChange(event){
         const value = event.target.value
@@ -33,10 +36,8 @@ export default function Login(props){
             const userData = userJson.data
             delete userData.password
             localStorage.setItem("userData",JSON.stringify({...userData, token}))
-            displayMessage("success")               
-            //props.changeUserData(userData)
-            
-            
+            props.changeUserData(userData)
+            displayMessage("success")   
         }else{
             displayMessage("error")
         }
@@ -44,8 +45,7 @@ export default function Login(props){
 
     function displayMessage (value)
     {
-      if (value === "success")      
-      { 
+      if (value === "success"){ 
         setMessageClass("success")
         setMessageText("Ingreso existoso")
       }
@@ -57,15 +57,16 @@ export default function Login(props){
       setTimeout(  () => {                     
         setMessageClass("light")
         setMessageText(".")
-        if (value === "success")
-        { history.push("/") }
+        if (value === "success"){
+            props.changeShowNavBar(true) 
+            history.push("/") 
+          }
       }, 2000 )  
     }
-
     return(
         <Col className=" d-flex flex-column justify-content-center align-items-center vh-100 p-1">
                 <div className="logoContainer" >
-                  <img src={logoPapex} className = "logoSize"/>
+                  <img alt="logo papex" src={logoPapex} className = "logoSize"/>
                 </div>                
                 <div className="formContainer bg-white rounded border p-4 d-flex justify-content-center" >                    
                     <Form className="formContainerControls" >
@@ -83,20 +84,17 @@ export default function Login(props){
                         </FormGroup>                     
                    </Form>
                 </div>
-
                 <div className="buttons-login-container">
                     <Button id= "enter" className="btn btn-p-primary" type="button" name="enter" onClick={onContinueClick}   >Ingresar</Button>
                     <Button id= "registry" className="btn btn-p-secondary" type="button" name="registry" onClick={onRegistryClick}  >Registrarse</Button>
                 </div> 
                 <div>
                 {   showMessage &&
-                        <Alert color={ messageClass } className="mt-3" >
+                        <Alert color={ messageClass } className=" d-block mt-2 " >
                             { messageText }
                         </Alert>                                         
-                    } 
-               </div>                  
-                 
+                } 
+               </div>
           </Col>
-
     )
 }
