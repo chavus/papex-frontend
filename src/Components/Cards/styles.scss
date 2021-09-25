@@ -6,6 +6,7 @@
     margin: 10px;
     align-items: center;
     justify-content: center;
+    
     p{
         margin-bottom: 4px;
     }
@@ -26,18 +27,19 @@
         padding: 7px;
         .button-div{
             display: flex;
-            justify-content: space-evenly;
+            justify-content: space-between;
             align-items: center;
+            width: 90%;
             ul{
                 margin-bottom: 3px;
                 font-size: 0.7rem;
-                padding: 10px;
-                margin-left: 5px;
+                padding: 10px 5px 5px 10px;
+                margin-left: 10px;
             }
             button{
                 padding: 8px 8px 8px 8px;
                 font-size: 0.9rem;
-                height: 35px;
+                height: auto;
                 text-align: center;
             }
         }
