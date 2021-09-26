@@ -1,6 +1,10 @@
 @import '../../assets/global_style.scss';
 
 
+.login-card-container{
+    background-color: $light-gray;
+}
+
 .logoContainer{  
     display:flex;
     align-items: center;
@@ -9,7 +13,6 @@
         height: 70%;      
     }
 }
-
 .buttons-login-container
 {
     display: flex;
@@ -20,30 +23,20 @@
         margin-top: 15px;
         width: 100px;
         height: 40px;
-    }
-    
+    }    
 }
 
 @media(min-width:768px){
-
     .formContainer{
         .formContainerControls{
             width: 30rem;
         }
     }
-
-
-    .buttons-login-container
-    {
+    .buttons-login-container{
         display: flex;
-        flex-direction: row;
-        
+        flex-direction: row;        
         .btn{
-            margin-right: 15px;
-    
-        }
-        
-    }    
-    
-
+            margin-right: 15px;    
+        }        
+    }       
 }

@@ -27,7 +27,8 @@ function App() {
   useEffect(()=>{
     const userDataRaw = localStorage.getItem("userData") 
     const userData = userDataRaw ? JSON.parse(userDataRaw) : null 
-    setUserData(userData)    
+    setUserData(userData) 
+          
   },[])
 
   function changeUserData(myUserData){
@@ -76,7 +77,7 @@ function App() {
               changeShowNavBar = { changeShowNavBar }
             />
           </Route>                    
-          <Route path="/">           
+          <Route path="/">                     
             <h1>inicio</h1>
           </Route>  
                  

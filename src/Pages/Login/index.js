@@ -10,12 +10,20 @@ export default function Login(props){
     const [formData, setFormData] = useState({})
     const [showMessage, setShowMessage] = useState(true)
     const [messageClass, setMessageClass] = useState("light")
-    const [messageText, setMessageText] = useState(".")    
+    const [messageText, setMessageText] = useState(" ")    
     let history = useHistory()
 
     useEffect( ()=> {
       props.changeShowNavBar(false) 
-    } , [] )      
+    } , [] )   
+    
+    useEffect(() => {
+      return () => {        
+        if (history.action === "POP") {
+          history.replace(history.location.pathname, props.changeShowNavBar(true));
+        }
+      };
+    }, [history])
 
     function onInputChange(event){
         const value = event.target.value
@@ -64,7 +72,7 @@ export default function Login(props){
       }, 2000 )  
     }
     return(
-        <Col className=" d-flex flex-column justify-content-center align-items-center vh-100 p-1">
+        <Col className=" d-flex flex-column justify-content-center align-items-center vh-100 p-1 ">
                 <div className="logoContainer" >
                   <img alt="logo papex" src={logoPapex} className = "logoSize"/>
                 </div>                
@@ -73,7 +81,7 @@ export default function Login(props){
                         <FormGroup row>
                             <Label for="email">Correo Electrónico</Label>
                             <Col >
-                              <Input type="email" name="email" id="email" placeholder="someone@gmail.com" onChange={onInputChange}  />
+                              <Input type="email" name="email" id="email" placeholder="someone@domain.com" onChange={onInputChange}  />
                             </Col>
                          </FormGroup>
                         <FormGroup row>
