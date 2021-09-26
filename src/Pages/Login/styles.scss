@@ -1,0 +1,49 @@
+@import '../../assets/global_style.scss';
+
+
+.logoContainer{  
+    display:flex;
+    align-items: center;
+    .logoSize{
+        width: 100%;
+        height: 70%;      
+    }
+}
+
+.buttons-login-container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    .btn{
+        margin-top: 15px;
+        width: 100px;
+        height: 40px;
+    }
+    
+}
+
+@media(min-width:768px){
+
+    .formContainer{
+        .formContainerControls{
+            width: 30rem;
+        }
+    }
+
+
+    .buttons-login-container
+    {
+        display: flex;
+        flex-direction: row;
+        
+        .btn{
+            margin-right: 15px;
+    
+        }
+        
+    }    
+    
+
+}
