@@ -16,6 +16,7 @@ import Perfil from './Pages/Perfil'
 import DetalleNegocio from './Pages/DetalleNegocio';
 import Login from  './Pages/Login';
 import PapexNav from './Components/NavBar';
+import UserRegister from './Pages/Registro';
 
 function App() {
   return (
@@ -40,7 +41,11 @@ function App() {
           </Route>   
           <Route path="/Login">
             <Login />
-          </Route>                    
+          </Route>  
+          <Route path="/Registro">  
+            <UserRegister/>
+
+          </Route>                   
           <Route path="/">
             <h1>inicio</h1>
           </Route>  
