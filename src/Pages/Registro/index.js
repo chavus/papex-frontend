@@ -24,34 +24,28 @@ const UserRegister = () => {
     const disableHandler = event => {
         const {value} = event.target
         setDays({...days,[value]:!days[value]}) 
+        let existDay = schedule.findIndex((item) =>  item.day == event.target.value   )       
+        if (existDay !== -1) {
+        let scheduleTemp = [...schedule]
+        scheduleTemp.splice(existDay, 1)
+        setSchedule( scheduleTemp )
+    }
     }
     
     const dayDataHandler = event => {
         const {name, value} = event.target
-        const dayschedule = {day: event.target.dataset.day, [name]:value}
-
-        let position = -1
-
-        let existDay = schedule.filter((item, index) => {
-            position = index
-            return item.day == event.target.dataset.day
-        
-        })
-
-         console.log(position)
-        if (existDay.length == 0){
-            setSchedule([...schedule,dayschedule])
+        const dayschedule = {day: event.target.dataset.day, [name]:value}        
+        let existDay = schedule.findIndex((item) =>  item.day == event.target.dataset.day   )  
+        let scheduleTemp = [...schedule]        
+        if (existDay === -1){           
+            scheduleTemp = [...scheduleTemp, dayschedule]
+            setSchedule(scheduleTemp)        
         } else { 
-           let day = existDay[0]
-           let scheduleTemp = [...schedule]
-           day = {...day,[name]:value}
-           scheduleTemp = [...scheduleTemp, scheduleTemp[position]=day]
+           let day = schedule[existDay]           
+           day = {...day,[name]:value}                      
+           scheduleTemp[existDay] = day 
            setSchedule( scheduleTemp )
         }
-    
-        // console.log('this is the event ',event)
-        // console.log('this is the day', event.target.dataset.day)
-        // setSchedule([...schedule,dayschedule])
     }
 
    
@@ -113,10 +107,10 @@ const UserRegister = () => {
                     </FormGroup>
                     <div className='open-close'>
                         <FormGroup>
-                            <Input name="openTime" type='time' onChange={userDataHandler} disabled={days.tuesday}/>
+                            <Input name="openTime" type='time' onChange={dayDataHandler} disabled={days.tuesday} data-day='tuesday'/>
                         </FormGroup>
                         <FormGroup>
-                            <Input name="closeTime" type='time' onChange={userDataHandler} disabled={days.tuesday}/>
+                            <Input name="closeTime" type='time' onChange={dayDataHandler} disabled={days.tuesday} data-day='tuesday' />
                         </FormGroup>
                     </div> 
                 </div>
@@ -127,10 +121,10 @@ const UserRegister = () => {
                     </FormGroup>
                     <div className='open-close'>
                         <FormGroup>
-                            <Input name="openTime" type='time' onChange={userDataHandler} disabled={days.wednesday}/>
+                            <Input name="openTime" type='time' onChange={dayDataHandler} disabled={days.wednesday} data-day='wednesday'/>
                         </FormGroup>
                         <FormGroup>
-                            <Input name="closeTime" type='time' onChange={userDataHandler} disabled={days.wednesday}/>
+                            <Input name="closeTime" type='time' onChange={dayDataHandler} disabled={days.wednesday} data-day='wednesday'/>
                         </FormGroup>
                     </div> 
                 </div>
@@ -141,10 +135,10 @@ const UserRegister = () => {
                     </FormGroup>
                     <div className='open-close'>
                         <FormGroup>
-                            <Input name="openTime" type='time' onChange={userDataHandler} disabled={days.thursday}/>
+                            <Input name="openTime" type='time' onChange={dayDataHandler} disabled={days.thursday} data-day='thursday' />
                         </FormGroup>
                         <FormGroup>
-                            <Input name="closeTime" type='time' onChange={userDataHandler} disabled={days.thursday}/>
+                            <Input name="closeTime" type='time' onChange={dayDataHandler} disabled={days.thursday} data-day='thursday'/>
                         </FormGroup>
                     </div> 
                 </div>
@@ -155,10 +149,10 @@ const UserRegister = () => {
                     </FormGroup>
                     <div className='open-close'>
                         <FormGroup>
-                            <Input name="openTime" type='time' onChange={userDataHandler} disabled={days.friday}/>
+                            <Input name="openTime" type='time' onChange={dayDataHandler} disabled={days.friday} data-day='friday'/>
                         </FormGroup>
                         <FormGroup>
-                            <Input name="closeTime" type='time' onChange={userDataHandler} disabled={days.friday}/>
+                            <Input name="closeTime" type='time' onChange={dayDataHandler} disabled={days.friday} data-day='friday'/>
                         </FormGroup>
                     </div> 
                 </div>
@@ -169,10 +163,10 @@ const UserRegister = () => {
                     </FormGroup>
                     <div className='open-close'>
                         <FormGroup>
-                            <Input name="openTime" type='time' onChange={userDataHandler} disabled={days.saturday}/>
+                            <Input name="openTime" type='time' onChange={dayDataHandler} disabled={days.saturday} data-day='saturday'/>
                         </FormGroup>
                         <FormGroup>
-                            <Input name="closeTime" type='time' onChange={userDataHandler} disabled={days.saturday}/>
+                            <Input name="closeTime" type='time' onChange={dayDataHandler} disabled={days.saturday} data-day='saturday'/>
                         </FormGroup>
                     </div> 
                 </div>
@@ -183,10 +177,10 @@ const UserRegister = () => {
                     </FormGroup>
                     <div className='open-close'>
                         <FormGroup>
-                            <Input name="openTime" type='time' onChange={userDataHandler} disabled={days.sunday}/>
+                            <Input name="openTime" type='time' onChange={dayDataHandler} disabled={days.sunday} data-day='sunday' />
                         </FormGroup>
                         <FormGroup>
-                            <Input name="closeTime" type='time' onChange={userDataHandler} disabled={days.sunday}/>
+                            <Input name="closeTime" type='time' onChange={dayDataHandler} disabled={days.sunday} data-day='sunday'/>
                         </FormGroup>
                     </div> 
                 </div>
