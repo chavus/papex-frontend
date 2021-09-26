@@ -14,7 +14,7 @@ export default function Login(props){
     let history = useHistory()
 
     useEffect( ()=> {
-      props.changeShowNavBar(false) 
+      props.changeShowNavBar(true) 
     } , [] )   
     
     useEffect(() => {
@@ -32,7 +32,7 @@ export default function Login(props){
     }
 
     function onRegistryClick(){
-      history.push("./Registrar")
+      history.push("./Registro")
     }
 
     async function onContinueClick(){
