@@ -1,0 +1,49 @@
+@import '../../assets/global_style.scss';
+
+.container-form{
+    
+    margin-top: 60px;
+    .form-div{
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        form{
+            width: 22rem;
+            .form-group{
+                padding: .5rem;
+            }
+            .business-schedules{
+                .days{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    .open-close{
+                        display: flex;
+                        //width: 11rem;
+                    }
+                }
+
+            }
+            .business-div{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem;
+
+                .form-check{
+               
+                    font-size: .8rem;
+                }
+                button{
+                    padding: .3rem;
+                    height: 2.5rem;
+                }
+            }
+
+            }
+            
+
+    }
+}

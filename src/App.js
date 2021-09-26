@@ -17,6 +17,7 @@ import Perfil from './Pages/Perfil'
 import DetalleNegocio from './Pages/DetalleNegocio';
 import Login from  './Pages/Login';
 import PapexNav from './Components/NavBar';
+import UserRegister from './Pages/Registro';
 
 function App() {
 
@@ -70,14 +71,20 @@ function App() {
               <DetalleNegocio 
      
               />
-          </Route>   
+          </Route>
+            <Route path="/Registro">  
+            <UserRegister/>
+
+          </Route>    
           <Route path="/Login">
+
             <Login             
               changeUserData = {changeUserData}
               changeShowNavBar = { changeShowNavBar }
             />
           </Route>                    
-          <Route path="/">                     
+          <Route path="/">           
+
             <h1>inicio</h1>
           </Route>  
                  
