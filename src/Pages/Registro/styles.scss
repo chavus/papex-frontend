@@ -10,7 +10,10 @@
         align-items: center;
         justify-content: center;
         form{
-            width: 22rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly ;
+            //width: 80vw;
             .form-group{
                 padding: .5rem;
             }
@@ -23,6 +26,11 @@
                         display: flex;
                         //width: 11rem;
                     }
+                }
+                .delivery{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-evenly;
                 }
 
             }
@@ -44,6 +52,18 @@
 
             }
             
-
+            @media(max-width:576px){
+                form{
+                //width: 22rem;
+                
+                width: 21.5rem;
+                display: flex;
+                flex-direction: column;
+               
+                
+                }
+            }
     }
 }
+
+
