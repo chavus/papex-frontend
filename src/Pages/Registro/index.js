@@ -24,12 +24,12 @@ const UserRegister = () => {
     const disableHandler = event => {
         const {value} = event.target
         setDays({...days,[value]:!days[value]}) 
-        let existDay = schedule.findIndex((item) =>  item.day == event.target.value   )       
+        let existDay = schedule.findIndex((item) =>  item.day == event.target.value )       
         if (existDay !== -1) {
         let scheduleTemp = [...schedule]
         scheduleTemp.splice(existDay, 1)
         setSchedule( scheduleTemp )
-    }
+        }
     }
     
     const dayDataHandler = event => {
@@ -46,6 +46,11 @@ const UserRegister = () => {
            scheduleTemp[existDay] = day 
            setSchedule( scheduleTemp )
         }
+    }
+
+    const onSubmit = event => {
+        setUser(...user,[schedule])
+        console.log(user)
     }
 
    
@@ -200,7 +205,7 @@ const UserRegister = () => {
                     Registrarme como negocio
                     </Label>
                 </FormGroup>
-                <Button className='btn-p-primary'>Registrarse</Button>
+                <Button className='btn-p-primary' onClick={onSubmit}>Registrarse</Button>
             </div>
       
     </Form>
