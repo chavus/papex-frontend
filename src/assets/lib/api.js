@@ -22,6 +22,19 @@ export default{
         })
         const resJson = await result.json()
         return resJson
+    },
+
+    async createUser(data){
+
+        let response = await fetch(`${BASE_URL}/users`,{
+            method: "POST",
+            headers:{
+                'Content-Type':'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        const resJson = await response.json()
+        return resJson.data
     }
 
     /*

@@ -1,18 +1,27 @@
 import React, {useState} from 'react';
-import { Button, Form, FormGroup, Label, Input, Col } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Col, Alert } from 'reactstrap';
 import './styles.scss'
+import api from '../../assets/lib/api'
+import {useHistory} from 'react-router-dom'
 
 const UserRegister = () => {
 
     const [business, setBusiness] = useState(false);
-    const [user, setUser] = useState({rol: 'Cliente'})
+    let [user, setUser] = useState({rol: 'Cliente'})
     const [days, setDays] = useState({monday:true, tuesday:true, wednesday:true, thursday:true, friday:true, saturday:true, sunday:true})
-    const [schedule, setSchedule] = useState([])
+    const [scheduleArray, setSchedule] = useState([])
+    const [deliveryHome, setDeliveryHome] = useState(false);
+    const [deliveryPickup, setDeliveryPickUp] = useState(false);
+    const [showMessage, setShowMessage] = useState(false)
+    const [message, setMessage] = useState("")
+    
+    let history = useHistory()
+    
 
     const userDataHandler = event => {
         const {name, value} = event.target
         setUser({...user,[name]:value})
-        console.log(user)
+        //console.log(user)
     }
 
     const toggle = (event) => {
@@ -24,33 +33,91 @@ const UserRegister = () => {
     const disableHandler = event => {
         const {value} = event.target
         setDays({...days,[value]:!days[value]}) 
+<<<<<<< HEAD
         let existDay = schedule.findIndex((item) =>  item.day == event.target.value )       
         if (existDay !== -1) {
         let scheduleTemp = [...schedule]
         scheduleTemp.splice(existDay, 1)
         setSchedule( scheduleTemp )
         }
+=======
+        let positionDay = scheduleArray.findIndex((item) =>  item.day == event.target.value   )       
+        if (positionDay !== -1) {
+            let scheduleTemp = [...scheduleArray]
+            scheduleTemp.splice(positionDay, 1)
+            setSchedule( scheduleTemp )
+        }
+    }
+
+    const checkDeliveryHandler = event => {
+            const {name, value}  = event.target           
+            if (name == 'deliveryHome'){                
+                setDeliveryHome(!deliveryHome)                
+            }
+            else {
+                setDeliveryPickUp(!deliveryPickup)
+                
+            }            
+>>>>>>> 2ecaefd03235c83cfd79ffd5ba3378635e811afb
     }
     
     const dayDataHandler = event => {
         const {name, value} = event.target
         const dayschedule = {day: event.target.dataset.day, [name]:value}        
-        let existDay = schedule.findIndex((item) =>  item.day == event.target.dataset.day   )  
-        let scheduleTemp = [...schedule]        
-        if (existDay === -1){           
+        let positionDay = scheduleArray.findIndex((item) =>  item.day == event.target.dataset.day   )  
+        let scheduleTemp = [...scheduleArray]  
+
+        if (positionDay === -1){           
             scheduleTemp = [...scheduleTemp, dayschedule]
-            setSchedule(scheduleTemp)        
+            setSchedule(scheduleTemp)                    
         } else { 
-           let day = schedule[existDay]           
-           day = {...day,[name]:value}                      
-           scheduleTemp[existDay] = day 
+           let day = scheduleArray[positionDay]           
+           day = {...day,[name]:value} 
+           scheduleTemp[positionDay] = day 
            setSchedule( scheduleTemp )
         }
     }
 
+<<<<<<< HEAD
     const onSubmit = event => {
         setUser(...user,[schedule])
         console.log(user)
+=======
+    const onSubmit = async () => {
+
+        let deliveryArray = []
+
+        if (user.rol == "Negocio") {
+            deliveryHome && deliveryArray.push('Delivery') 
+            deliveryPickup && deliveryArray.push('Pickup')             
+            user = {...user, schedule: scheduleArray, deliveryMethod : deliveryArray }
+
+        }else {
+            delete user.businessName
+            delete user.schedule
+            delete user.bankAccount
+            delete user.deliveryMethod
+
+        }
+        
+        //console.log(user)
+        let res = await api.createUser(user)
+        console.log(res)
+        if (res.success){
+            //history.push("./Login")
+        }
+        else{
+                setMessage(res)
+                setShowMessage(true)
+                setTimeout(  () => {                     
+                    setShowMessage(false)                   
+                      }, 4000 ) 
+        }
+
+
+
+        
+>>>>>>> 2ecaefd03235c83cfd79ffd5ba3378635e811afb
     }
 
    
@@ -194,8 +261,24 @@ const UserRegister = () => {
            
             <FormGroup>
                 <Label >Clabe interbancaria</Label>
-                <Input name=" bankAccount" onChange={userDataHandler}/>
+                <Input name="bankAccount" onChange={userDataHandler}/>
             </FormGroup>
+
+            <div className="d-flex flex-column">
+            <FormGroup check>
+                <Label check>
+                <Input type="checkbox" name="deliveryHome" onChange={checkDeliveryHandler} />{' '}
+                A domicilio
+                </Label>
+            </FormGroup>                
+            <FormGroup>
+                <Label check>
+                <Input type="checkbox" name="deliveryPickup" onChange={checkDeliveryHandler}/>{' '}
+                En tienda
+                </Label>
+            </FormGroup>
+
+            </div>    
          </>
         }
             <div className='business-div'>
@@ -207,6 +290,11 @@ const UserRegister = () => {
                 </FormGroup>
                 <Button className='btn-p-primary' onClick={onSubmit}>Registrarse</Button>
             </div>
+            {   showMessage &&
+                        <Alert color="danger" className="d-block mt-2 " >
+                            Hubo un error al registrar usuario: { message }
+                        </Alert>                                         
+                } 
       
     </Form>
        </div> 
