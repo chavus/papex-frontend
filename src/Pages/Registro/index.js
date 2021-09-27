@@ -194,7 +194,7 @@ const UserRegister = () => {
            
             <FormGroup>
                 <Label >Clabe interbancaria</Label>
-                <Input name=" bankAccount" onChange={userDataHandler}/>
+                <Input name="bankAccount" onChange={userDataHandler}/>
             </FormGroup>
          </>
         }
