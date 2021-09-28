@@ -1,31 +1,42 @@
 import React from 'react'
-import "../../assets/global_style.scss"
+import {
+    Link,
+} from "react-router-dom";
+// import { FaAngleDoubleRight } from 'react-icons/fa';
+// import "../../assets/global_style.scss"
 
-function index() {
+function BusinessCard({key, id, businessName, address, phoneNumber}) {
     return (
-        <div>
-            <h1>Cards</h1>
-            <h3>Listado de Negocios cercanos</h3>
+        <>
+            
+          
+        {/* <Link to={`/CatalogoNegocio/businessId=${id}`} className="business-details"> */}
+        <div className="col-md-4 bc-column">
+            <div className="b-card mt-4">
 
-            <div className="card">
-                <div className="card-header">
-                    <h5 className="card-title">PAPELERIA - PATRIA</h5>
-                </div>
-                <div className="card-body">
+                <div className="b-card-body">
+                   
+                    <h5 className="b-card-title fw-bold">{businessName}</h5>
                     
-                    <p className="card-text">
-                    <span> Domicilio:  </span> Centro Comercial Plaza Patria Guadalajara Zona H, Av. Patria 1950, Plaza Patria, 45140 Guadalajara, Jal
-                    </p>
-                    <p className="card-text">
-                    <span> Horario:  </span> L - S   7 a 22 hrs
-                    </p>
+                    <p className="b-card-text"><span>Domicilio: </span>{address}</p>
+                    <p className="b-card-text"><span>Horario: </span>{phoneNumber}</p>
+                    <p className="b-card-text"><span>Entrega:</span> {phoneNumber}</p>
+                    <p className="b-card-text"><span>Distancia: </span>{phoneNumber}</p>
+                    <div className="b-button-details">
+                        <Link to={`/CatalogoNegocio/businessId=${id}`} className="business-details">Ver Catálogo</Link>
+                    </div>
                     
 
+                
                 </div>
-
             </div>
         </div>
+        {/* </Link> */}
+            
+
+            
+        </>
     )
 }
 
-export default index
+export default BusinessCard
