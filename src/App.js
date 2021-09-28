@@ -1,3 +1,5 @@
+import react from 'react'
+
 import react, {useState, useEffect} from 'react'
 import logo from './logo.svg';
 import './assets/global_style.scss'
@@ -17,6 +19,7 @@ import Perfil from './Pages/Perfil'
 import DetalleNegocio from './Pages/DetalleNegocio';
 import Login from  './Pages/Login';
 import PapexNav from './Components/NavBar';
+import Main from './Pages/Main'
 import UserRegister from './Pages/Registro';
 
 function App() {
@@ -83,9 +86,8 @@ function App() {
               changeShowNavBar = { changeShowNavBar }
             />
           </Route>                    
-          <Route path="/">           
-
-            <h1>inicio</h1>
+          <Route path="/">
+            <Main/>
           </Route>  
                  
         </Switch>
