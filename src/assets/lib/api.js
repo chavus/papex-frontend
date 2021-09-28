@@ -34,19 +34,18 @@ export default{
             body: JSON.stringify(data)
         })
         const resJson = await response.json()
-        return resJson.data
-    }
+        return resJson
+    },
+
+    
+    async getAllProductsByBusiness(id){
+        let result = await fetch(`${BASE_URL}/products?businessId=${id}`)
+
+        const resJson = await result.json()
+        return resJson
+    },
 
     /*
-    async getAllPosts(jwtToken){
-        let result = await fetch(`${BASE_URL}/posts`,{
-            headers:{
-                'Authorization': jwtToken
-            }
-        })
-        const resJson = await result.json()
-        return resJson.data.allPosts
-    },
     async getPostById(id, jwtToken){
 
         let result = await fetch(`${BASE_URL}/posts/${id}`,{
