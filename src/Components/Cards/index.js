@@ -5,7 +5,8 @@ import {
   CardTitle, CardSubtitle, Button, Row, Col
 } from 'reactstrap';
 
-const ProductCard = (props) => {
+
+const ProductCard = () => {
   return (
     <Col xs='12' sm='6' md='4'>
        <Card className='product-container'>
