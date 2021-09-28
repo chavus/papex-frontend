@@ -90,7 +90,7 @@ const UserRegister = () => {
         let res = await api.createUser(user)
         console.log(res)
         if (res.success){
-            //history.push("./Login")
+           // history.push("./Login")
         }
         else{
                 setMessage(res)
