@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { UserContext } from '../../App'
 import BusinessCard from '../../Components/BusinessCards'
 import Search from  '../../Components/Search'
 import api from '../../lib/api'
@@ -6,9 +7,16 @@ import "./styles.scss"
 
 function Main() {
 
+    const [userData] = useContext(UserContext)
     const [negocios, setNegocios] = useState(null)
     useEffect( async()=> {
-       
+        if (userData){
+            console.log('yes, you are logged in as', userData.name)
+        }else{
+            navigator.geolocation.getCurrentPosition(
+                (position) => {console.log("Position: ", position.coords.latitude, position.coords.longitude)}
+            )
+        }
         const apiData = await api.getAllUsers()
         const arrayBusiness = apiData.filter(user =>{
             return user.rol === "Negocio"
