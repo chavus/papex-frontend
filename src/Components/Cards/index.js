@@ -6,27 +6,30 @@ import {
 } from 'reactstrap';
 
 
-const ProductCard = () => {
+const ProductCard = (props) => {
+
+  const {name, price, imageUrl, description, category, brand, _id} = props.ProductData
+
   return (
-    <Col xs='12' sm='6' md='4'>
+    <Col xs='12' sm='6' md='4' key={_id}>
        <Card className='product-container'>
            <div className='product-image'>
-              <CardImg top width="100%" src="https://picsum.photos/seed/picsum/200/300" alt="Card image cap" />
+              <CardImg top width="100%" src={imageUrl} alt="Card image cap" />
            </div>
            <CardBody className='product-body'>
-                    <CardTitle tag="h5">Producto</CardTitle>
-                    <CardSubtitle tag="h6" className="mb-2 text-muted">detalle
+                    <CardTitle tag="h5">{name}</CardTitle>
+                    <CardSubtitle tag="h6" className="mb-2 text-muted">{brand}
                     </CardSubtitle>
-                    <CardText>Precio</CardText>
-                    <CardText>Disponibles</CardText>
+                    <CardText>${price}.00</CardText>
+                    <CardText>{category}</CardText>
                     <div className='button-div'>
-                        <ul>
+                       {/*<ul>
                             <li className="mb-2 text-muted">A domicilio
                             </li>
                             <li className="mb-2 text-muted">Pick up
                             </li>
-                        </ul>     
-                        <Button className='btn-p-primary'>Editar</Button>
+                       </ul> */  }  
+                        <Button className='btn-p-primary'>Añadir</Button>
                     </div>
                     
             </CardBody>
