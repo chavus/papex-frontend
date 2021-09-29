@@ -7,7 +7,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useHistory
+  useHistory,
+  useLocation
 } from "react-router-dom";
 
 // Pages
@@ -20,21 +21,23 @@ import PapexNav from './Components/NavBar';
 import Main from './Pages/Main'
 import UserRegister from './Pages/Registro';
 
+//Contexts
+export const UserContext = react.createContext()
+
 function App() {
 
-  const [userData, setUserData ] = useState(null)
+  let location = useLocation()
+  const [userData, setUserData ] = useState(localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null)
   const [showNavBar, setShowNavBar] = useState(true)
   const history = useHistory()
 
   useEffect(()=>{
-    const userDataRaw = localStorage.getItem("userData") 
-    const userData = userDataRaw ? JSON.parse(userDataRaw) : null 
-    setUserData(userData) 
-          
-  },[])
+    console.log(location.pathname)
+  },[location])
 
-  function changeUserData(myUserData){
-    setUserData(myUserData)
+  function changeUserData(data) {
+    setUserData(data)
+    localStorage.setItem('userData', JSON.stringify(data))
   }
 
   function changeShowNavBar(value){
@@ -42,55 +45,50 @@ function App() {
   }
 
   return (
-    <Router>
-      <div>      
+    <UserContext.Provider value={[userData, changeUserData]}>
+        <div>      
 
-        { showNavBar &&
-          <PapexNav
-            userData = { userData }
-          />
-        }
+          { location.pathname != "/Login" &&
+            <PapexNav/>
+          }
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/CatalogoNegocio">
-            <CatalogoNegocio              
-            />
-          </Route>
-          <Route path="/Perfil">
-            <Perfil 
-       
-            />
-          </Route>
-          <Route path="/MisPedidos">
-              <MisPedidos 
-       
+          {/* A <Switch> looks through its children <Route>s and
+              renders the first one that matches the current URL. */}
+          <Switch>
+            <Route path="/CatalogoNegocio">
+              <CatalogoNegocio              
               />
-          </Route>
-          <Route path="/DetalleNegocio/:id">
-              <DetalleNegocio 
-     
+            </Route>
+            <Route path="/Perfil">
+              <Perfil 
+        
               />
-          </Route>
-            <Route path="/Registro">  
-            <UserRegister/>
+            </Route>
+            <Route path="/MisPedidos">
+                <MisPedidos 
+        
+                />
+            </Route>
+            <Route path="/DetalleNegocio/:id">
+                <DetalleNegocio 
+      
+                />
+            </Route>
+              <Route path="/Registro">  
+              <UserRegister/>
 
-          </Route>    
-          <Route path="/Login">
+            </Route>    
+            <Route path="/Login">
 
-            <Login             
-              changeUserData = {changeUserData}
-              changeShowNavBar = { changeShowNavBar }
-            />
-          </Route>                    
-          <Route path="/">
-            <Main/>
-          </Route>  
-                 
-        </Switch>
-      </div>
-    </Router>
+              <Login/>
+            </Route>                    
+            <Route path="/">
+              <Main/>
+            </Route>  
+                  
+          </Switch>
+        </div>
+    </UserContext.Provider>
   );
 }
 
