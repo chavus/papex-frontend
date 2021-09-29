@@ -18,6 +18,7 @@ import DetalleNegocio from './Pages/DetalleNegocio';
 import Login from  './Pages/Login';
 import PapexNav from './Components/NavBar';
 import UserRegister from './Pages/Registro';
+import ShoppingCart from './Pages/ShoppingCart'
 
 function App() {
 
@@ -82,7 +83,12 @@ function App() {
               changeUserData = {changeUserData}
               changeShowNavBar = { changeShowNavBar }
             />
-          </Route>                    
+          </Route>
+          <Route path="/miCarrito">
+
+            <ShoppingCart             
+            />
+          </Route>                              
           <Route path="/">           
 
             <h1>inicio</h1>
