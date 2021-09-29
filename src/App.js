@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> main
 import react, {useState, useEffect} from 'react'
 import logo from './logo.svg';
 import './assets/global_style.scss'
