@@ -1,0 +1,120 @@
+@import "../../assets/global_style.scss";
+
+.b-container{
+    // background-color: pink;
+    margin: 65px 15px 15px 15px;
+    // border: solid 1px lightgray;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+
+h1{
+    font-weight: bold;
+    font-size: 1.7em;
+    padding-left: 15px;
+
+}
+
+.search-container{
+
+    display: flex;
+}
+
+.row{
+    margin: 10px;
+}
+
+.bc-column{
+    display: flex;
+}
+.b-card{
+    flex: 1;
+    border: solid 1px $light-gray;
+    border-radius: 6px;
+    box-shadow: 9px 9px 20px -8px rgba(0,0,0,0.65);
+    -webkit-box-shadow: 9px 9px 20px -8px rgba(0,0,0,0.65);
+    -moz-box-shadow: 9px 9px 20px -8px rgba(0,0,0,0.65);
+
+    &:hover{
+        border: solid 2px $secondary;
+        transform: scale(1.01);
+        // cursor: pointer;
+    }
+}
+
+.b-card-title{
+    display: flex;
+    height: 70px;
+    // background: lightgray;
+    justify-content: left;
+    align-items: center;
+    font-size: 1.5em;
+}
+.b-card-title::before,
+.b-card-title::after{
+    content: "";
+    display: block;
+    flex:1;
+    height: 4px;
+    width: 30px;
+    background: linear-gradient(.25turn, $primary, $light-gray);
+}
+
+.b-card-text{
+  
+    font-size: 1rem;
+    padding-left: 20px;
+    font-weight: 500;
+
+    span{
+        font-weight: bolder;
+    }
+}
+
+.b-button-details{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    font-size: .8rem;
+}
+
+.business-details{
+    padding: 8px ;
+    align-self: center;
+    padding-bottom: 1em;
+    border: solid 1px $light-gray;
+    border-radius: 5px;
+    color: grey;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover{
+        border: solid 2px $primary;
+        color: $primary;
+    }
+    
+}
+
+// .business-details{
+//     // visibility: hidden;
+//     opacity: 0.2;
+//     font-size: 2rem;
+//     color: $secondary;
+//     // border: solid 2px grey;
+//     // border-radius: 50%;
+//     position: absolute;
+//     top: 44%;
+//     left: 92%;
+
+
+//     &:hover{
+//         // visibility: visible;
+      
+//         color: $secondary;
+//         opacity: 1;
+//     //     font-size: 2em;
+//     //     visibility: visible;
+//     }
+// }
+

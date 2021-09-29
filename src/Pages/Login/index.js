@@ -1,29 +1,19 @@
-import React , {useState, useEffect} from 'react'
+import React , {useState, useEffect, useContext} from 'react'
 import {  useHistory } from 'react-router-dom'
 import {Col, FormGroup, Button, Label, Input, Form, Alert } from 'reactstrap'
 import logoPapex from '../../img/papex.png'
 import './styles.scss'
 import api from '../../assets/lib/api'
+import { UserContext } from '../../App'
 
 export default function Login(props){
     
+    const [userData, changeUserData] = useContext(UserContext)
     const [formData, setFormData] = useState({})
     const [showMessage, setShowMessage] = useState(true)
     const [messageClass, setMessageClass] = useState("light")
     const [messageText, setMessageText] = useState(" ")    
     let history = useHistory()
-
-    useEffect( ()=> {
-      props.changeShowNavBar(true) 
-    } , [] )   
-    
-    useEffect(() => {
-      return () => {        
-        if (history.action === "POP") {
-          history.replace(history.location.pathname, props.changeShowNavBar(true));
-        }
-      };
-    }, [history])
 
     function onInputChange(event){
         const value = event.target.value
@@ -41,17 +31,16 @@ export default function Login(props){
             const token = resAuth.data.token
             const id = JSON.parse(window.atob(token.split(".")[1])).id
             const userJson = await api.getUserById(id, token)
-            const userData = userJson.data
-            delete userData.password
-            localStorage.setItem("userData",JSON.stringify({...userData, token}))
-            props.changeUserData(userData)
-            displayMessage("success")   
+            const userDataObject = userJson.data
+            delete userDataObject.password
+            changeUserData({...userDataObject, token})
+            displayMessage("success", userDataObject.rol)   
         }else{
             displayMessage("error")
         }
     }
 
-    function displayMessage (value)
+    function displayMessage (value, rol)
     {
       if (value === "success"){ 
         setMessageClass("success")
@@ -66,8 +55,11 @@ export default function Login(props){
         setMessageClass("light")
         setMessageText(".")
         if (value === "success"){
-            props.changeShowNavBar(true) 
+          if (rol == "Cliente"){
             history.push("/") 
+          }else{
+            history.push("/CatalogoNegocio") 
+          }
           }
       }, 2000 )  
     }

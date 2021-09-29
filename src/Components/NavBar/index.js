@@ -10,8 +10,9 @@ import {
   useHistory
 } from "react-router-dom";
 import papex from '../../img/papex.png'
-import oscar from '../../img/oscar.jpg'
+import avatar from '../../img/avatarpre.jpg'
 import './styles.scss'
+import NavDropdown from '../NavDropdown';
 
 const PapexNav = () => {
   let history = useHistory()
@@ -36,12 +37,9 @@ const PapexNav = () => {
             </NavItem>
             <button className='btn-p-secondary nav-btn d-none d-sm-block' onClick={goLogin} >Iniciar Sesión</button>
          
-              <button className='profile-btn'>
-									<span className="profile">
-										<img src={oscar}/>
-									</span>
-						   </button>
-           
+            
+            <NavDropdown/>
+            
           </Nav>
           
       </Navbar>
