@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
 
 *{
     margin: 0;
@@ -41,6 +41,7 @@ $colors:(
         padding: 7px;
         //default paddings
         &:hover{
+            background-color: $color;
             opacity: 65%;
         }
     }
@@ -51,8 +52,9 @@ $colors:(
 }
 
 .p-borders{
-    border-radius: 1px;
+    border-radius: 5px;
     border: solid 1px black;
+    box-shadow: black;
 }
 
 .p-titles{
