@@ -1,5 +1,3 @@
-import react from 'react'
-
 import react, {useState, useEffect} from 'react'
 import logo from './logo.svg';
 import './assets/global_style.scss'
