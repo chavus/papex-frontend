@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import './styles.scss'
 
-const DropdownButton = (props) => {
+const DropdownCategory = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
@@ -23,4 +23,4 @@ const DropdownButton = (props) => {
   );
 }
 
-export default DropdownButton;
+export default DropdownCategory;
