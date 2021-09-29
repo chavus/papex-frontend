@@ -24,7 +24,7 @@ export default function CatalogoNegocio(){
        const result = await api.getAllProductsByBusiness('6136f36aa0abed586902256e')
        console.log(result.data)
        setProducts(result.data)
-       console.log(products[0].business.name)
+      // console.log(products[0].business.name)
     }, []);
 
    // const {name, deliveryMethod } = products[0].business
@@ -33,7 +33,7 @@ export default function CatalogoNegocio(){
     <Col xs='12' className='catalog-cards'>
         <h1 className='p-titles mt-2'></h1>
         <div className='product-manegement'>
-           <DropdownButton/>
+          
            <button className='btn-p-secondary'> + Agregar</button>
         </div>
         <Row>
