@@ -8,7 +8,7 @@ import {
 
 const ProductCard = (props) => {
 
-  const {name, price, imageUrl, description, category, brand, _id} = props.ProductData
+  const {name, price, imageUrl, category, brand, _id} = props.ProductData
 
   return (
     <Col xs='12' sm='6' md='4' key={_id}>

@@ -20,6 +20,7 @@ import Login from  './Pages/Login';
 import PapexNav from './Components/NavBar';
 import Main from './Pages/Main'
 import UserRegister from './Pages/Registro';
+import SearchPage from './Pages/Busqueda';
 
 //Contexts
 export const UserContext = react.createContext()
@@ -81,6 +82,10 @@ function App() {
             <Route path="/Login">
 
               <Login/>
+            </Route>
+            <Route path='/Search'>
+              <SearchPage/>
+
             </Route>                    
             <Route path="/">
               <Main/>

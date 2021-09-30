@@ -45,6 +45,13 @@ export default{
         return resJson
     },
 
+    async getAllProductsBySearch(someName){
+        let result = await fetch(`${BASE_URL}/products?name=${someName}`)
+
+        const resJson = await result.json()
+        return resJson
+    },
+
     /*
     async getPostById(id, jwtToken){
 

@@ -1,36 +1,7 @@
 @import '../../assets/global_style.scss';
 
-.dropdown{
-    //width: 20%;
-
-    button{
-        margin-right: 7px;
-        padding: 1px;
-        background-color: $light-blue;
-        border-radius: 50%;
-        display: flex;
-        &:hover{
-            background-color: $secondary;
-        }
-        img{
-            width: 35px;
-               border-radius: 50%;
-        }
+.category{
+    background-color: $primary;
+    border-radius: 5px;
     
-    
-    }
-    .drop-menu{
-        background-color: $light-gray;
-        a{
-            color: $primary;
-        }
-    }
-       
-
-    @media(min-width:576px){
-        
-        div{
-            //display: none;
-        }
-    }
 }
