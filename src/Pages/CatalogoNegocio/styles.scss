@@ -2,6 +2,12 @@
 
 .catalog-cards{
     margin-top: 55px;
+    .info-container{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+    }
     .product-manegement{
         display: flex;
         justify-content: space-evenly;
