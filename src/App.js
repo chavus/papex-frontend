@@ -2,6 +2,7 @@ import react, {useState, useEffect} from 'react'
 import logo from './logo.svg';
 import './assets/global_style.scss'
 import './App.scss';
+import api from './assets/lib/api'
 
 import {
   BrowserRouter as Router,
@@ -35,8 +36,8 @@ function App() {
 
   let location = useLocation()
   const [userData, setUserData ] = useState(localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null)
-  const [shoppingCart, setShoppingCart] = useState(localStorage.getItem('shoppingCart') ? JSON.parse(localStorage.getItem('shoppingCart')) : null)
-  // useState(localStorage.getItem('shoppingCart') ? JSON.parse(localStorage.getItem('shoppingCart')) : null)
+  const [shoppingCart, setShoppingCart] = useState(localStorage.getItem('shoppingCart') ? JSON.parse(localStorage.getItem('shoppingCart')) : [])
+  // const [shoppingCart, setShoppingCart] = useState(cartData)
   const [showNavBar, setShowNavBar] = useState(true)
   const history = useHistory()
 
@@ -50,9 +51,14 @@ function App() {
     localStorage.setItem('shoppingCart', JSON.stringify(data))
   }
 
+  function addToShoppingCart(proudctId){
+    // const productData = api.get
+    return
+  }
+
   return (
     <UserContext.Provider value={[userData, changeUserData]}>
-      <ShoppingCartContext.Provider value={[shoppingCart, changeShoppingCart]}>
+      <ShoppingCartContext.Provider value={{shoppingCart, changeShoppingCart}}>
         <div>      
 
           { location.pathname != "/Login" &&

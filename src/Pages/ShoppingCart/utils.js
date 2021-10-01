@@ -1,4 +1,5 @@
 import api from '../../assets/lib/api'
+import CartPerBusiness from '../../Components/CartPerBusiness'
 
 async function getCartPerBusinessInfo(businessCart){
     // Expands cart info from IDs
@@ -19,4 +20,15 @@ async function getExpandedShoppingCartInfo(shoppingCart){
     return expandedShoppingCart
 }
 
-export { getExpandedShoppingCartInfo }
+function getSubTotal(cartPerBusiness){
+    const deliveryMethod = cartPerBusiness.deliveryMethod
+    return cartPerBusiness.products.reduce( (subtotal, currProd) =>{
+            return subtotal + currProd.product.price*currProd.qty
+           },deliveryMethod == "Delivery" ? 30 : 0 )
+}
+
+function getTotal(eCart){
+    return eCart.reduce( (acc, cPB) => acc + getSubTotal(cPB), 0)
+}
+
+export { getExpandedShoppingCartInfo, getTotal }

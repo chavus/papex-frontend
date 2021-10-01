@@ -7,15 +7,15 @@ import{
 
 } from 'reactstrap'
 import { ShoppingCartContext } from '../../App'
-import { getExpandedShoppingCartInfo } from './utils'
+import { getExpandedShoppingCartInfo, getTotal } from './utils'
 
 export default function ShoppingCart(){
-    const [shoppingCart, changeShoppingCart] = useContext(ShoppingCartContext)
-    const [expandedShoppingCart, setExpandedShoppingCart] = useState(null)
-
+    const {shoppingCart, changeShoppingCart} = useContext(ShoppingCartContext)
+    const [expandedShoppingCart, setExpandedShoppingCart] = useState([])
+    console.log(shoppingCart)
 
     useEffect(async ()=>{
-        const expandedShoppingCart = await getExpandedShoppingCartInfo(shoppingCart)
+        const expandedShoppingCart= await getExpandedShoppingCartInfo(shoppingCart)   
         setExpandedShoppingCart(expandedShoppingCart)
     }, [shoppingCart])
 
@@ -54,6 +54,7 @@ export default function ShoppingCart(){
         const productIdx = shoppingCartTemp[businessIdx].products.findIndex(product => product.product == productId)
         console.log(shoppingCartTemp[businessIdx])
         shoppingCartTemp[businessIdx].products.splice(productIdx,1)
+        shoppingCartTemp[businessIdx].products.length == 0 && shoppingCartTemp.splice(businessIdx,1)
         changeShoppingCart(shoppingCartTemp)
     }
 
@@ -69,25 +70,28 @@ export default function ShoppingCart(){
         <div className="container-fluid bg-p-light-gray main-padding">
             <h1 className="p-titles">Mi Carrito</h1>
             <div className="container p-borders">
-            { expandedShoppingCart && 
-                expandedShoppingCart.map((cartPerBusinessData, idx)=>{
-                    return <CartPerBusiness
-                            key={idx}
-                            cartPerBusinessData = {cartPerBusinessData}
-                            onCommentChange = { onCommentChange }
-                            onCommentBlur = { onCommentBlur }
-                            onQtyChange = { onQtyChange }
-                            onDeleteClick = { onDeleteClick }
-                            onDeliveryChange = { onDeliveryChange }
-                    />
-                })
+            { !expandedShoppingCart.length && <h1>Carrito vacío, corre a comprar algo!</h1>}
+            { !!expandedShoppingCart.length && 
+                <>
+                    {expandedShoppingCart.map((cartPerBusinessData, idx)=>{
+                        return <CartPerBusiness
+                                key={idx}
+                                cartPerBusinessData = {cartPerBusinessData}
+                                onCommentChange = { onCommentChange }
+                                onCommentBlur = { onCommentBlur }
+                                onQtyChange = { onQtyChange }
+                                onDeleteClick = { onDeleteClick }
+                                onDeliveryChange = { onDeliveryChange }
+                        />
+                    })
+                    }
+                    <div className="text-end mt-4">
+                    <div className="total mb-3"><span className="fw-bold">Total:</span> $ {getTotal(expandedShoppingCart)}</div>
+                    <Button className="btn-p-primary">Hacer Checkout</Button>
+                    </div>
+                </>
             }
-            <div className="text-end mt-4">
-                <div className="total mb-3"><span className="fw-bold">Total:</span> $ 1,538.00</div>
-                <Button className="btn-p-primary">Hacer Checkout</Button>
             </div>
-            </div>
-            
         </div>
     )
 }
