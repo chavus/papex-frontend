@@ -21,7 +21,7 @@ import Login from  './Pages/Login';
 import PapexNav from './Components/NavBar';
 import Main from './Pages/Main'
 import UserRegister from './Pages/Registro';
-import AddProduct  from './Pages/AddProduct';
+import ManageProduct  from './Pages/ManageProduct';
 
 //Contexts
 export const UserContext = react.createContext()
@@ -83,7 +83,10 @@ function App() {
             <Route path="/Login">
 
               <Login/>
-            </Route>                    
+            </Route>  
+            <Route path="/ManageProduct">
+              <ManageProduct/>
+            </Route>                               
             <Route path="/">
               <Main/>
             </Route>  

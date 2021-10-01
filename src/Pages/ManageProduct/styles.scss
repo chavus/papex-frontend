@@ -1,0 +1,54 @@
+.btn{
+
+    width: 100px;
+    height: 40x;
+}
+
+.add-product-container{
+
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 900px;
+    border-radius: 5px 5px;
+    margin-top: 60px;
+
+
+
+    .image-product-description-container{
+        max-width: 800px;
+
+        width: 100%;
+        border: 5xp solid orange;
+        //height: 70vh;
+
+    }
+
+    .image-product-container{
+        .image-container{
+            height: 250px;
+            width: 250px;
+            margin-left: auto;
+            margin-right: auto;
+
+           .image-preview{
+                height: 250px;
+                width: 250px;
+                margin-left: auto;
+                margin-right: auto;
+                object-fit:cover; 
+                
+           }
+        }
+    }
+
+
+}
+
+.hidde-Button-Image
+{
+    display:none;
+}
+

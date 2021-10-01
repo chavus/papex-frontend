@@ -93,7 +93,7 @@ const UserRegister = () => {
            // history.push("./Login")
         }
         else{
-                setMessage(res)
+                setMessage(res.data)
                 setShowMessage(true)
                 setTimeout(  () => {                     
                     setShowMessage(false)                   
