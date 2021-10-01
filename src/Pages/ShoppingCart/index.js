@@ -10,7 +10,7 @@ import { ShoppingCartContext } from '../../App'
 import { getExpandedShoppingCartInfo, getTotal } from './utils'
 
 export default function ShoppingCart(){
-    const {shoppingCart, changeShoppingCart} = useContext(ShoppingCartContext)
+    const {shoppingCart, changeShoppingCart, addToShoppingCart} = useContext(ShoppingCartContext)
     const [expandedShoppingCart, setExpandedShoppingCart] = useState([])
     console.log(shoppingCart)
 
@@ -38,7 +38,7 @@ export default function ShoppingCart(){
     }
 
     function onQtyChange(event){
-        const value = event.target.value
+        const value = parseInt(event.target.value)
         const { businessId, productId } = event.target.dataset
         let shoppingCartTemp = [...shoppingCart]
         const businessIdx = shoppingCartTemp.findIndex(businessCart => businessCart.business == businessId)
@@ -66,6 +66,11 @@ export default function ShoppingCart(){
         shoppingCartTemp[businessIdx].deliveryMethod = value
         changeShoppingCart(shoppingCartTemp)
     }
+
+    function onTestClick(){
+        addToShoppingCart("61569833a24668c1e2e53245")
+    }
+
     return(
         <div className="container-fluid bg-p-light-gray main-padding">
             <h1 className="p-titles">Mi Carrito</h1>
@@ -87,7 +92,7 @@ export default function ShoppingCart(){
                     }
                     <div className="text-end mt-4">
                     <div className="total mb-3"><span className="fw-bold">Total:</span> $ {getTotal(expandedShoppingCart)}</div>
-                    <Button className="btn-p-primary">Hacer Checkout</Button>
+                    <Button className="btn-p-primary" onClick={onTestClick}>Hacer Checkout</Button>
                     </div>
                 </>
             }
