@@ -7,7 +7,6 @@ import './styles.scss'
 import api from '../../assets/lib/api'
 import firebase from '../../assets/lib/fire'
 import noImage from '../../img/sinimagen.png'
-//import Product from '../../Components/Product'
 
 function ManageProduct(props){
 
@@ -91,7 +90,7 @@ function ManageProduct(props){
         if (idProduct){
             let result = await api.patchProductById(idProduct, productData, userData.token  )
             if (result.success){
-                //history.push("/CatalogoNegocio")
+                history.push("/CatalogoNegocio")
             }
             else{
                 console.log(result.data)
@@ -100,7 +99,7 @@ function ManageProduct(props){
         else{             
             let result = await api.createProduct(productData, userData.token  )
             if (result.success){
-                //history.push("/CatalogoNegocio")
+                history.push("/CatalogoNegocio")
             }
             else{
                 console.log(result.data)
@@ -225,15 +224,3 @@ function ManageProduct(props){
 
 export default ManageProduct
 
-/*
-<Product 
-onClickDeleteProduct = {onClickDeleteProduct}
-onClickGoCatalog = {onClickGoCatalog}
-onClickSaveProduct = {onClickSaveProduct}
-selectFileHandler = {selectFileHandler}
-showDeleteButton = {false}
-handleAvailability = {handleAvailability}
-onChangeInputsHandlers = {onChangeInputsHandlers}
-uploadFile = {uploadFile}
-
-/>*/
