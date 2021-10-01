@@ -52,6 +52,60 @@ export default{
         return resJson
     },
 
+    async createProduct(data, jwtToken){
+          
+        let response = await fetch(`${BASE_URL}/products`,{
+            method: "POST",
+            headers:{
+                'Content-Type':'application/json'
+                ,'Authorization': jwtToken
+            },
+            body: JSON.stringify(data)
+        })
+        const resJson = await response.json()
+        return resJson
+
+    } ,
+   
+    async getProductById(id){
+
+        let result = await fetch(`${BASE_URL}/products/${id}`,{
+        })
+        const resJson = await result.json()
+        return resJson
+    }, 
+    
+    async deleteProductById(id, jwtToken){
+
+        let result = await fetch(`${BASE_URL}/products/${id}`,{
+            method: "DELETE",
+            headers:{
+                'Content-Type':'application/json'
+                ,'Authorization': jwtToken
+            }
+            
+        })
+        const resJson = await result.json()
+        return resJson
+    },  
+
+     async patchProductById(id, data, jwtToken){
+
+        let result = await fetch(`${BASE_URL}/products/${id}`,{
+            method: "PATCH",
+            headers:{
+                'Content-Type':'application/json'
+                ,'Authorization': jwtToken
+            },
+            body: JSON.stringify(data)
+            
+        })
+        const resJson = await result.json()
+        return resJson
+    },   
+    
+    
+
     /*
     async getPostById(id, jwtToken){
 
@@ -63,20 +117,7 @@ export default{
         const resJson = await result.json()
         return resJson.data.getSinglePost
     },
-    async createPost(data, jwtToken){
 
-        let response = await fetch(`${BASE_URL}/posts`,{
-            method: "POST",
-            headers:{
-                'Content-Type':'application/json',
-                'Authorization': jwtToken
-            },
-            body: JSON.stringify(data)
-        })
-        const resJson = await response.json()
-        return resJson.data.posted
-
-    },
     async updatePost(id, data, jwtToken){
 
         let response = await fetch(`${BASE_URL}/posts/${id}`,{
