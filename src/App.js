@@ -22,6 +22,7 @@ import Main from './Pages/Main'
 import UserRegister from './Pages/Registro';
 import ShoppingCart from './Pages/ShoppingCart'
 import { createContext } from 'react';
+import ManageProduct  from './Pages/ManageProduct';
 
 //Contexts
 export const UserContext = react.createContext()
@@ -77,7 +78,10 @@ function App() {
             </Route>    
             <Route path="/Login">
               <Login/>
-            </Route>                    
+            </Route>  
+            <Route path="/ManageProduct">
+              <ManageProduct/>
+            </Route>                               
             <Route path="/">
               <Main/>
             </Route>  
