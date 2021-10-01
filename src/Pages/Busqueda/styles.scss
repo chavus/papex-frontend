@@ -1,0 +1,21 @@
+@import '../../assets/global_style.scss';
+
+
+.search-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .b-container-search{
+        // background-color: pink;
+        margin: 65px 15px 15px 15px;
+        // border: solid 1px lightgray;
+        display: flex;
+        width: 90vw;
+        flex-direction: column;
+        padding: 1em;
+    }
+
+
+}
+

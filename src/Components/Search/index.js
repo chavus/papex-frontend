@@ -5,8 +5,9 @@ import {
 import { FaSearch } from 'react-icons/fa';
 import "./styles.scss"
 
-function Search() {
+function Search(props) {
     const [searchTerm, setSearchTerm] = useState("")
+
 
     function onSearchChange(event){
         const value = event.target.value
@@ -20,9 +21,10 @@ function Search() {
                     type="text" 
                     className="form-control input-buscar" 
                     placeholder="Búsqueda"
+                   
                     onChange={ onSearchChange }
                  />
-                <Link className="search-button" to={`/search?search=${searchTerm}`}><FaSearch /></Link>
+                <Link className="search-button" to={`/Search?searchText=${searchTerm}`}><FaSearch /></Link>
             </div>
         </>
     )
