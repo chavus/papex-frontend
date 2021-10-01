@@ -1,0 +1,30 @@
+*{
+    // margin: 0 !important;
+}
+
+.cart-business-container{
+    .product-line{
+        align-items: center;
+        *{
+            // margin: 0 8px !important;
+        }
+        .qty-input{
+            width: 2rem;
+            text-align: center;
+            padding: 6px;
+            margin-right: 1rem;
+        }
+        p{
+            margin: 0;
+            &.product-price{
+                width: 5rem;
+                text-align: right;
+                margin-right: 1rem;
+            }
+            &.product-name{
+                width: 100%;
+            }
+        }
+
+    }
+}
