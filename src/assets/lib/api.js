@@ -39,14 +39,14 @@ export default{
 
     
     async getAllProductsByBusiness(id){
-        let result = await fetch(`${BASE_URL}/products?businessId=${id}`)
+        let result = await fetch(`${BASE_URL}/products${id}`)
 
         const resJson = await result.json()
         return resJson
     },
 
     async getAllProductsBySearch(someName){
-        let result = await fetch(`${BASE_URL}/products?name=${someName}`)
+        let result = await fetch(`${BASE_URL}/products?searchText=${someName}`)
 
         const resJson = await result.json()
         return resJson

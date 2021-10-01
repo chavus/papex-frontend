@@ -4,6 +4,7 @@ import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button, Row, Col
 } from 'reactstrap';
+import { FaShoppingCart } from 'react-icons/fa'; 
 
 
 const ProductCard = (props) => {
@@ -29,7 +30,13 @@ const ProductCard = (props) => {
                             <li className="mb-2 text-muted">Pick up
                             </li>
                        </ul> */  }  
-                        <Button className='btn-p-primary'>Añadir</Button>
+                        <Button 
+                          className='btn-p-primary'>
+                            Añadir{' '}
+                            <FaShoppingCart
+                            color='white'
+                            />
+                            </Button>
                     </div>
                     
             </CardBody>

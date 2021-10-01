@@ -8,6 +8,7 @@ import {
     Link
 } from 'react-router-dom'
 import { useParams } from 'react-router';
+import { useLocation } from 'react-router-dom';
 import './styles.scss'
 import ProductCard from "../../Components/Cards";
 import api from '../../assets/lib/api'
@@ -21,16 +22,17 @@ export default function CatalogoNegocio(){
     const [filteredProducts, setFilteredProducts] = useState([])
     const [businessInfo, setBusinessInfo] = useState({})
     const [categoryProduct, setCategoryProduct] = useState('')
-    const businessId = useParams().businessId
-
+    const businessId = useLocation().search
+    //console.log('this is use location',businessId)
+   
 
     useEffect( async() => {
-       const result = await api.getAllProductsByBusiness('6136f36aa0abed586902256e')
-       console.log(result.data)
+       const result = await api.getAllProductsByBusiness(businessId)
+      
        setProducts(result.data)
        setFilteredProducts(result.data)
        setBusinessInfo(result.data[0].business)
-       console.log(Object.values(businessInfo))
+       
       
     }, []);
 
