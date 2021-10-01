@@ -23,6 +23,10 @@ import UserRegister from './Pages/Registro';
 import ShoppingCart from './Pages/ShoppingCart'
 import { createContext } from 'react';
 
+//Test
+import cartData from './Pages/ShoppingCart/cartTestData2'
+
+
 //Contexts
 export const UserContext = react.createContext()
 export const ShoppingCartContext = react.createContext()
@@ -32,6 +36,7 @@ function App() {
   let location = useLocation()
   const [userData, setUserData ] = useState(localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null)
   const [shoppingCart, setShoppingCart] = useState(localStorage.getItem('shoppingCart') ? JSON.parse(localStorage.getItem('shoppingCart')) : null)
+  // useState(localStorage.getItem('shoppingCart') ? JSON.parse(localStorage.getItem('shoppingCart')) : null)
   const [showNavBar, setShowNavBar] = useState(true)
   const history = useHistory()
 
