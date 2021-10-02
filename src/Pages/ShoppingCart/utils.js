@@ -28,6 +28,7 @@ function getSubTotal(cartPerBusiness){
 }
 
 function getTotal(eCart){
+    console.log(eCart)
     return eCart.reduce( (acc, cPB) => acc + getSubTotal(cPB), 0)
 }
 

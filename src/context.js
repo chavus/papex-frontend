@@ -1,3 +1,5 @@
+import { useContext } from "react"
+
 export async function addToShoppingCart(productId){
     let shoppingCartTemp = [...shoppingCart]
     const res = await api.getProductById(productId)
@@ -26,4 +28,3 @@ export async function addToShoppingCart(productId){
     setShoppingCart(shoppingCartTemp)
     localStorage.setItem('shoppingCart', JSON.stringify(shoppingCartTemp))
   }
-

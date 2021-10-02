@@ -1,10 +1,8 @@
 import './style.scss'
 import { useContext, useEffect, useState } from 'react'
 import CartPerBusiness from '../../Components/CartPerBusiness'
-import cartTestData from './cartTestData'
 import{
     Button
-
 } from 'reactstrap'
 import { ShoppingCartContext } from '../../App'
 import { getExpandedShoppingCartInfo, getTotal } from './utils'
@@ -12,7 +10,6 @@ import { getExpandedShoppingCartInfo, getTotal } from './utils'
 export default function ShoppingCart(){
     const {shoppingCart, changeShoppingCart, addToShoppingCart} = useContext(ShoppingCartContext)
     const [expandedShoppingCart, setExpandedShoppingCart] = useState([])
-    console.log(shoppingCart)
 
     useEffect(async ()=>{
         const expandedShoppingCart= await getExpandedShoppingCartInfo(shoppingCart)   
@@ -52,7 +49,6 @@ export default function ShoppingCart(){
         let shoppingCartTemp = [...shoppingCart]
         const businessIdx = shoppingCartTemp.findIndex(businessCart => businessCart.business == businessId)
         const productIdx = shoppingCartTemp[businessIdx].products.findIndex(product => product.product == productId)
-        console.log(shoppingCartTemp[businessIdx])
         shoppingCartTemp[businessIdx].products.splice(productIdx,1)
         shoppingCartTemp[businessIdx].products.length == 0 && shoppingCartTemp.splice(businessIdx,1)
         changeShoppingCart(shoppingCartTemp)
@@ -67,8 +63,9 @@ export default function ShoppingCart(){
         changeShoppingCart(shoppingCartTemp)
     }
 
-    function onTestClick(){
-        addToShoppingCart("61569833a24668c1e2e53245")
+    function onCheckoutClick(){
+        // addToShoppingCart("61569833a24668c1e2e53245")
+        return
     }
 
     return(
@@ -92,7 +89,7 @@ export default function ShoppingCart(){
                     }
                     <div className="text-end mt-4">
                     <div className="total mb-3"><span className="fw-bold">Total:</span> $ {getTotal(expandedShoppingCart)}</div>
-                    <Button className="btn-p-primary" onClick={onTestClick}>Hacer Checkout</Button>
+                    <Button className="btn-p-primary" onClick={onCheckoutClick}>Hacer Checkout</Button>
                     </div>
                 </>
             }

@@ -12,7 +12,6 @@ import{
 
 export default function CartPerBusiness(props){
     const {business, products, comments, deliveryMethod} = props.cartPerBusinessData
-    console.log(props.cartPerBusinessData)
 
     return(
         <div className="cart-business-container">
@@ -27,7 +26,6 @@ export default function CartPerBusiness(props){
                         <p className="product-name">{product.product.name}</p>
                         <p className="product-price">$ {product.product.price}</p>
                         <Button
-                            onClick={()=>console.log("clicked icon")}
                             data-business-id={ business._id }
                             data-product-id={ product.product._id }
                             onClick={ props.onDeleteClick }

@@ -61,7 +61,7 @@ function App() {
     //Check if product business is in cart
     const businessIdx = shoppingCart.findIndex( bizCart => bizCart.business == productData.business._id)
     if (businessIdx == -1) {
-      //Initializa biz
+      //Inicializa biz
       const cart = {
                     business: productData.business._id,
                     products:[{ product: productData._id,  qty:1 }],
