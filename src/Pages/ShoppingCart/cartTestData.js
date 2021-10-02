@@ -16,5 +16,12 @@ export default [
         deliveryMethod: "Pickup",
         comment:"Some comment Two"
     }
-
 ]
+
+// {
+//     business: 'id',
+//     products: ['ids'],
+//     deliveryMethod: 'string',
+//     comment: ''
+
+// }

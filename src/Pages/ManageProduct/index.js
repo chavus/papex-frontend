@@ -43,8 +43,7 @@ function ManageProduct(props){
         setAvailable(event.target.checked)
     }
 
-    const selectFileHandler = (event) => { 
-        console.log(event.target.files[0])  
+    const selectFileHandler = (event) => {         
         if (event.target.files[0]) {            
            const TmpPath = URL.createObjectURL(event.target.files[0])  
            setImagePath(TmpPath) 
@@ -83,9 +82,9 @@ function ManageProduct(props){
         //Si no se modifico image, no subo nada al bucket
         if (imageProduct){        
             let imageUrl = await uploadFile()        
-            productData.available = available  
             productData.imageUrl = imageUrl 
         }
+        productData.available = available  
         //Si es produto existente actualizo    
         if (idProduct){
             let result = await api.patchProductById(idProduct, productData, userData.token  )
@@ -96,7 +95,7 @@ function ManageProduct(props){
                 console.log(result.data)
             }
         }
-        else{             
+        else{   //Si es produto nuevo inserto            
             let result = await api.createProduct(productData, userData.token  )
             if (result.success){
                 history.push("/CatalogoNegocio")
@@ -196,7 +195,7 @@ function ManageProduct(props){
                            <img className="image-preview" src= {`${imagePath ?  imagePath : noImage }`} id="imagepreview"  alt="image product"  />                                            
                        </div>
                        <FormGroup className="" >
-                           <Button className="btn btn-p-primary mt-3 col-md-offset-2" > 
+                           <Button className="btn btn-p-primary mt-3 col-md-offset-2"  > 
                                <Input type="file" name="imageProduct" id="imageProduct" accept="image/*" onChange={selectFileHandler} className="hidde-Button-Image" />
                                <Label for="imageProduct">Imagen </Label>
                            </Button>  
@@ -204,7 +203,7 @@ function ManageProduct(props){
                    </diV>
 
                    { /**********************  DIV DE LOS BOTONES ***************************/} 
-                   <diV className="image-product-buttons-container d-flex justify-content-evenly ">
+                   <diV className="image-product-buttons-container d-flex justify-content-evenly mt-4 mt-md-n1  ">
                            <Button className="btn btn-p-secondary" onClick={onClickGoCatalog} > Cancelar
                            </Button>                    
                            <Button className="btn btn-p-primary" onClick={onClickSaveProduct}> Guardar
