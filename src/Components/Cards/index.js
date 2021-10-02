@@ -1,4 +1,5 @@
 import React,{ useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import { UserContext, ShoppingCartContext } from '../../App'
 import './styles.scss'
 import {
@@ -13,8 +14,14 @@ import { Link } from 'react-router-dom';
 const ProductCard = (props) => {
 
   const [userData] = useContext(UserContext)
+
+  const location = useLocation().pathname
+  console.log(props.ProductData)
+
+  const {name, price, imageUrl, category, brand, _id, business} = props.ProductData 
+
   const { shoppingCart, addToShoppingCart } = useContext(ShoppingCartContext)
-  const {name, price, imageUrl, category, brand, _id} = props.ProductData 
+
 
   function onAddClick(event){
     const productId = event.currentTarget.dataset.code
@@ -24,12 +31,21 @@ const ProductCard = (props) => {
   }
 
   return (
-    <Col xs='12' sm='6' md='4' key={_id}>
+    <Col xs='12' sm='6' md='3' key={_id}>
        <Card className='product-container'>
            <div className='product-image'>
               <CardImg top width="100%" src={imageUrl} alt="Card image cap" />
            </div>
            <CardBody className='product-body'>
+                     { location == '/Search' &&
+                      <Link to={`/CatalogoNegocio/?businessId=${business._id}`}>
+                        <CardTitle 
+                          tag="h5"
+                          >
+                          {business.businessName}
+                          </CardTitle>
+                      </Link>
+                      }
                     <CardTitle tag="h5">{name}</CardTitle>
                     <CardSubtitle tag="h6" className="mb-2 text-muted">{brand}
                     </CardSubtitle>
