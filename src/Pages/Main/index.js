@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { UserContext } from '../../App'
 import BusinessCard from '../../Components/BusinessCards'
 import Search from  '../../Components/Search'
-import api from '../../lib/api'
+import api from '../../assets/lib/api'
 import "./styles.scss"
 
 function Main() {
@@ -32,8 +32,8 @@ function Main() {
                 async(position) => {
                     console.log("Position: ", position.coords.latitude, position.coords.longitude)
                     const by = "userCoord"
-                    const dataUsr = "20.643295,-103.423268"
-                    // const dataUsr = `${position.coords.latitude}, ${position.coords.longitude}`
+                    // const dataUsr = "20.643295,-103.423268"
+                    const dataUsr = `${position.coords.latitude},${position.coords.longitude}`
                     const radius = 3
                     
                     const arrayBusiness = await api.getNearBusiness(by, dataUsr, radius)
