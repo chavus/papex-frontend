@@ -20,32 +20,37 @@ import Login from  './Pages/Login';
 import PapexNav from './Components/NavBar';
 import Main from './Pages/Main'
 import UserRegister from './Pages/Registro';
+import SearchPage from './Pages/Busqueda';
+import ShoppingCart from './Pages/ShoppingCart'
+import { createContext } from 'react';
+import ManageProduct  from './Pages/ManageProduct';
+
 
 //Contexts
 export const UserContext = react.createContext()
+export const ShoppingCartContext = react.createContext()
 
 function App() {
 
   let location = useLocation()
   const [userData, setUserData ] = useState(localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null)
+  const [shoppingCart, setShoppingCart] = useState(localStorage.getItem('shoppingCart') ? JSON.parse(localStorage.getItem('shoppingCart')) : null)
   const [showNavBar, setShowNavBar] = useState(true)
   const history = useHistory()
-
-  useEffect(()=>{
-    console.log(location.pathname)
-  },[location])
 
   function changeUserData(data) {
     setUserData(data)
     localStorage.setItem('userData', JSON.stringify(data))
   }
 
-  function changeShowNavBar(value){
-    setShowNavBar(value)
+  function changeShoppingCart(data) {
+    setShoppingCart(data)
+    localStorage.setItem('shoppingCart', JSON.stringify(data))
   }
 
   return (
     <UserContext.Provider value={[userData, changeUserData]}>
+      <ShoppingCartContext.Provider value={[shoppingCart, changeShoppingCart]}>
         <div>      
 
           { location.pathname != "/Login" &&
@@ -56,38 +61,39 @@ function App() {
               renders the first one that matches the current URL. */}
           <Switch>
             <Route path="/CatalogoNegocio">
-              <CatalogoNegocio              
-              />
+              <CatalogoNegocio/>
             </Route>
             <Route path="/Perfil">
-              <Perfil 
-        
-              />
+              <Perfil/>
             </Route>
             <Route path="/MisPedidos">
-                <MisPedidos 
-        
-                />
+                <MisPedidos/>
             </Route>
+            <Route path="/MiCarrito">
+              <ShoppingCart/>
+            </Route> 
             <Route path="/DetalleNegocio/:id">
-                <DetalleNegocio 
-      
-                />
+                <DetalleNegocio/>
             </Route>
               <Route path="/Registro">  
               <UserRegister/>
-
             </Route>    
             <Route path="/Login">
-
               <Login/>
+            </Route>
+            <Route path='/Search'>
+              <SearchPage/>
             </Route>                    
+            <Route path="/ManageProduct">
+              <ManageProduct/>
+            </Route>                               
             <Route path="/">
               <Main/>
             </Route>  
                   
           </Switch>
         </div>
+        </ShoppingCartContext.Provider>
     </UserContext.Provider>
   );
 }
