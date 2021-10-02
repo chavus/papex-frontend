@@ -64,7 +64,9 @@ export default function ShoppingCart(){
     }
 
     function onCheckoutClick(){
-        // addToShoppingCart("61569833a24668c1e2e53245")
+        console.log("right before")
+        console.log(shoppingCart)
+        addToShoppingCart("613700e57b7e3b66a43adb04")
         return
     }
 

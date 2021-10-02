@@ -1,5 +1,5 @@
 import React,{ useContext } from 'react';
-import { UserContext } from '../../App'
+import { UserContext, ShoppingCartContext } from '../../App'
 import './styles.scss'
 import {
   Card, CardImg, CardText, CardBody,
@@ -13,8 +13,15 @@ import { Link } from 'react-router-dom';
 const ProductCard = (props) => {
 
   const [userData] = useContext(UserContext)
-
+  const { shoppingCart, addToShoppingCart } = useContext(ShoppingCartContext)
   const {name, price, imageUrl, category, brand, _id} = props.ProductData 
+
+  function onAddClick(event){
+    const productId = event.currentTarget.dataset.code
+    console.log("this is the cart right before adding a product")
+    console.log(shoppingCart)
+    addToShoppingCart(productId)
+  }
 
   return (
     <Col xs='12' sm='6' md='4' key={_id}>
@@ -38,7 +45,9 @@ const ProductCard = (props) => {
                        { !userData || userData.rol == 'Cliente' ?
                          <Button 
                          className='btn-p-primary' 
-                         data-code={_id}>
+                         data-code={_id}
+                         onClick={ onAddClick }
+                         >
                            Añadir{' '}
                            <FaShoppingCart
                            color='white'

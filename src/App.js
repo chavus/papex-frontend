@@ -44,6 +44,22 @@ function App() {
   const [showNavBar, setShowNavBar] = useState(true)
   const history = useHistory()
 
+  //// tab sync
+  const onStorageUpdate = (e) => {
+    const { key, newValue } = e;
+    if (key === "shoppingCart") {
+      setShoppingCart(JSON.parse(newValue));
+    }
+  };
+
+  useEffect(() => {
+    // setName(localStorage.getItem("name") || "");
+    window.addEventListener("storage", onStorageUpdate);
+    return () => {
+      window.removeEventListener("storage", onStorageUpdate);
+    };
+  }, []);
+
   function changeUserData(data) {
     setUserData(data)
     localStorage.setItem('userData', JSON.stringify(data))
@@ -55,6 +71,8 @@ function App() {
   }
 
   async function addToShoppingCart(productId){
+    console.log("shopping cart state")
+    console.log(shoppingCart)
     let shoppingCartTemp = [...shoppingCart]
     const res = await api.getProductById(productId)
     const productData = res.data
