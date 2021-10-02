@@ -11,7 +11,6 @@ import {
   useHistory
 } from "react-router-dom";
 import papex from '../../img/papex.png'
-import avatar from '../../img/avatarpre.jpg'
 import './styles.scss'
 import NavDropdown from '../NavDropdown';
 
@@ -29,7 +28,6 @@ const PapexNav = () => {
     localStorage.clear()
     history.push("/")
     window.location.reload()
-   
   }
 
   return (
@@ -54,13 +52,12 @@ const PapexNav = () => {
                 Iniciar Sesión
             </button> : 
             <button 
-            className='btn-p-secondary nav-btn d-none d-sm-block' 
-            onClick={goLogout} > 
-            Cerrar Sesión
+                className='btn-p-secondary nav-btn d-none d-sm-block' 
+                onClick={goLogout} > 
+                Cerrar Sesión
           </button> 
             }
          
-            
             <NavDropdown/>
           
           </Nav>

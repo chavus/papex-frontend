@@ -44,7 +44,7 @@ const ProductCard = (props) => {
                            color='white'
                            /> 
                           </Button> :
-                         <Link to='/ManageProduct'>
+                         <Link to={`/ManageProduct?idProduct=${_id}`}>
                           <Button 
                          className='btn-p-primary'
                          data-code={_id}>
