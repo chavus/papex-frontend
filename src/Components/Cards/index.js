@@ -1,15 +1,20 @@
-import React from 'react';
+import React,{ useContext } from 'react';
+import { UserContext } from '../../App'
 import './styles.scss'
 import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button, Row, Col
 } from 'reactstrap';
 import { FaShoppingCart } from 'react-icons/fa'; 
+import { FiEdit } from 'react-icons/fi'; 
+import { Link } from 'react-router-dom';
 
 
 const ProductCard = (props) => {
 
-  const {name, price, imageUrl, category, brand, _id} = props.ProductData
+  const [userData] = useContext(UserContext)
+
+  const {name, price, imageUrl, category, brand, _id} = props.ProductData 
 
   return (
     <Col xs='12' sm='6' md='4' key={_id}>
@@ -30,13 +35,29 @@ const ProductCard = (props) => {
                             <li className="mb-2 text-muted">Pick up
                             </li>
                        </ul> */  }  
-                        <Button 
-                          className='btn-p-primary'>
-                            Añadir{' '}
-                            <FaShoppingCart
-                            color='white'
-                            />
-                            </Button>
+                       { !userData || userData.rol == 'Cliente' ?
+                         <Button 
+                         className='btn-p-primary' 
+                         data-code={_id}>
+                           Añadir{' '}
+                           <FaShoppingCart
+                           color='white'
+                           /> 
+                          </Button> :
+                         <Link to='/ManageProduct'>
+                          <Button 
+                         className='btn-p-primary'
+                         data-code={_id}>
+                           Editar{' '}
+                           <FiEdit 
+                           color='white'
+                           />
+                           </Button>
+                           </Link> }
+
+                        
+                      
+                        
                     </div>
                     
             </CardBody>

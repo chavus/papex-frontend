@@ -18,9 +18,18 @@ import NavDropdown from '../NavDropdown';
 const PapexNav = () => {
 
   const [userData] = useContext(UserContext)
+
   let history = useHistory()
+
   function goLogin(){
-    history.push("./Login")
+    history.push("/Login")
+  }
+
+  function goLogout(){
+    localStorage.clear()
+    history.push("/")
+    window.location.reload()
+   
   }
 
   return (
@@ -39,14 +48,21 @@ const PapexNav = () => {
              userData.rol == 'Negocio' && <NavItem >
               <Link to="/CatalogoNegocio" className='nav-link d-none d-sm-block'>Catalogo</Link>
             </NavItem>}
-            <button className='btn-p-secondary nav-btn d-none d-sm-block' onClick={goLogin} >Iniciar Sesión</button>
+           {!userData ? <button 
+                className='btn-p-secondary nav-btn d-none d-sm-block' 
+                onClick={goLogin} > 
+                Iniciar Sesión
+            </button> : 
+            <button 
+            className='btn-p-secondary nav-btn d-none d-sm-block' 
+            onClick={goLogout} > 
+            Cerrar Sesión
+          </button> 
+            }
          
             
             <NavDropdown/>
-            { 
-            userData && <h4>Hola {userData.name}</h4> 
-             }
-            
+          
           </Nav>
           
       </Navbar>

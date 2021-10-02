@@ -55,15 +55,25 @@ export default function CatalogoNegocio(){
     <Col xs='12' className='catalog-cards'>
         <div className='info-container'>
         <div className='info-catalog'>
-        <h1 className='p-titles mt-2'>{businessInfo.businessName}</h1>
-        <p className='p-titles mt-2'>{businessInfo.address}</p>
-        <ul className='ml-4'>Métodos de entrega
-        { 
-          Object.values(businessInfo).length &&  businessInfo.deliveryMethod.map((item) =>{
-                return <li>{item}</li>
-            })            
-          }
-        </ul>
+            <h1 
+               className='p-titles mt-2'>
+                { !userData || userData.rol == 'Cliente' ?
+                    businessInfo.businessName :
+                    userData.businessName  } 
+            </h1>
+            <p 
+                className='p-titles mt-2'>
+                {!userData || userData.rol == 'Cliente' ?
+                    businessInfo.address :
+                    userData.address }
+            </p>
+            <ul className='ml-4'>Métodos de entrega
+            { 
+            Object.values(businessInfo).length &&  businessInfo.deliveryMethod.map((item) =>{
+                    return <li>{item}</li>
+                })            
+            }
+            </ul>
 
         </div>
        
@@ -108,7 +118,7 @@ export default function CatalogoNegocio(){
           
           { 
             userData &&
-            userData.rol == 'Negocio' &&  <Link to='/'>
+            userData.rol == 'Negocio' &&  <Link to='/ManageProduct'>
                 <button className='btn-p-secondary'> + Agregar</button>
            </Link>} 
         </div>
