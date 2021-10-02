@@ -43,6 +43,15 @@ $enable-negative-margins: true;
                 object-fit:cover; 
                 
            }
+           .image-button{                
+                .align-button{
+                    background: blue;
+                    color: red;
+                    display: none;                    
+                    //display: flex;
+                    //justify-content: right !important;
+                }
+            }
         }
     }
 

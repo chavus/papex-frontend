@@ -190,20 +190,22 @@ function ManageProduct(props){
                </Col>   
                <Col className = "d-flex xs-12 md-12 lg-6 flex-column justify-content-between">  
                    { /**********************  DIV DE LA IMAGEN  ***************************/} 
-                   <diV className="image-product-container d-flex flex-column justified-content-center align-items-center">
+                   <diV className="image-product-container d-flex flex-column justified-content-center">
                        <div className="image-container">  
                            <img className="image-preview" src= {`${imagePath ?  imagePath : noImage }`} id="imagepreview"  alt="image product"  />                                            
                        </div>
-                       <FormGroup className="" >
-                           <Button className="btn btn-p-primary mt-3 col-md-offset-2"  > 
-                               <Input type="file" name="imageProduct" id="imageProduct" accept="image/*" onChange={selectFileHandler} className="hidde-Button-Image" />
-                               <Label for="imageProduct">Imagen </Label>
-                           </Button>  
-                       </FormGroup>
+                        <div className="image-button"  >
+                            <FormGroup className="align-button d-flex justify-content-center" >
+                                <Button className="btn btn-p-primary mt-3"  > 
+                                    <Input type="file" name="imageProduct" id="imageProduct" accept="image/*" onChange={selectFileHandler} className="hidde-Button-Image" />
+                                    <Label for="imageProduct">Imagen </Label>
+                                </Button>  
+                            </FormGroup>
+                       </div>
                    </diV>
 
                    { /**********************  DIV DE LOS BOTONES ***************************/} 
-                   <diV className="image-product-buttons-container d-flex justify-content-evenly mt-4 mt-md-n1  ">
+                   <diV className="image-product-buttons-container d-flex justify-content-between mt-4 mt-md-n1  ">
                            <Button className="btn btn-p-secondary" onClick={onClickGoCatalog} > Cancelar
                            </Button>                    
                            <Button className="btn btn-p-primary" onClick={onClickSaveProduct}> Guardar
