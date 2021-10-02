@@ -6,11 +6,12 @@
     margin: 10px;
     align-items: center;
     justify-content: center;
+    max-width: 331px;
     
     p{
         margin-bottom: 4px;
     }
-
+    
     .product-image{
         object-fit: cover;
         width: 50%;
