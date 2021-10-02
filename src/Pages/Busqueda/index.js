@@ -13,10 +13,9 @@ const SearchPage = () => {
     const [ products, setProducts] = useState([])
     const [productName, setProductName] = useState('')
     const [productSearch, setProductSearch] = useState(new URLSearchParams(useLocation().search).get('searchText'))
-    
-    const history = useHistory()
-    console.log('loading')
 
+    const history = useHistory()
+    
     useEffect( async () => {
         const result = await api.getAllProductsBySearch(productSearch)
         setProducts(result.data) 
@@ -31,8 +30,6 @@ const SearchPage = () => {
     const onSearchClick = () => {
         setProductSearch(productName)
     }
-
-
 
     return ( 
      <Col xs='12' className='search-container'>
