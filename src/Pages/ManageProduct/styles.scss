@@ -1,7 +1,6 @@
 $enable-negative-margins: true;
 
 .btn{
-
     width: 100px;
     height: 40x;
 }
@@ -11,20 +10,22 @@ $enable-negative-margins: true;
     display: flex;
     justify-content: center;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto;    
     width: 100%;
     max-width: 900px;
     border-radius: 5px 5px;
-    margin-top: 60px;
-
-
-
+    //margin-top: 60px;
+    margin-top: 6rem;
     .image-product-description-container{
         max-width: 800px;
 
         width: 100%;
         border: 5xp solid orange;
         //height: 70vh;
+        .actions-product{
+            margin-left: 1.5rem;
+            margin-right:1.5rem;
+        }
 
     }
 
@@ -38,8 +39,6 @@ $enable-negative-margins: true;
            .image-preview{
                 height: 250px;
                 width: 250px;
-                margin-left: auto;
-                margin-right: auto;
                 object-fit:cover; 
                 
            }

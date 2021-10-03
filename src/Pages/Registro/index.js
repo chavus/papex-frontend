@@ -17,7 +17,7 @@ const UserRegister = () => {
     const [classMessage, setClassMessage] = useState("")
     
     let history = useHistory()
-    
+    const successMsg = "primary"
 
     const userDataHandler = event => {
         const {name, value} = event.target
@@ -93,7 +93,7 @@ const UserRegister = () => {
         if (res.success){
             
             setMessage("Datos almacenados")
-            setClassMessage("success")
+            setClassMessage(successMsg)
             setShowMessage(true)
             setTimeout(  () => {                     
                 setShowMessage(false)   
