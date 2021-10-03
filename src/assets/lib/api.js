@@ -3,7 +3,6 @@ const BASE_URL = "http://localhost:8080"
 export default{
 
     async authenticate(data){    
-        //console.log(data)    
         let result = await fetch(`${BASE_URL}/auth/login`,{
             method: "POST",
             headers:{
@@ -39,8 +38,7 @@ export default{
 
     
     async getAllProductsByBusiness(id){
-        let result = await fetch(`${BASE_URL}/products${id}`)
-
+        let result = await fetch(`${BASE_URL}/products?businessId=${id}`)
         const resJson = await result.json()
         return resJson
     },

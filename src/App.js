@@ -2,6 +2,7 @@ import react, {useState, useEffect} from 'react'
 import logo from './logo.svg';
 import './assets/global_style.scss'
 import './App.scss';
+import api from './assets/lib/api'
 
 import {
   BrowserRouter as Router,
@@ -26,6 +27,10 @@ import { createContext } from 'react';
 import ManageProduct  from './Pages/ManageProduct';
 
 
+//Test
+import cartData from './Pages/ShoppingCart/cartTestData2'
+
+
 //Contexts
 export const UserContext = react.createContext()
 export const ShoppingCartContext = react.createContext()
@@ -34,9 +39,26 @@ function App() {
 
   let location = useLocation()
   const [userData, setUserData ] = useState(localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null)
-  const [shoppingCart, setShoppingCart] = useState(localStorage.getItem('shoppingCart') ? JSON.parse(localStorage.getItem('shoppingCart')) : null)
+  const [shoppingCart, setShoppingCart] = useState(localStorage.getItem('shoppingCart') ? JSON.parse(localStorage.getItem('shoppingCart')) : [])
+  // const [shoppingCart, setShoppingCart] = useState(cartData)
   const [showNavBar, setShowNavBar] = useState(true)
   const history = useHistory()
+
+  //// tab sync
+  const onStorageUpdate = (e) => {
+    const { key, newValue } = e;
+    if (key === "shoppingCart") {
+      setShoppingCart(JSON.parse(newValue));
+    }
+  };
+
+  useEffect(() => {
+    // setName(localStorage.getItem("name") || "");
+    window.addEventListener("storage", onStorageUpdate);
+    return () => {
+      window.removeEventListener("storage", onStorageUpdate);
+    };
+  }, []);
 
   function changeUserData(data) {
     setUserData(data)
@@ -48,9 +70,40 @@ function App() {
     localStorage.setItem('shoppingCart', JSON.stringify(data))
   }
 
+  async function addToShoppingCart(productId){
+    console.log("shopping cart state")
+    console.log(shoppingCart)
+    let shoppingCartTemp = [...shoppingCart]
+    const res = await api.getProductById(productId)
+    const productData = res.data
+    //Check if product business is in cart
+    const businessIdx = shoppingCart.findIndex( bizCart => bizCart.business == productData.business._id)
+    if (businessIdx == -1) {
+      //Inicializa biz
+      const cart = {
+                    business: productData.business._id,
+                    products:[{ product: productData._id,  qty:1 }],
+                    comments: "",
+                    deliveryMethod:"Pickup"
+                  }
+      shoppingCartTemp.push(cart)
+    }else{
+      const productIdx = shoppingCart[businessIdx].products.findIndex( product => product.product == productId)
+      if (productIdx == -1){
+        // No product, add
+        shoppingCartTemp[businessIdx].products.push({product:productId, qty:1})
+      }else{
+        // Add 1 to the qty
+        shoppingCartTemp[businessIdx].products[productIdx].qty += 1
+      }
+    }
+    setShoppingCart(shoppingCartTemp)
+    localStorage.setItem('shoppingCart', JSON.stringify(shoppingCartTemp))
+  }
+
   return (
     <UserContext.Provider value={[userData, changeUserData]}>
-      <ShoppingCartContext.Provider value={[shoppingCart, changeShoppingCart]}>
+      <ShoppingCartContext.Provider value={{shoppingCart, changeShoppingCart, addToShoppingCart}}>
         <div>      
 
           { location.pathname != "/Login" &&

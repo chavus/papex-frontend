@@ -1,5 +1,6 @@
 import React,{ useContext } from 'react';
-import { UserContext } from '../../App'
+import { useLocation } from 'react-router-dom';
+import { UserContext, ShoppingCartContext } from '../../App'
 import './styles.scss'
 import {
   Card, CardImg, CardText, CardBody,
@@ -14,15 +15,37 @@ const ProductCard = (props) => {
 
   const [userData] = useContext(UserContext)
 
-  const {name, price, imageUrl, category, brand, _id} = props.ProductData 
+  const location = useLocation().pathname
+  console.log(props.ProductData)
+
+  const {name, price, imageUrl, category, brand, _id, business} = props.ProductData 
+
+  const { shoppingCart, addToShoppingCart } = useContext(ShoppingCartContext)
+
+
+  function onAddClick(event){
+    const productId = event.currentTarget.dataset.code
+    console.log("this is the cart right before adding a product")
+    console.log(shoppingCart)
+    addToShoppingCart(productId)
+  }
 
   return (
-    <Col xs='12' sm='6' md='4' key={_id}>
+    <Col xs='12' sm='6' md='3' key={_id}>
        <Card className='product-container'>
            <div className='product-image'>
               <CardImg top width="100%" src={imageUrl} alt="Card image cap" />
            </div>
            <CardBody className='product-body'>
+                     { location == '/Search' &&
+                      <Link to={`/CatalogoNegocio?businessId=${business._id}`}>
+                        <CardTitle 
+                          tag="h5"
+                          >
+                          {business.businessName}
+                          </CardTitle>
+                      </Link>
+                      }
                     <CardTitle tag="h5">{name}</CardTitle>
                     <CardSubtitle tag="h6" className="mb-2 text-muted">{brand}
                     </CardSubtitle>
@@ -38,7 +61,9 @@ const ProductCard = (props) => {
                        { !userData || userData.rol == 'Cliente' ?
                          <Button 
                          className='btn-p-primary' 
-                         data-code={_id}>
+                         data-code={_id}
+                         onClick={ onAddClick }
+                         >
                            Añadir{' '}
                            <FaShoppingCart
                            color='white'
