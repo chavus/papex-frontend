@@ -36,7 +36,8 @@ export default function MisPedidos(){
             { userData && 
            userData.rol == 'Negocio' ? 
            orders.map((order) => {
-               return  <OrderDetail/>
+               return  <OrderDetail 
+                            order={order} />
            })
            : <h1>Orden de Cliente</h1>}
        
