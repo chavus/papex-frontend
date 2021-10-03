@@ -112,7 +112,15 @@ export default{
         let result = await fetch(`${BASE_URL}/users/getNearBusinesses?by=${by}&byData=${data}&radius=${radius}`)
         const resJson = await result.json()
         return resJson.data
-    }
+    },
+
+
+
+     async getAllOrders(){
+        let result = await fetch(`${BASE_URL}/orders`)
+        const resJson = await result.json()
+        return resJson.data
+    },
     
 
     /*
