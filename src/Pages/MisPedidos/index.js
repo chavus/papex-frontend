@@ -26,7 +26,6 @@ export default function MisPedidos(){
         } else {
             history.push('/Login')
         }
-       
      }, []);
 
 
