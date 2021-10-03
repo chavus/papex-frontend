@@ -23,8 +23,9 @@ function ManageProduct(props){
     let history = useHistory()
     let showDeleteButton = false
 
+    const successMsg = "primary"
     const [showMessage, setShowMessage] = useState(false)
-    const [messageClass, setMessageClass] = useState("success")
+    const [messageClass, setMessageClass] = useState(successMsg)
     const [messageText, setMessageText] = useState("Artículo guardado")      
    
     const idProduct = new URLSearchParams(useLocation().search).get("idProduct")  
@@ -35,7 +36,7 @@ function ManageProduct(props){
             if (userData.rol != "Negocio") {
                 history.push("/")
             }
-            else { //si producto es diferente de vacio, es un producto existente => traemos datos
+            else { 
                     if(idProduct){ 
                         getProductByID(idProduct)   
                 }
@@ -85,8 +86,7 @@ function ManageProduct(props){
    }
 
     const onClickSaveProduct = async ()=> {
-        
-        //Si no se modifico image, no subo nada al bucket
+
         if (imageProduct){        
             let imageUrl = await uploadFile()        
             productData.imageUrl = imageUrl 
@@ -96,7 +96,7 @@ function ManageProduct(props){
         if (idProduct){
             let result = await api.patchProductById(idProduct, productData, userData.token  )
             if (result.success){
-                displayMessage("success", "Artículo guardado")                
+                displayMessage(successMsg, "Artículo guardado")                
             }
             else{
                 console.log(result.data)
@@ -106,7 +106,7 @@ function ManageProduct(props){
         else{   //Si es produto nuevo inserto            
             let result = await api.createProduct(productData, userData.token  )
             if (result.success){
-                displayMessage("success", "Artículo guardado")                              
+                displayMessage(successMsg, "Artículo guardado")                              
             }
             else{
                 console.log(result.data)
@@ -114,6 +114,17 @@ function ManageProduct(props){
             }
         }
     }
+
+    const onClickDeleteProduct = async () => {
+        let result = await api.deleteProductById(idProduct, userData.token  )   
+        if (result.success){
+            displayMessage(successMsg, "Artículo borrado") 
+            //history.push("/CatalogoNegocio")
+        } 
+        else{
+            console.log(result.data)
+        }    
+    }    
     
     const displayMessage = (colorClass, message) => {
         setShowMessage(true)
@@ -121,22 +132,12 @@ function ManageProduct(props){
         setMessageClass(colorClass)
         setTimeout(  () => {                             
             setShowMessage(false)
-            if (colorClass === "success") {
+            if (colorClass === successMsg) {
                  history.push("/CatalogoNegocio") 
             }
         }, 2000 ) 
     }
 
-
-    const onClickDeleteProduct = async () => {
-        let result = await api.deleteProductById(idProduct, userData.token  )   
-        if (result.success){
-            history.push("/CatalogoNegocio")
-        } 
-        else{
-            console.log(result.data)
-        }    
-    }
     
     const onChangeInputsHandlers = (event) =>  {
         const { name, value } = event.target       
@@ -147,15 +148,16 @@ function ManageProduct(props){
         <>
         <container>
 
-            <h1 className='p-titles mt-5'>{idProduct ? "Editar" : "Agregar"} producto </h1> 
-           <Row className="add-product-container rounded border p-3 d-flex justify-content-column">
+            { // <h1 className='p-titles mt-5'>{idProduct ? "Editar" : "Agregar"} producto </h1> 
+            }
+           <Row className="add-product-container rounded border p-3  d-flex justify-content-column">
                <Col className="d-flex xs-12 md-12 lg-6">                
                { /**********************  DIV DE LOS DATOS  ***************************/} 
                    <diV className="image-product-description-container ">                    
-                       <div className="d-flex justify-content-between" >
-                           <div className ="ml-4">
-                               <div className="form-check form-switch pl-4"  >
-                                    <label className="form-check-label " for="flexSwitchCheckDefault">Deshabilitar</label>
+                       <div className="d-flex justify-content-between actions-product" >
+                           <div className ="d-flex ">
+                               <label className="form-check-label " for="flexSwitchCheckDefault">Deshabilitar</label>
+                               <div className="form-check form-switch "  >
                                    <Input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onChange={handleAvailability} checked={available}></Input>                                   
                                </div>
                            </div>
@@ -182,7 +184,7 @@ function ManageProduct(props){
                                    <Col md={6}>
                                    <FormGroup>
                                        <Label for="category" className="mb-2" >Categoría</Label>
-                                       <Input type="select" name="select" id="category" name="category" onChange={onChangeInputsHandlers} value = { productData? productData.category : null}>
+                                       <Input type="select"  name="select" id="category" name="category" onChange={onChangeInputsHandlers} value = { productData? productData.category : null}>
                                            <option>Arte y diseño</option>
                                            <option>Articulos de escritorio</option>
                                            <option>Articulos de escritura</option>                                      
@@ -195,7 +197,7 @@ function ManageProduct(props){
                                    <Col md={5} >
                                    <FormGroup>
                                            <Label for="price" className="mb-2" >Precio</Label>                                        
-                                           <Input type="text" name="price" id="price" placeholder="" onChange={onChangeInputsHandlers} value = { productData? productData.price : null} />                                        
+                                           <Input type="text" name="price" id="price" placeholder="" onChange={onChangeInputsHandlers}  value = { productData? productData.price : null} />                                        
                                    </FormGroup>
                                    </Col>                              
                                </div>
@@ -219,15 +221,15 @@ function ManageProduct(props){
                         <div className="image-button"  >
                             <FormGroup className="align-button d-flex justify-content-center" >
                                 <Button className="btn btn-p-primary mt-3"  > 
-                                    <Input type="file" name="imageProduct" id="imageProduct" accept="image/*" onChange={selectFileHandler} className="hidde-Button-Image" />
                                     <Label for="imageProduct">Imagen <FiImage /> </Label>
+                                    <Input type="file" name="imageProduct" id="imageProduct" accept="image/*" onChange={selectFileHandler} className="hidde-Button-Image" />
                                 </Button>  
                             </FormGroup>
                        </div>
                    </diV>
 
                    { /**********************  DIV DE LOS BOTONES ***************************/} 
-                   <diV className="image-product-buttons-container d-flex justify-content-between mt-4 mt-md-n1  ">
+                   <diV className="image-product-buttons-container d-flex justify-content-evenly mt-4 mt-md-n1  ">
                            <Button className="btn btn-p-secondary" onClick={onClickGoCatalog} > Cancelar <FiXSquare/>
                            </Button>                    
                            <Button className="btn btn-p-primary" onClick={onClickSaveProduct}> Guardar <FiSave/>

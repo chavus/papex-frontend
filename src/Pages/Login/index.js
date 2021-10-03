@@ -15,6 +15,7 @@ export default function Login(props){
     const [showMessage, setShowMessage] = useState(true)
     const [messageClass, setMessageClass] = useState("light")
     const [messageText, setMessageText] = useState(" ")    
+    const successMsg = "primary"
     let history = useHistory()
 
     function onInputChange(event){
@@ -36,7 +37,7 @@ export default function Login(props){
             const userDataObject = userJson.data
             delete userDataObject.password
             changeUserData({...userDataObject, token})
-            displayMessage("success", userDataObject.rol)   
+            displayMessage(successMsg, userDataObject.rol)   
         }else{
             displayMessage("error")
         }
@@ -44,9 +45,9 @@ export default function Login(props){
 
     function displayMessage (value, rol)
     {
-      if (value === "success"){ 
-        setMessageClass("success")
-        setMessageText("Ingreso existoso")
+      if (value === successMsg){ 
+        setMessageClass(successMsg)
+        setMessageText("Ingreso exitoso")
       }
       else{
         setMessageClass("danger")
@@ -56,7 +57,7 @@ export default function Login(props){
       setTimeout(  () => {                     
         setMessageClass("light")
         setMessageText(".")
-        if (value === "success"){
+        if (value === successMsg){
           if (rol == "Cliente"){
             history.push("/") 
           }else{
