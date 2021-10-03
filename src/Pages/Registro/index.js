@@ -14,6 +14,7 @@ const UserRegister = () => {
     const [deliveryPickup, setDeliveryPickUp] = useState(false);
     const [showMessage, setShowMessage] = useState(false)
     const [message, setMessage] = useState("")
+    const [classMessage, setClassMessage] = useState("")
     
     let history = useHistory()
     
@@ -90,14 +91,23 @@ const UserRegister = () => {
         let res = await api.createUser(user)
         console.log(res)
         if (res.success){
-           // history.push("./Login")
+            
+            setMessage("Datos almacenados")
+            setClassMessage("success")
+            setShowMessage(true)
+            setTimeout(  () => {                     
+                setShowMessage(false)   
+                history.push("/Login")                
+                  }, 2000 ) 
+
         }
         else{
                 setMessage(res.data)
+                setClassMessage("danger")
                 setShowMessage(true)
                 setTimeout(  () => {                     
                     setShowMessage(false)                   
-                      }, 4000 ) 
+                      }, 2000 ) 
         }
         
     }
@@ -133,15 +143,26 @@ const UserRegister = () => {
                     <Label>Domicilio</Label>
                     <Input name="address" onChange={userDataHandler}/>
                 </FormGroup>
-                <div className='business-div'>
-                <FormGroup check className='p-2'>
-                    <Label check>
-                    <Input type="checkbox" name='rol' onClick={toggle} />{' '}
-                    Registrarme como negocio
-                    </Label>
-                </FormGroup>
-                <Button className='btn-p-primary' onClick={onSubmit}>Registrarse</Button>
-            </div>
+
+                <div className='d-flex flex-column' >                
+                    <div >
+                        <div className='business-div'>
+                            <FormGroup check className='p-2'>
+                                <Label check>
+                                <Input type="checkbox" name='rol' onClick={toggle} />{' '}
+                                Registrarme como negocio
+                                </Label>
+                            </FormGroup>
+                            <Button className='btn-p-primary' onClick={onSubmit}>Registrarse</Button>
+                        </div>
+                    </div>
+
+                {   showMessage &&
+                        <Alert color={classMessage} className="d-block mt-1" >
+                             { message }
+                        </Alert>                                         
+                }                 
+                </div>    
             </div>
 
       {
@@ -276,11 +297,7 @@ const UserRegister = () => {
          </>
         }
            
-            {   showMessage &&
-                        <Alert color="danger" className="d-block mt-2 " >
-                            Hubo un error al registrar usuario: { message }
-                        </Alert>                                         
-                } 
+
       
     </Form>
        </div> 

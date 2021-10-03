@@ -23,7 +23,7 @@ function ManageProduct(props){
     let history = useHistory()
     let showDeleteButton = false
 
-    const [showMessage, setShowMessage] = useState(true)
+    const [showMessage, setShowMessage] = useState(false)
     const [messageClass, setMessageClass] = useState("success")
     const [messageText, setMessageText] = useState("Artículo guardado")      
    
@@ -96,22 +96,37 @@ function ManageProduct(props){
         if (idProduct){
             let result = await api.patchProductById(idProduct, productData, userData.token  )
             if (result.success){
-                history.push("/CatalogoNegocio")
+                displayMessage("success", "Artículo guardado")                
             }
             else{
                 console.log(result.data)
+                displayMessage("danger", result.data)  
             }
         }
         else{   //Si es produto nuevo inserto            
             let result = await api.createProduct(productData, userData.token  )
             if (result.success){
-                history.push("/CatalogoNegocio")
+                displayMessage("success", "Artículo guardado")                              
             }
             else{
                 console.log(result.data)
+                displayMessage("danger", result.data)  
             }
         }
     }
+    
+    const displayMessage = (colorClass, message) => {
+        setShowMessage(true)
+        setMessageText(message)
+        setMessageClass(colorClass)
+        setTimeout(  () => {                             
+            setShowMessage(false)
+            if (colorClass === "success") {
+                 history.push("/CatalogoNegocio") 
+            }
+        }, 2000 ) 
+    }
+
 
     const onClickDeleteProduct = async () => {
         let result = await api.deleteProductById(idProduct, userData.token  )   
@@ -132,8 +147,8 @@ function ManageProduct(props){
         <>
         <container>
 
+            <h1 className='p-titles mt-5'>{idProduct ? "Editar" : "Agregar"} producto </h1> 
            <Row className="add-product-container rounded border p-3 d-flex justify-content-column">
-                       <h1 className='p-titles mt-2'>{idProduct ? "Editar" : "Agregar"} producto </h1> 
                <Col className="d-flex xs-12 md-12 lg-6">                
                { /**********************  DIV DE LOS DATOS  ***************************/} 
                    <diV className="image-product-description-container ">                    
