@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 import avatar from '../../img/avatarpre.jpg'
 
 
-const NavDropdown = () => {
+const NavDropdown = (props) => {
   
   const [userData] = useContext(UserContext)
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -21,15 +21,15 @@ const NavDropdown = () => {
               <img src={avatar}/>
             </span>
         </DropdownToggle>
-        <DropdownMenu className='drop-menu' >   
+        <DropdownMenu className='drop-menu d-lg-none d-xl-block' >   
           <Link 
             to="/Home" 
-            className='nav-link d-none d-sm-block'>
+            className='nav-link'>
               Mis Pedidos
           </Link>
           <Link 
             to="/CreatePost" 
-            className='nav-link d-none d-sm-block'>
+            className='nav-link'>
               Mi Perfil
           </Link>
 
@@ -39,6 +39,11 @@ const NavDropdown = () => {
             className='nav-link d-none d-sm-block'>
               Catálogo
           </Link>} 
+          <button 
+                className='btn-p-secondary nav-btn' 
+                 > 
+                Cerrar Sesión
+          </button> 
         </DropdownMenu>
       </Dropdown> 
     </div>
