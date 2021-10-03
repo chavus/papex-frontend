@@ -5,6 +5,8 @@ import logoPapex from '../../img/papex.png'
 import './styles.scss'
 import api from '../../assets/lib/api'
 import { UserContext } from '../../App'
+import { FiLogIn,  FiEdit2 }  from "react-icons/fi";
+import { Link } from 'react-router-dom'
 
 export default function Login(props){
     
@@ -48,7 +50,7 @@ export default function Login(props){
       }
       else{
         setMessageClass("danger")
-        setMessageText("El correo electrónico o password son incorrectos ")
+        setMessageText("El correo electrónico o contraseña son incorrectos ")
       }       
       setShowMessage(true)
       setTimeout(  () => {                     
@@ -66,7 +68,11 @@ export default function Login(props){
     return(
         <Col className=" d-flex flex-column justify-content-center align-items-center vh-100 p-1 ">
                 <div className="logoContainer" >
-                  <img alt="logo papex" src={logoPapex} className = "logoSize"/>
+                    
+
+                    <img alt="logo papex" src={logoPapex} className = "logoSize"/>
+                    
+
                 </div>                
                 <div className="formContainer bg-white rounded border p-4 d-flex justify-content-center" >                    
                     <Form className="formContainerControls" >
@@ -85,8 +91,8 @@ export default function Login(props){
                    </Form>
                 </div>
                 <div className="buttons-login-container">
-                    <Button id= "enter" className="btn btn-p-primary" type="button" name="enter" onClick={onContinueClick}   >Ingresar</Button>
-                    <Button id= "registry" className="btn btn-p-secondary" type="button" name="registry" onClick={onRegistryClick}  >Registrarse</Button>
+                    <Button id= "enter" className="btn btn-p-primary" type="button" name="enter" onClick={onContinueClick}   >Ingresar <FiLogIn/> </Button>
+                    <Button id= "registry" className="btn btn-p-secondary" type="button" name="registry" onClick={onRegistryClick}  >Registro <FiEdit2/> </Button>
                 </div> 
                 <div>
                 {   showMessage &&
