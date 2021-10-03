@@ -38,7 +38,7 @@ const ProductCard = (props) => {
            </div>
            <CardBody className='product-body'>
                      { location == '/Search' &&
-                      <Link to={`/CatalogoNegocio/?businessId=${business._id}`}>
+                      <Link to={`/CatalogoNegocio?businessId=${business._id}`}>
                         <CardTitle 
                           tag="h5"
                           >

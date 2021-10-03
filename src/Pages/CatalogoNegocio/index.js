@@ -22,18 +22,20 @@ export default function CatalogoNegocio(){
     const [filteredProducts, setFilteredProducts] = useState([])
     const [businessInfo, setBusinessInfo] = useState({})
     const [categoryProduct, setCategoryProduct] = useState('')
-    const businessId = useLocation().search
+    let businessId  = new URLSearchParams(useLocation().search).get("businessId") 
     //console.log('this is use location',businessId)
-   
+    if (userData && userData.rol == 'Negocio'){
+       businessId = userData._id
+    } 
 
     useEffect( async() => {
-       const result = await api.getAllProductsByBusiness(businessId)
-      
+       const result = await api.getAllProductsByBusiness(businessId)  
+       if (result.data.length > 0 ){
        setProducts(result.data)
        setFilteredProducts(result.data)
-       setBusinessInfo(result.data[0].business)
-       
-      
+       console.log(result.data)
+       setBusinessInfo(result.data[0].business) 
+       } 
     }, []);
 
     const categoryFinder = event => {
@@ -67,11 +69,17 @@ export default function CatalogoNegocio(){
                     businessInfo.address :
                     userData.address }
             </p>
-            <ul className='ml-4'>Métodos de entrega
+            <ul className='ml-4'>{businessInfo.deliveryMethod && 'Métodos de entrega'}
+
             { 
-            Object.values(businessInfo).length &&  businessInfo.deliveryMethod.map((item) =>{
+            !userData || userData.rol == 'Cliente' ?
+            Object.values(businessInfo).length > 0 &&  businessInfo.deliveryMethod.map((item) =>{
                     return <li>{item}</li>
-                })            
+                    
+                }) :  userData.deliveryMethod.map((item) =>{
+                    return <li>{item}</li>
+                    
+                })
             }
             </ul>
 
@@ -126,13 +134,16 @@ export default function CatalogoNegocio(){
         </div>
        
         <Row>
-            {
+            {   filteredProducts ?
+                 
                 filteredProducts.map((item) =>{
                     return  <ProductCard
                                 ProductData={item}
                                 key={item._id}
-                            />
+                            /> 
             })
+            :
+            <h1>No cuenta con Articulos</h1>
             }
         </Row>
     </Col>
