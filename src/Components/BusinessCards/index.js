@@ -23,7 +23,7 @@ function BusinessCard({key, id, businessName, address, phoneNumber}) {
                     <p className="b-card-text"><span>Entrega:</span> {phoneNumber}</p>
                     <p className="b-card-text"><span>Distancia: </span>{phoneNumber}</p>
                     <div className="b-button-details">
-                        <Link to={`/CatalogoNegocio/?businessId=${id}`} className="business-details">Ver Catálogo</Link>
+                        <Link to={`/CatalogoNegocio?businessId=${id}`} className="business-details">Ver Catálogo</Link>
                     </div>
                     
 
