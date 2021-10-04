@@ -36,16 +36,14 @@ const PapexNav = () => {
         <NavbarBrand href="/" ><img src={papex} className='nav-logo'/></NavbarBrand>
     
           <Nav className="mr-auto nav-links">
-
-          { userData && 
-             userData.rol == 'Negocio' ? 
+          
              <NavItem >
-              <Link to='/CatalogoNegocio' className='nav-link'>{userData.businessName}</Link>
-            </NavItem> :
-             <NavItem >
-             <Link to='/' className='nav-link'>{userData.userName}</Link>
-           </NavItem> 
-            }
+             { userData &&
+               ( userData.rol == 'Negocio'?
+                <Link to='/CatalogoNegocio' className='nav-link'>{userData.businessName}</Link> :
+                <Link to='/' className='nav-link'>{userData.name}</Link>)
+              }
+              </NavItem> 
           
             <NavItem >
               {userData && 
