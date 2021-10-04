@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext } from "react"
 import {  useHistory } from 'react-router-dom'
 import { UserContext } from '../../App'
-import { Col } from "reactstrap"
+import { Col, Row } from "reactstrap"
 import api from '../../assets/lib/api'
 import OrderDetail from "../../Components/OrderStatus"
+import ClientOrderDetail from "../../Components/OrderStatusClients"
 import './styles.scss'
+import { result } from "lodash"
 
 export default function MisPedidos(){
 
@@ -22,10 +24,11 @@ export default function MisPedidos(){
                 orderFiltered = result.filter(order => order.client._id == userData._id)
             }
             setOrders(orderFiltered)
-            //console.log(orderFiltered)
+            console.log(orderFiltered)
         } else {
             history.push('/Login')
         }
+
      }, []);
 
 
@@ -33,14 +36,26 @@ export default function MisPedidos(){
     return(
         <Col className='my-orders'>
            <h1>Mis Pedidos</h1>
-            { userData && 
+           <Row className='container-orders'>
+           { userData && 
            userData.rol == 'Negocio' ? 
            orders.map((order) => {
-               return  <OrderDetail key={order._id}
+               return  <OrderDetail 
+                            key={order._id}
                             order={order}
-                            token={userData.token} />
+                            token={userData.token} 
+                            />
            })
-           : <h1>Orden de Cliente</h1>}
+           :  orders.map((order) => {
+            return  <ClientOrderDetail 
+                         key={order._id}
+                         order={order}
+                         token={userData.token} 
+                         />
+        })}
+
+           </Row>
+          
        
         </Col>
      
