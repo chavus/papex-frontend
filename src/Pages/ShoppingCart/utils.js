@@ -61,7 +61,7 @@ async function createOrders(shoppingCart, clientId){
                                                                                         price: product.product.price,
                                                                                         qty: product.qty}}),
                                             deliveryMethod: cart.deliveryMethod,
-                                            deliveryCost: cart.deliveryMethod == "Delivery" ? 0 : 30,
+                                            deliveryCost: cart.deliveryMethod == "Delivery" ? 30 : 0,
                                             comment: cart.comments,
                                             total: getSubTotal(cart)
                                         }

@@ -135,6 +135,10 @@ export default{
     async createCheckoutSession(total, jwtToken){
         const response = await fetch(`${BASE_URL}/orders/create-checkout-session`,{
             method: "POST",
+            headers:{
+                'Content-Type':'application/json'
+                ,'Authorization': jwtToken
+            },
             body: JSON.stringify({total, domain: `${window.location.origin}/checkout`})
             })
             const resJson = await response.json()

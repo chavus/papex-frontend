@@ -33,7 +33,7 @@ const PapexNav = () => {
   return (
     <div className='nav-header '>
       <Navbar>
-        <NavbarBrand href="/" ><img src={papex} className='nav-logo'/></NavbarBrand>
+        <NavbarBrand href={userData && userData.rol == "Negocio" ? "/CatalogoNegocio" : "/"} ><img src={papex} className='nav-logo'/></NavbarBrand>
     
           <Nav className="mr-auto nav-links">
           
