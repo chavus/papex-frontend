@@ -7,6 +7,7 @@
     display: flex;
     flex-direction: column;
     padding: 1em;
+  
 }
 
 h1{
@@ -30,8 +31,8 @@ h1{
 }
 .b-card{
     flex: 1;
-    border: solid 1px $light-gray;
-    border-radius: 6px;
+    border: ridge 2px;
+    border-radius: 7px;
     box-shadow: 9px 9px 20px -8px rgba(0,0,0,0.65);
     -webkit-box-shadow: 9px 9px 20px -8px rgba(0,0,0,0.65);
     -moz-box-shadow: 9px 9px 20px -8px rgba(0,0,0,0.65);
@@ -82,16 +83,17 @@ h1{
 .business-details{
     padding: 8px ;
     align-self: center;
-    padding-bottom: 1em;
+    //padding-bottom: 1rem;
     border: solid 1px $light-gray;
     border-radius: 5px;
-    color: grey;
+    background-color: $primary;
+    color: white;
     font-weight: 600;
     text-decoration: none;
 
     &:hover{
         border: solid 2px $primary;
-        color: $primary;
+        color: white;
     }
     
 }
