@@ -121,6 +121,21 @@ export default{
         const resJson = await result.json()
         return resJson.data
     },
+
+    async patchOrderById(id, data, jwtToken){
+
+        let result = await fetch(`${BASE_URL}/orders/${id}`,{
+            method: "PATCH",
+            headers:{
+                'Content-Type':'application/json'
+                ,'Authorization': jwtToken
+            },
+            body: JSON.stringify(data)
+            
+        })
+        const resJson = await result.json()
+        return resJson
+    },       
     
 
     /*
