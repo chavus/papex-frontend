@@ -22,7 +22,7 @@ export default function MisPedidos(){
                 orderFiltered = result.filter(order => order.client._id == userData._id)
             }
             setOrders(orderFiltered)
-            console.log(orderFiltered)
+            //console.log(orderFiltered)
         } else {
             history.push('/Login')
         }
@@ -36,7 +36,7 @@ export default function MisPedidos(){
             { userData && 
            userData.rol == 'Negocio' ? 
            orders.map((order) => {
-               return  <OrderDetail 
+               return  <OrderDetail key={order._id}
                             order={order}
                             token={userData.token} />
            })

@@ -14,7 +14,7 @@ const OrderDetail = (props) => {
   const [showMessage, setShowMessage] = useState(false)
   const [orderStatus, setOrderStatus] = useState(status)
 
-  const [order, setOrder] = useState(props.order)
+  //const [order, setOrder] = useState(props.order)
 
   const [messageClass, setMessageClass] = useState()
   const [messageText, setMessageText] = useState()   
@@ -23,17 +23,15 @@ const OrderDetail = (props) => {
 
   const onClickClose = async (event) => {
           const idOrder = event.target.dataset.order
-          console.log("orden", idOrder)
+          //console.log("orden", idOrder)
           if (confirmCode === confirmation_code){
 
-              let orderTemp = {...order}
-              orderTemp.status ="Entregado"
-              setOrder(orderTemp)
+              //console.log(order)
+              let result = await api.patchOrderById(idOrder, {status:"Entregado"}, props.token  )
 
-              setOrderStatus("Entregado")
-              let result = await api.patchOrderById(idOrder, order, props.token  )
-              console.log(result)
+              //console.log(result)
               if (result.success){
+                setOrderStatus("Entregado")
                 console.log(result.data)
                 displayMessage("primary", "Código correcto")              
               }
@@ -61,8 +59,6 @@ const OrderDetail = (props) => {
       }, 2000 )  
     }
   
-     
-
   return (
  
     <div className='order-div'>
@@ -74,8 +70,8 @@ const OrderDetail = (props) => {
             </div>
             <div className='price-pending-div'>
                 <h5 className='price'>${total}</h5>
-                <div className={`pending  ${ order.status == "En proceso"? `btn-p-secondary` : ` btn-success ` } `}>
-                    {order.status}
+                <div className={`pending  ${ orderStatus /*order.status*/ == "En proceso"? `btn-p-secondary` : ` btn-success ` } `}>
+                    { orderStatus /*order.status*/}
                 </div>
             </div>
         </div>
@@ -84,13 +80,11 @@ const OrderDetail = (props) => {
           <CardBody>
               <CardTitle tag="h5">Fecha Orden {resultDate}</CardTitle>
               <CardSubtitle tag="h6" className="mb-2 text-muted">Costo de Entrega: ${deliveryCost}</CardSubtitle>
-              { products.map( product => {  
-                   return (<CardText tag="h6" className="mb-2 text-muted">  { product.qty } x { product.product.name }  ${ product.price } </CardText>)
+              { products.map( (product , index) => {  
+                   return (<CardText key={index} tag="h6" className="mb-2 text-muted">  { product.qty } x { product.product.name }  ${ product.price } </CardText>)
                 } )                     
               } 
-
-
-              {  order.status =="En proceso"   &&            
+              { orderStatus /* order.status */ =="En proceso"   &&            
                 <>
                   <FormGroup row>
                     <Label for="confirmationCode" sm={2}>Código de Confirmación</Label>
