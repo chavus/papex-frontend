@@ -26,13 +26,13 @@ const NavDropdown = (props) => {
           { userData && 
           <Link 
           to="/MisPedidos" 
-          className='nav-link'>
+          className='nav-link d-block d-sm-none'>
             Mis Pedidos
         </Link> }
         { userData &&
         <Link 
         to="/CreatePost" 
-        className='nav-link'>
+        className='nav-link d-block d-sm-none'>
           Mi Perfil
          </Link>  }
         
@@ -45,12 +45,12 @@ const NavDropdown = (props) => {
           </Link>} 
 
           {!userData ? <button 
-                className='btn-p-secondary nav-btn' 
+                className='btn-p-secondary nav-btn d-block d-sm-none' 
                 onClick={goLogin} > 
                 Iniciar Sesión
             </button> : 
             <button 
-                className='btn-p-secondary nav-btn' 
+                className='btn-p-secondary nav-btn d-block d-sm-none' 
                 onClick={goLogout} > 
                 Cerrar Sesión
           </button> 

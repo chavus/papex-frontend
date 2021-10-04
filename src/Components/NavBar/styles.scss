@@ -27,6 +27,7 @@
             }  
         .nav-links{
             margin-bottom: 5px;
+           
         }     
     }    
 
@@ -34,6 +35,9 @@
 .nav-link{
     color: white;
     &:hover{
+        color: $secondary;
+    }
+    :valid {
         color: $secondary;
     }
 }

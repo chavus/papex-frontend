@@ -31,7 +31,7 @@ const ProductCard = (props) => {
   }
 
   return (
-    <Col xs='12' sm='6' md='3' key={_id}>
+    <Col xs='12' sm='6' md='4' lg='3' key={_id}>
        <Card className='product-container'>
            <div className='product-image'>
               <CardImg top width="100%" src={imageUrl ? imageUrl : sinImagen} alt="Card image cap" />
