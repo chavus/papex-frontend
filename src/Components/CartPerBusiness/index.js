@@ -19,7 +19,8 @@ export default function CartPerBusiness(props){
             {products.map(product =>{
                 return(
                     <div className="product-line d-flex">
-                        <Input className="qty-input" value={product.qty}
+                        <Input className="qty-input"
+                                value={product.qty} 
                                 data-business-id={ business._id }
                                 data-product-id={ product.product._id}
                                 onChange={ props.onQtyChange}/>
@@ -45,8 +46,21 @@ export default function CartPerBusiness(props){
             </div>
             <div className="subtotal col-12 col-md-6 d-flex justify-content-between">
                 <div>
-                    <Label for="">Método de entrega:</Label>    
-                    <FormGroup check>
+                    <Label for="">Método de entrega:</Label>
+                    {business.deliveryMethod.sort().reverse().map(businessDeliveryMethod =>{
+                        return(
+                            <FormGroup check>
+                                <Label check>
+                                    <Input type="radio" name={`deliveryMethod-${business._id}`} value={businessDeliveryMethod} 
+                                    data-business-id={ business._id }
+                                    checked={deliveryMethod == businessDeliveryMethod && true} 
+                                    onChange={props.onDeliveryChange}/>
+                                    {businessDeliveryMethod == "Delivery" ? "Domicilio (30 pesos)" : "Pickup"}
+                                </Label>
+                            </FormGroup>
+                        )
+                    })}
+                    {/* <FormGroup check>
                     <Label check>
                         <Input type="radio" name={`deliveryMethod-${business._id}`} value="Pickup" 
                         data-business-id={ business._id }
@@ -63,7 +77,7 @@ export default function CartPerBusiness(props){
                         onChange={props.onDeliveryChange}/>
                         Domicilio  ($30.00)
                     </Label>
-                    </FormGroup>
+                    </FormGroup> */}
                 </div>
                 <div className="">
                     <p className="m-0 fw-bold">Subtotal</p>

@@ -117,9 +117,11 @@ function App() {
             <Route path="/MisPedidos">
                 <MisPedidos/>
             </Route>
+            { (!userData || (userData && userData.rol != "Negocio")) &&
             <Route path="/MiCarrito">
               <ShoppingCart/>
             </Route> 
+            }
             <Route path="/checkout">
               <Checkout/>
             </Route> 
@@ -138,7 +140,7 @@ function App() {
             <Route path="/ManageProduct">
               <ManageProduct/>
             </Route>                               
-            <Route path="/">
+            <Route strict exact path="/">
               <Main/>
             </Route>  
                   
