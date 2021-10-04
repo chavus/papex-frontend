@@ -123,7 +123,11 @@ export default{
     },
 
     async patchOrderById(id, data, jwtToken){
-
+/*
+        console.log("patchOrderById: ", `${BASE_URL}/orders/${id}`)
+        console.log(data)
+        console.log(jwtToken)
+*/
         let result = await fetch(`${BASE_URL}/orders/${id}`,{
             method: "PATCH",
             headers:{
