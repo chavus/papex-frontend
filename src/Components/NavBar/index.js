@@ -41,10 +41,10 @@ const PapexNav = () => {
              userData.rol == 'Negocio' ? 
              <NavItem >
               <Link to='/CatalogoNegocio' className='nav-link'>{userData.businessName}</Link>
-            </NavItem> :
-             <NavItem >
-             <Link to='/' className='nav-link'>{userData.userName}</Link>
-           </NavItem> 
+            </NavItem> : null
+             /* <NavItem >
+             <Link to='/' className='nav-link'>{userData.name}</Link>
+            </NavItem> */
             }
           
             <NavItem >
