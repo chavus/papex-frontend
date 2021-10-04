@@ -15,10 +15,22 @@
         padding: 15px;
         
         a{
-            margin: 2rem;
-            padding: 2rem;
+            margin: 1rem;
+            padding: 1rem;
+            width: auto;
         }
         
         
+    }
+
+    
+}
+
+@media(max-width:576px){
+    .catalog-cards .info-container{
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
     }
 }
