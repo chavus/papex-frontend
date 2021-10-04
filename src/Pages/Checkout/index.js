@@ -6,10 +6,9 @@ import { createOrders } from "../ShoppingCart/utils";
 export default function Checkout(){
     const status = new URLSearchParams(useLocation().search).get("status")
     const [userData] = useContext(UserContext)
-    const {shoppingCart} = useContext(ShoppingCartContext)
+    const {shoppingCart, changeShoppingCart} = useContext(ShoppingCartContext)
     const history = useHistory()
-    console.log("In checkout page")
-    console.log(status)
+
 
     useEffect(async ()=>{
         console.log('in useEffect')
@@ -17,7 +16,8 @@ export default function Checkout(){
             history.push('/miCarrito')
         }else if(status == 'success'){
             const createdOrders = await createOrders(shoppingCart, userData._id)
-            console.log(createdOrders)
+            // console.log(createdOrders)
+            changeShoppingCart([])
             history.push('/MisPedidos')
         }
     },[])
