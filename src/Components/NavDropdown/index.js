@@ -10,28 +10,32 @@ const NavDropdown = (props) => {
   
   const [userData] = useContext(UserContext)
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const {goLogout, goLogin} = props
 
   const toggle = () => setDropdownOpen(!dropdownOpen);
 
   return (
     <div>
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-        <DropdownToggle className='profile-btn'>
+        <DropdownToggle className='profile-btn '>
           <span className="profile">        
               <img src={avatar}/>
             </span>
         </DropdownToggle>
-        <DropdownMenu className='drop-menu d-lg-none d-xl-block' >   
+        <DropdownMenu className='drop-menu ' >   
+          { userData && 
           <Link 
-            to="/Home" 
-            className='nav-link'>
-              Mis Pedidos
-          </Link>
-          <Link 
-            to="/CreatePost" 
-            className='nav-link'>
-              Mi Perfil
-          </Link>
+          to="/MisPedidos" 
+          className='nav-link'>
+            Mis Pedidos
+        </Link> }
+        { userData &&
+        <Link 
+        to="/CreatePost" 
+        className='nav-link'>
+          Mi Perfil
+         </Link>  }
+        
 
          { userData &&
           userData.rol == 'Negocio' && <Link 
@@ -39,11 +43,18 @@ const NavDropdown = (props) => {
             className='nav-link d-none d-sm-block'>
               Catálogo
           </Link>} 
-          <button 
+
+          {!userData ? <button 
                 className='btn-p-secondary nav-btn' 
-                 > 
+                onClick={goLogin} > 
+                Iniciar Sesión
+            </button> : 
+            <button 
+                className='btn-p-secondary nav-btn' 
+                onClick={goLogout} > 
                 Cerrar Sesión
           </button> 
+            }
         </DropdownMenu>
       </Dropdown> 
     </div>
