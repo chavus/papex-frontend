@@ -112,6 +112,34 @@ export default{
         let result = await fetch(`${BASE_URL}/users/getNearBusinesses?by=${by}&byData=${data}&radius=${radius}`)
         const resJson = await result.json()
         return resJson.data
+    },
+    
+    async createOrders(data, jwtToken){
+        const response = await fetch(`${BASE_URL}/orders/siblingsOrders`,{
+            method: "POST",
+            headers:{
+                'Content-Type':'application/json'
+                ,'Authorization': jwtToken
+            },
+            body: JSON.stringify(data)
+        })
+        const resJson = await response.json()
+        return resJson
+    },
+
+    async createCheckoutSession(total, jwtToken){
+        const response = await fetch(`${BASE_URL}/orders/create-checkout-session`,{
+            method: "POST",
+            headers:{
+                'Content-Type':'application/json'
+                ,'Authorization': jwtToken
+            },
+            body: JSON.stringify({total, domain: `${window.location.origin}/checkout`})
+        })
+        console.log("In useCase");
+        console.log(window.location.origin)
+        const resJson = await response.json()
+        return resJson
     }
     
 

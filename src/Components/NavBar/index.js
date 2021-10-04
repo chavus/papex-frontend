@@ -25,7 +25,7 @@ const PapexNav = () => {
   }
 
   function goLogout(){
-    localStorage.clear()
+    localStorage.setItem('userData',"")
     history.push("/")
     window.location.reload()
   }
