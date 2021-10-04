@@ -2,9 +2,11 @@
 
 .container-input{
     display: flex;
-    background-color: $light-gray;
+    align-items: center;
     justify-content: center;
-
+    background-color: $primary;
+    border-radius: 10px;
+            
 }
 
 .input-buscar{
@@ -27,13 +29,10 @@
 }
 
 .search-button{
-    color: $primary;
+    color: white;
     font-size: 1.4rem;
-
-    position: absolute;
-    left: 72%;
-    top: 9.4rem
-
-
+    display: flex;
+    align-items: center;
+   
 }
 

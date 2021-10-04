@@ -45,7 +45,7 @@ const SearchPage = () => {
                         />
                         
                           <FaSearch
-                            className='search-button mt-1'
+                            className='search-button'
                             color='white'
                             onClick={onSearchClick}
                             />

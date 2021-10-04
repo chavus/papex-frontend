@@ -66,7 +66,7 @@ const OrderDetail = (props) => {
            onClick={toggle}>
             <div className='order-client-div'>
                 <h3 className='order'>Pedido #{parentOrder}</h3>
-                <h2 className='client'>Cliente: { client.name }  { client.lastName } </h2>  
+                <h4 className='client d-none d-sm-block'>Cliente: { client.name }  { client.lastName } </h4>  
             </div>
             <div className='price-pending-div'>
                 <h5 className='price'>${total}</h5>
@@ -78,7 +78,8 @@ const OrderDetail = (props) => {
       <Collapse isOpen={isOpen}>
         <Card>
           <CardBody>
-              <CardTitle tag="h5">Fecha Orden {resultDate}</CardTitle>
+              <CardTitle tag="h5" className='d-block d-sm-none'>Cliente: { client.name }  { client.lastName }</CardTitle>
+              <CardTitle tag="h5">Fecha Orden: {resultDate}</CardTitle>
               <CardSubtitle tag="h6" className="mb-2 text-muted">Costo de Entrega: ${deliveryCost}</CardSubtitle>
               { products.map( (product , index) => {  
                    return (<CardText key={index} tag="h6" className="mb-2 text-muted">  { product.qty } x { product.product.name }  ${ product.price } </CardText>)
