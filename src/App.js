@@ -23,13 +23,8 @@ import Main from './Pages/Main'
 import UserRegister from './Pages/Registro';
 import SearchPage from './Pages/Busqueda';
 import ShoppingCart from './Pages/ShoppingCart'
-import { createContext } from 'react';
 import ManageProduct  from './Pages/ManageProduct';
-
-
-//Test
-import cartData from './Pages/ShoppingCart/cartTestData2'
-
+import Checkout from './Pages/Checkout';
 
 //Contexts
 export const UserContext = react.createContext()
@@ -124,6 +119,9 @@ function App() {
             </Route>
             <Route path="/MiCarrito">
               <ShoppingCart/>
+            </Route> 
+            <Route path="/checkout">
+              <Checkout/>
             </Route> 
             <Route path="/DetalleNegocio/:id">
                 <DetalleNegocio/>

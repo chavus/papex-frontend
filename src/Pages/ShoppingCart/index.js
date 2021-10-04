@@ -1,15 +1,17 @@
 import './style.scss'
 import { useContext, useEffect, useState } from 'react'
 import CartPerBusiness from '../../Components/CartPerBusiness'
-import{
-    Button
-} from 'reactstrap'
-import { ShoppingCartContext } from '../../App'
-import { getExpandedShoppingCartInfo, getTotal } from './utils'
+import{ Button } from 'reactstrap'
+import { useHistory } from 'react-router-dom'
+import { UserContext, ShoppingCartContext } from '../../App'
+import { getExpandedShoppingCartInfo, getTotal, createOrders } from './utils'
+import api from '../../assets/lib/api'
 
 export default function ShoppingCart(){
     const {shoppingCart, changeShoppingCart, addToShoppingCart} = useContext(ShoppingCartContext)
+    const [userData, changeUserData] = useContext(UserContext)
     const [expandedShoppingCart, setExpandedShoppingCart] = useState([])
+    const history = useHistory()
 
     useEffect(async ()=>{
         const expandedShoppingCart= await getExpandedShoppingCartInfo(shoppingCart)   
@@ -63,11 +65,19 @@ export default function ShoppingCart(){
         changeShoppingCart(shoppingCartTemp)
     }
 
-    function onCheckoutClick(){
-        console.log("right before")
-        console.log(shoppingCart)
-        addToShoppingCart("613700e57b7e3b66a43adb04")
-        return
+    async function onCheckoutClick(){
+        // Check if user is logged in
+        if (!userData){
+            console.log("User not logged in")
+            history.push('/Login')
+        }else{
+            const stripeCheckoutSessionURL = await api.createCheckoutSession(getTotal(expandedShoppingCart))
+            console.log(stripeCheckoutSessionURL.data);
+            window.location.href = stripeCheckoutSessionURL.data
+        }
+
+        // const createdOrders = await createOrders(expandedShoppingCart, userData._id)
+        // console.log(createdOrders)
     }
 
     return(
