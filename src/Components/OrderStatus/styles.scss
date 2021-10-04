@@ -1,0 +1,53 @@
+@import '../../assets/global_style.scss';
+
+.order-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: ridge 2px;
+    margin: 1rem;
+
+    .order-detail{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: white;
+        color: black;
+
+        .order-client-div{
+            display: flex;
+            padding: .5rem;
+
+            .order{
+                padding: .5rem;
+            }
+    
+            .client{
+                padding: 1rem;
+            }
+        }
+
+        .price-pending-div{
+            display: flex;
+            padding: .5rem;
+            align-items: center;
+            .price{
+                padding: .5rem; 
+                margin-right: 1rem;
+            }
+            
+            .pending{
+                padding: .5rem;
+                color: white;
+                border-radius: 7px;
+                margin-right: 1rem;
+                height: auto;
+            }
+            
+
+        }     
+    }
+
+
+}
+

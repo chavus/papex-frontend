@@ -25,13 +25,17 @@
         a{
             color: $primary;
         }
+
+        .nav-btn{
+            margin-left: 1rem;
+        }
     }
        
 
-    @media(min-width:576px){
+//     @media(min-width:576px){
         
-     //   div{
-            //display: none;
-       // }
-    }
-}
+//         div{
+//             display: none;
+//         }
+//     }
+ }

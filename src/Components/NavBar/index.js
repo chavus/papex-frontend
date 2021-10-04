@@ -33,15 +33,27 @@ const PapexNav = () => {
   return (
     <div className='nav-header '>
       <Navbar>
-        <NavbarBrand href="/"><img src={papex} className='nav-logo'/></NavbarBrand>
+        <NavbarBrand href="/" ><img src={papex} className='nav-logo'/></NavbarBrand>
     
           <Nav className="mr-auto nav-links">
+          
+             <NavItem >
+             { userData &&
+               ( userData.rol == 'Negocio'?
+                <Link to='/CatalogoNegocio' className='nav-link'>{userData.businessName}</Link> :
+                <Link to='/' className='nav-link'>{userData.name}</Link>)
+              }
+              </NavItem> 
+          
             <NavItem >
-              <Link to="/Home" className='nav-link d-none d-sm-block'>Mis Pedidos</Link>
+              {userData && 
+              <Link to="/MisPedidos" className='nav-link d-none d-sm-block'>Mis Pedidos</Link>}
             </NavItem>
             <NavItem >
-              <Link to="/CreatePost" className='nav-link d-none d-sm-block'>Mi Perfil</Link>
-            </NavItem>
+              {userData && 
+              <Link to="/CreatePost" className='nav-link d-none d-sm-block'>Mi Perfil</Link>}
+            </NavItem> 
+
             { userData && 
              userData.rol == 'Negocio' && <NavItem >
               <Link to="/CatalogoNegocio" className='nav-link d-none d-sm-block'>Catalogo</Link>
@@ -57,9 +69,15 @@ const PapexNav = () => {
                 Cerrar Sesión
           </button> 
             }
-         
-            <NavDropdown/>
           
+         
+            <NavDropdown
+              goLogout ={goLogout}
+              goLogin = {goLogin}
+            />
+
+
+           
           </Nav>
           
       </Navbar>
