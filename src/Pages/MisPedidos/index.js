@@ -38,7 +38,8 @@ export default function MisPedidos(){
            userData.rol == 'Negocio' ? 
            orders.map((order) => {
                return  <OrderDetail 
-                            order={order} />
+                            order={order}
+                            token={userData.token} />
            })
            : <h1>Orden de Cliente</h1>}
        
