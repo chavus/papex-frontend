@@ -9,11 +9,24 @@
     .b-container-search{
         // background-color: pink;
         margin: 65px 15px 15px 15px;
+        align-self: center;
         // border: solid 1px lightgray;
         display: flex;
         width: 90vw;
         flex-direction: column;
         padding: 1em;
+        h1{
+            color: $dark-blue;
+        }
+        .search-container{
+            .container-input{
+                display: flex;
+                align-items: center;
+                background-color: $primary;
+                border-radius: 10px;
+                
+            }
+        }
     }
 
 

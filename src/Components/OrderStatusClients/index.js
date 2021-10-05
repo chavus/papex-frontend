@@ -4,15 +4,18 @@ import { Collapse, Button, CardBody, Card, CardText,
 import './styles.scss'
 import api from '../../assets/lib/api'
 
-const OrderDetail = (props) => {
+const ClientOrderDetail = (props) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
   const [confirmCode, setConfirmCode] = useState()
-  const { client, products, total, parentOrder, createdAt, deliveryCost, _id, confirmation_code, status }  = props.order    
-  const [orderStatus, setOrderStatus] = useState(status)
+  const { business, products, total, parentOrder, createdAt, deliveryCost, _id, confirmation_code, status }  = props.order    
   const [showMessage, setShowMessage] = useState(false)
+  const [orderStatus, setOrderStatus] = useState(status)
+
+  //const [order, setOrder] = useState(props.order)
+
   const [messageClass, setMessageClass] = useState()
   const [messageText, setMessageText] = useState()   
   const date = new Date(createdAt);
@@ -20,10 +23,13 @@ const OrderDetail = (props) => {
 
   const onClickClose = async (event) => {
           const idOrder = event.target.dataset.order
-
+          //console.log("orden", idOrder)
           if (confirmCode === confirmation_code){
 
+              //console.log(order)
               let result = await api.patchOrderById(idOrder, {status:"Entregado"}, props.token  )
+
+              //console.log(result)
               if (result.success){
                 setOrderStatus("Entregado")
                 console.log(result.data)
@@ -60,7 +66,7 @@ const OrderDetail = (props) => {
            onClick={toggle}>
             <div className='order-client-div'>
                 <h3 className='order'>Pedido #{parentOrder}</h3>
-                <h4 className='client d-none d-sm-block'>Cliente: { client.name }  { client.lastName } </h4>  
+                <h4 className='client d-none d-sm-block'> {business.businessName} </h4>  
             </div>
             <div className='price-pending-div'>
                 <h5 className='price'><span className='d-none d-sm-block'>Total:</span>${total}</h5>
@@ -72,14 +78,15 @@ const OrderDetail = (props) => {
       <Collapse isOpen={isOpen}>
         <Card>
           <CardBody>
-              <CardTitle tag="h5" className='d-block d-sm-none'>Cliente: { client.name }  { client.lastName }</CardTitle>
+              <CardTitle tag="h5" className='d-block d-sm-none'>{business.businessName}</CardTitle>
+              <CardTitle tag="h5">Código de Confirmación:{' '} {confirmation_code}</CardTitle>
               <CardTitle tag="h5">Fecha Orden: {resultDate}</CardTitle>
               <CardSubtitle tag="h6" className="mb-2 text-muted">Costo de Entrega: ${deliveryCost}</CardSubtitle>
               { products.map( (product , index) => {  
                    return (<CardText key={index} tag="h6" className="mb-2 text-muted">  { product.qty } x { product.product.name }  ${ product.price } </CardText>)
                 } )                     
               } 
-              { orderStatus =="En proceso"   &&            
+              { /* orderStatus  =="En proceso"   &&            
                 <>
                   <FormGroup row>
                     <Label for="confirmationCode" sm={2}>Código de Confirmación</Label>
@@ -89,19 +96,19 @@ const OrderDetail = (props) => {
                   </FormGroup>
                   <Button data-order={_id} onClick={onClickClose} className="btn btn-p-primary" >Cerrar</Button>             
                 </>
-             }
+            */ }
           </CardBody>
         </Card>
-        {   showMessage &&
+        { /*   showMessage &&
                         <div className="d-flex justify-content-center">
                             <Alert color={ messageClass } className=" d-block mt-2 max-width-message " >
                                 { messageText }
                             </Alert>                                         
                         </div>    
-                } 
+               */ } 
       </Collapse>
     </Col>
   );
 }
 
-export default OrderDetail;
+export default ClientOrderDetail;

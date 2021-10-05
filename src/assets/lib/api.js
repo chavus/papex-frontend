@@ -113,21 +113,39 @@ export default{
         const resJson = await result.json()
         return resJson.data
     },
-
-
-
-     async getAllOrders(){
-        let result = await fetch(`${BASE_URL}/orders`)
-        const resJson = await result.json()
-        return resJson.data
+    
+    async createOrders(data, jwtToken){
+        const response = await fetch(`${BASE_URL}/orders/siblingsOrders`,{
+            method: "POST",
+            headers:{
+                'Content-Type':'application/json'
+                ,'Authorization': jwtToken
+            },
+            body: JSON.stringify(data)
+        })
+        const resJson = await response.json()
+        return resJson
     },
+    async getAllOrders(){
+       let result = await fetch(`${BASE_URL}/orders`)
+       const resJson = await result.json()
+       return resJson.data
+   },
 
+    async createCheckoutSession(total, jwtToken){
+        const response = await fetch(`${BASE_URL}/orders/create-checkout-session`,{
+            method: "POST",
+            headers:{
+                'Content-Type':'application/json'
+                ,'Authorization': jwtToken
+            },
+            body: JSON.stringify({total, domain: `${window.location.origin}/checkout`})
+            })
+            const resJson = await response.json()
+            return resJson
+    },
     async patchOrderById(id, data, jwtToken){
-/*
-        console.log("patchOrderById: ", `${BASE_URL}/orders/${id}`)
-        console.log(data)
-        console.log(jwtToken)
-*/
+
         let result = await fetch(`${BASE_URL}/orders/${id}`,{
             method: "PATCH",
             headers:{
@@ -139,87 +157,5 @@ export default{
         })
         const resJson = await result.json()
         return resJson
-    },       
-    
-
-    /*
-    async getPostById(id, jwtToken){
-
-        let result = await fetch(`${BASE_URL}/posts/${id}`,{
-            headers:{
-                'Authorization': jwtToken
-            }
-        })
-        const resJson = await result.json()
-        return resJson.data.getSinglePost
-    },
-
-    async updatePost(id, data, jwtToken){
-
-        let response = await fetch(`${BASE_URL}/posts/${id}`,{
-            method: "PATCH",
-            headers:{
-                'Content-Type':'application/json',
-                'Authorization': jwtToken
-            },
-            body: JSON.stringify(data)
-        })
-        const resJson = await response.json()
-        return resJson
-    },
-    async getCommentsByPostId(id, jwtToken){
-        
-        let result = await fetch(`${BASE_URL}/posts/${id}`,{
-            headers:{
-                'Authorization': jwtToken
-            }
-        })
-        const resJson = await result.json()
-        return resJson.data.getSinglePost.comments
-    },
-    async addComment(postId, data, jwtToken){
-        // Add comment
-        let response = await fetch(`${BASE_URL}/comments`,{
-            method: "POST",
-            headers:{
-                'Content-Type':'application/json',
-                'Authorization': jwtToken
-            },
-            body: JSON.stringify(data)
-        })
-        const resJson = await response.json()
-        const commentId = resJson.data.postedComment._id
-        // Update post comments Array
-        let postCommentsBatch = await this.getCommentsByPostId(postId, jwtToken)
-        let postCommentsIds = postCommentsBatch.map(comment => comment._id ) 
-        postCommentsIds.push(commentId)
-        await this.updatePost(postId, {comments:postCommentsIds}, jwtToken)
-        return postCommentsIds
-    },
-    async updateComment(id, data, jwtToken){
-
-        let response = await fetch(`${BASE_URL}/comments/${id}`,{
-            method: "PATCH",
-            headers:{
-                'Content-Type':'application/json',
-                'Authorization': jwtToken
-            },
-            body: JSON.stringify(data)
-        })
-        const resJson = await response.json()
-        return resJson
-        
-    },
-    
-    async getAllUsers(jwtToken){
-        let result = await fetch(`${BASE_URL}/users`,{
-            headers:{
-                'Authorization': jwtToken
-            }
-        })
-        const resJson = await result.json()
-        return resJson.data.allUsers
-    }
-    */
-    
+    }          
 }
