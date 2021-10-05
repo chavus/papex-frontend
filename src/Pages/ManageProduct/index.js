@@ -185,6 +185,7 @@ function ManageProduct(props){
                                    <FormGroup>
                                        <Label for="category" className="mb-2" >Categoría</Label>
                                        <Input type="select"  name="select" id="category" name="category" onChange={onChangeInputsHandlers} value = { productData? productData.category : null}>
+                                           <option>Seleccione una...</option>
                                            <option>Arte y diseño</option>
                                            <option>Articulos de escritorio</option>
                                            <option>Articulos de escritura</option>                                      

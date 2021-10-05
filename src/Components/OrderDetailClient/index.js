@@ -4,7 +4,7 @@ import { Collapse, Button, CardBody, Card, CardText,
 import './styles.scss'
 import api from '../../assets/lib/api'
 
-const OrderDetail = (props) => {
+const OrderDetailClient = (props) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -103,4 +103,4 @@ const OrderDetail = (props) => {
   );
 }
 
-export default OrderDetail;
+export default OrderDetailClient;

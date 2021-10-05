@@ -4,6 +4,7 @@ import { UserContext } from '../../App'
 import { Col } from "reactstrap"
 import api from '../../assets/lib/api'
 import OrderDetail from "../../Components/OrderStatus"
+import OrderDetailClient from "../../Components/OrderDetailClient"
 import './styles.scss'
 
 export default function MisPedidos(){
@@ -30,18 +31,24 @@ export default function MisPedidos(){
      }, []);
 
 
-
     return(
         <Col className='my-orders'>
            <h1>Mis Pedidos</h1>
             { userData && 
-           userData.rol == 'Negocio' ? 
-           orders.map((order) => {
-               return  <OrderDetail key={order._id}
-                            order={order}
-                            token={userData.token} />
-           })
-           : <h1>Orden de Cliente</h1>}
+                    userData.rol == 'Negocio' ? 
+                    orders.map((order) => {
+                        return  <OrderDetail key={order._id}
+                                        order={order}
+                                        token={userData.token} />
+                    })
+                    : 
+                    orders.map((order) => {
+                        return  <OrderDetailClient key={order._id}
+                                        order={order}
+                                        token={userData.token} />
+                    })
+           
+           }
        
         </Col>
      

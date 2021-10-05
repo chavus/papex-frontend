@@ -13,7 +13,7 @@ export default function Login(props){
     const [userData, changeUserData] = useContext(UserContext)
     const [formData, setFormData] = useState({})
     const [showMessage, setShowMessage] = useState(true)
-    const [messageClass, setMessageClass] = useState("light")
+    const [messageClass, setMessageClass] = useState("$light-gray")
     const [messageText, setMessageText] = useState(" ")    
     const successMsg = "primary"
     let history = useHistory()
@@ -55,8 +55,8 @@ export default function Login(props){
       }       
       setShowMessage(true)
       setTimeout(  () => {                     
-        setMessageClass("light")
-        setMessageText(".")
+        setMessageClass("$light-gray")
+        setMessageText(" ")
         if (value === successMsg){
           if (rol == "Cliente"){
             history.push("/") 
@@ -69,11 +69,7 @@ export default function Login(props){
     return(
         <Col className=" d-flex flex-column justify-content-center align-items-center vh-100 p-1 ">
                 <div className="logoContainer" >
-                    
-
                     <img alt="logo papex" src={logoPapex} className = "logoSize"/>
-                    
-
                 </div>                
                 <div className="formContainer bg-white rounded border p-4 d-flex justify-content-center" >                    
                     <Form className="formContainerControls" >
