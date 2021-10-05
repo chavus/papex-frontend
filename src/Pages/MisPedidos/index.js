@@ -41,12 +41,7 @@ export default function MisPedidos(){
                                         order={order}
                                         token={userData.token} />
                     })
-                    : 
-                    orders.map((order) => {
-                        return  <OrderDetailClient key={order._id}
-                                        order={order}
-                                        token={userData.token} />
-                    })
+                    :  <h1>pedido del cliente</h1>                    
            
            }
        
