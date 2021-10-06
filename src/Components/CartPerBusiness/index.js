@@ -14,8 +14,8 @@ export default function CartPerBusiness(props){
     const {business, products, comments, deliveryMethod} = props.cartPerBusinessData
 
     return(
-        <div className="cart-business-container">
-            <h2>{business.businessName}</h2>
+        <div className="cart-business-container p-md-3">
+            <h2 className="mb-3">{business.businessName}</h2>
             {products.map(product =>{
                 return(
                     <div className="product-line d-flex">
@@ -26,13 +26,12 @@ export default function CartPerBusiness(props){
                                 onChange={ props.onQtyChange}/>
                         <p className="product-name">{product.product.name}</p>
                         <p className="product-price">$ {product.product.price}</p>
-                        <Button
-                            data-business-id={ business._id }
-                            data-product-id={ product.product._id }
-                            onClick={ props.onDeleteClick }
-                            >
-                                <FontAwesomeIcon icon={ faTrashAlt }/>
-                            </Button>
+                        <div className="icon-container">
+                                <FontAwesomeIcon icon={ faTrashAlt }
+                                    data-business-id={ business._id }
+                                    data-product-id={ product.product._id }
+                                    onClick={ props.onDeleteClick }/>
+                            </div>
                     </div>
                 )
             }) }

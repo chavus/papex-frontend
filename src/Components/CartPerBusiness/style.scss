@@ -1,17 +1,23 @@
+@import '../../assets/global_style.scss';
 *{
     // margin: 0 !important;
 }
 
 .cart-business-container{
+    border-bottom: #33658a59 groove 2px;
+    margin-bottom: 1rem;
+    // padding: 1rem;
+    // box-shadow: 0px 6px 12px #33658a;
     .product-line{
         align-items: center;
+        margin-bottom: 4px;
         *{
             // margin: 0 8px !important;
         }
         .qty-input{
             width: 2rem;
             text-align: center;
-            padding: 6px;
+            padding: 0px;
             margin-right: 1rem;
         }
         p{
@@ -25,6 +31,14 @@
                 width: 100%;
             }
         }
-
+        .icon-container{
+            cursor: pointer;
+            color: $orange;
+        }
+    }
+    .form-check{
+        *{
+            cursor: pointer;
+        }
     }
 }
