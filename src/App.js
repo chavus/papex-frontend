@@ -3,13 +3,17 @@ import logo from './logo.svg';
 import './assets/global_style.scss'
 import './App.scss';
 import api from './assets/lib/api'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import addToCart from './assets/lib/addToCart';
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   useHistory,
-  useLocation
+  useLocation,
+  Link
 } from "react-router-dom";
 
 // Pages
@@ -65,46 +69,28 @@ function App() {
     localStorage.setItem('shoppingCart', JSON.stringify(data))
   }
 
+  const notify = (msg) => toast.success(msg);
+
   async function addToShoppingCart(productId){
-    console.log("shopping cart state")
-    console.log(shoppingCart)
-    let shoppingCartTemp = [...shoppingCart]
     const res = await api.getProductById(productId)
     const productData = res.data
-    //Check if product business is in cart
-    const businessIdx = shoppingCart.findIndex( bizCart => bizCart.business == productData.business._id)
-    if (businessIdx == -1) {
-      //Inicializa biz
-      const cart = {
-                    business: productData.business._id,
-                    products:[{ product: productData._id,  qty:1 }],
-                    comments: "",
-                    deliveryMethod:"Pickup"
-                  }
-      shoppingCartTemp.push(cart)
-    }else{
-      const productIdx = shoppingCart[businessIdx].products.findIndex( product => product.product == productId)
-      if (productIdx == -1){
-        // No product, add
-        shoppingCartTemp[businessIdx].products.push({product:productId, qty:1})
-      }else{
-        // Add 1 to the qty
-        shoppingCartTemp[businessIdx].products[productIdx].qty += 1
-      }
-    }
+    const shoppingCartTemp = addToCart(productData, shoppingCart)
     setShoppingCart(shoppingCartTemp)
     localStorage.setItem('shoppingCart', JSON.stringify(shoppingCartTemp))
+    notify(`Agregaste ${productData.name} a tu carrito`)
   }
-
+  
   return (
     <UserContext.Provider value={[userData, changeUserData]}>
       <ShoppingCartContext.Provider value={{shoppingCart, changeShoppingCart, addToShoppingCart}}>
-        <div>      
+        <div>
+          <Link to="/micarrito">
+            <ToastContainer/>
+          </Link>      
 
           { location.pathname != "/Login" &&
             <PapexNav/>
           }
-
           {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
           <Switch>
