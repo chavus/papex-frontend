@@ -16,7 +16,7 @@ const ProductCard = (props) => {
   const [userData] = useContext(UserContext)
 
   const location = useLocation().pathname
-  console.log(props.ProductData)
+  // console.log(props.ProductData)
 
   const {name, price, imageUrl, category, brand, _id, business} = props.ProductData 
 

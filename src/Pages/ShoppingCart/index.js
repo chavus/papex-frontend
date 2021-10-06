@@ -1,16 +1,17 @@
 import './style.scss'
 import { useContext, useEffect, useState } from 'react'
 import CartPerBusiness from '../../Components/CartPerBusiness'
-import{ Button } from 'reactstrap'
+import{ Button, Spinner } from 'reactstrap'
 import { useHistory } from 'react-router-dom'
 import { UserContext, ShoppingCartContext } from '../../App'
 import { getExpandedShoppingCartInfo, getTotal, createOrders } from './utils'
 import api from '../../assets/lib/api'
+import PapexSpinner from '../../Components/PapexSpinner'
 
 export default function ShoppingCart(){
     const {shoppingCart, changeShoppingCart, addToShoppingCart} = useContext(ShoppingCartContext)
     const [userData, changeUserData] = useContext(UserContext)
-    const [expandedShoppingCart, setExpandedShoppingCart] = useState([])
+    const [expandedShoppingCart, setExpandedShoppingCart] = useState(null)
     const history = useHistory()
 
     useEffect(async ()=>{
@@ -37,7 +38,7 @@ export default function ShoppingCart(){
     }
 
     function onQtyChange(event){
-        const value = parseInt(event.target.value)
+        const value = Number(isNaN(event.target.value) ? 0 : event.target.value)
         const { businessId, productId } = event.target.dataset
         let shoppingCartTemp = [...shoppingCart]
         const businessIdx = shoppingCartTemp.findIndex(businessCart => businessCart.business == businessId)
@@ -83,9 +84,10 @@ export default function ShoppingCart(){
     return(
         <div className="container-fluid bg-p-light-gray main-padding">
             <h1 className="p-titles">Mi Carrito</h1>
-            <div className="container p-borders">
-            { !expandedShoppingCart.length && <h1>Carrito vacío, corre a comprar algo!</h1>}
-            { !!expandedShoppingCart.length && 
+            <div className="container p-container-borders bg-white">
+            { !expandedShoppingCart && <PapexSpinner text=""/> }
+            { expandedShoppingCart === [] && <h1>Carrito vacío, corre a comprar algo!</h1>}
+            { expandedShoppingCart && !!expandedShoppingCart.length && 
                 <>
                     {expandedShoppingCart.map((cartPerBusinessData, idx)=>{
                         return <CartPerBusiness

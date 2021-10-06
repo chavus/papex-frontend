@@ -1,14 +1,16 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {
     Link,
 } from "react-router-dom";
 import { FaSearch } from 'react-icons/fa';
 import { Input } from 'reactstrap'
+import { useContext } from "react"
+import { UserContext } from "../../App"
+import getNearBusinesses from '../../assets/lib/nearBusinesses';
 import "./styles.scss"
 
 function Search(props) {
     const [searchTerm, setSearchTerm] = useState("")
-
 
     function onSearchChange(event){
         const value = event.target.value
@@ -22,7 +24,6 @@ function Search(props) {
                     type="text" 
                     className="form-control input-buscar" 
                     placeholder="Búsqueda"
-                   
                     onChange={ onSearchChange }
                  />
                 <Link className="search-button " to={`/Search?searchText=${searchTerm}`}><FaSearch /></Link>

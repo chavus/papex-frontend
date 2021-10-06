@@ -1,0 +1,21 @@
+@import '../../assets/global_style.scss';
+
+.spinner-container{
+    *{
+        color: $dark-blue;
+    }
+
+    h5{
+
+        animation: loading-color 1.5s linear 500ms infinite alternate;
+    }
+}
+
+@keyframes loading-color {
+    from{
+        opacity: 100%;
+    }
+    to{
+        opacity: 20%;
+    }
+}
