@@ -12,19 +12,37 @@
         right: 0;
         left: 0;
         z-index: 1000;
-        
-    
-        .navbar-brand{
+
+        .nav-right-side{
+            display: flex;
+            align-items: center;
+
+            .navbar-brand{
                 margin-left: 10px;
                 padding: 0px 0px 5px 0px;
-                
                 
                 .nav-logo{
                     height: 40px;
     
                 }
     
-            }  
+            } 
+            .nav-user{
+                text-decoration: none;
+                margin-bottom: 5px;
+                font-weight: bold;
+                color: white;
+                :focus {
+                    color: white;
+                }
+                &:hover{
+                    color: $secondary;
+                }
+             
+            } 
+
+        }
+      
         .nav-links{
             margin-bottom: 5px;
            

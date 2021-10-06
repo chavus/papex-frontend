@@ -117,7 +117,7 @@ const UserRegister = () => {
       <Col xs='12' md='4' className='container-form'>
         <h1 className='p-titles mt-2'>Registro{business &&' de negocio'}</h1>
        <div className='form-div'>
-       <Form className='rounded border p-3'>
+       <Form className='p-3 p-card-borders'>
            <div className='customer-schedules p-1'>
                 <FormGroup>
                     <Label>Nombre</Label>

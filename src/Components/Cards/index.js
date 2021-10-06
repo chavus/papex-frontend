@@ -79,11 +79,7 @@ const ProductCard = (props) => {
                            color='white'
                            />
                            </Button>
-                           </Link> }
-
-                        
-                      
-                        
+                           </Link> }    
                     </div>
                     
             </CardBody>

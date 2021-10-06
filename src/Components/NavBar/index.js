@@ -13,6 +13,7 @@ import {
 import papex from '../../img/papex.png'
 import './styles.scss'
 import NavDropdown from '../NavDropdown';
+import CartNotifications from '../CartNotifications';
 
 const PapexNav = () => {
 
@@ -33,18 +34,23 @@ const PapexNav = () => {
   return (
     <div className='nav-header '>
       <Navbar>
+        <div className='nav-right-side'>
         <NavbarBrand href={userData && userData.rol == "Negocio" ? "/CatalogoNegocio" : "/"} ><img src={papex} className='nav-logo'/></NavbarBrand>
-    
+        
+        { userData &&
+          ( userData.rol == 'Negocio'?
+           <Link to='/CatalogoNegocio' className='nav-user'>Hola {userData.businessName}</Link> :
+           <Link to='/' className='nav-user'>Hola {userData.name}</Link>)
+         }
+
+        </div>
+        
+         
+
+         
+          
           <Nav className="mr-auto nav-links">
-          
-             <NavItem >
-             { userData &&
-               ( userData.rol == 'Negocio'?
-                <Link to='/CatalogoNegocio' className='nav-link'>{userData.businessName}</Link> :
-                <Link to='/' className='nav-link'>{userData.name}</Link>)
-              }
-              </NavItem> 
-          
+        
             <NavItem >
               {userData && 
               <Link to="/MisPedidos" className='nav-link d-none d-sm-block'>Mis Pedidos</Link>}
@@ -58,6 +64,13 @@ const PapexNav = () => {
              userData.rol == 'Negocio' && <NavItem >
               <Link to="/CatalogoNegocio" className='nav-link d-none d-sm-block'>Catalogo</Link>
             </NavItem>}
+           
+               { (!userData || userData.rol == 'Cliente') &&
+             <NavItem> 
+                   <CartNotifications/>
+              </NavItem> }
+           
+           
            {!userData ? <button 
                 className='btn-p-secondary nav-btn d-none d-sm-block' 
                 onClick={goLogin} > 
@@ -70,7 +83,6 @@ const PapexNav = () => {
           </button> 
             }
           
-         
             <NavDropdown
               goLogout ={goLogout}
               goLogin = {goLogin}

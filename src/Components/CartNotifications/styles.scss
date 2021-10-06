@@ -1,0 +1,23 @@
+@import '../../assets/global_style.scss';
+
+
+.cart-icon{
+
+    .nav-link{
+        
+        .cart-image{
+            :focus {
+                color: white;
+            }
+            &:hover{
+                color: $secondary;
+            }
+            .number-articles{
+                color: $secondary
+            }
+
+        }
+       
+    }
+
+}
