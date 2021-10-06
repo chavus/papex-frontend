@@ -73,7 +73,7 @@ export default function Login(props){
 							<div className="logoContainer">
 								<img alt="logo papex" src={logoPapex} className="logoSize" />
 							</div>
-							<div className="formContainer bg-white rounded border p-3 d-flex  ">
+							<div className="formContainer bg-white p-card-borders p-3 d-flex  ">
 								<Form className="formContainerControls w-100">
 									<FormGroup  >
 										<Label for="email" >Correo Electrónico</Label>                
