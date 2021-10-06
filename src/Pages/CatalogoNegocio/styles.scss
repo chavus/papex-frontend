@@ -4,24 +4,38 @@
     margin-top: 55px;
     .info-container{
         display: flex;
-        justify-content: space-around;
-        align-items: center;
-
-    }
-    .product-manegement{
-        display: flex;
         justify-content: space-evenly;
         align-items: center;
-        padding: 15px;
-        
-        a{
-            margin: 1rem;
-            padding: 1rem;
-            width: auto;
+       
+
+        .info-catalog{
+            display: flex;
+            flex-direction: column;
+            
+            h1{
+                margin-bottom: 0;
+            }
         }
-        
-        
+
+
+        .product-manegement{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+         
+            
+            a{
+                margin: 1rem;
+              
+                width: auto;
+            }
+            
+            
+        }
+
     }
+    
 
     
 }

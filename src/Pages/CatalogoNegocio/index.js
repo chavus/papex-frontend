@@ -54,7 +54,7 @@ export default function CatalogoNegocio(){
 
     return(
 
-    <Col xs='12' className='catalog-cards'>
+    <Col xs='12' className='catalog-cards container-fluid'>
         <div className='info-container'>
         <div className='info-catalog'>
             <h1 
