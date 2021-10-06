@@ -32,7 +32,6 @@ export default function MisPedidos(){
      }, []);
 
 
-
     return(
         <Col className='my-orders'>
            <h1>Mis Pedidos</h1>

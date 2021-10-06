@@ -13,10 +13,7 @@ const OrderDetail = (props) => {
   const [confirmCode, setConfirmCode] = useState()
   const { client, products, total, parentOrder, createdAt, deliveryCost, _id, confirmation_code, status, comment }  = props.order    
   const [showMessage, setShowMessage] = useState(false)
-  const [orderStatus, setOrderStatus] = useState(status)
-
-  //const [order, setOrder] = useState(props.order)
-
+  const [orderStatus, setOrderStatus] = useState(status)  
   const [messageClass, setMessageClass] = useState()
   const [messageText, setMessageText] = useState()   
   const date = new Date(createdAt);
@@ -24,10 +21,9 @@ const OrderDetail = (props) => {
 
   const onClickClose = async (event) => {
           const idOrder = event.target.dataset.order
-          //console.log("orden", idOrder)
+
           if (confirmCode === confirmation_code){
 
-              //console.log(order)
               let result = await api.patchOrderById(idOrder, {status:"Entregado"}, props.token  )
 
               console.log(result)
@@ -86,7 +82,7 @@ const OrderDetail = (props) => {
                    return (<CardText key={index} tag="h6" className="mb-2 text-muted">  { product.qty } x { product.product.name }  ${ product.price } </CardText>)
                 } )                     
               } 
-              { orderStatus /* order.status */ =="En proceso"   &&            
+              { orderStatus =="En proceso"   &&            
                 <>
                   <FormGroup row className='d-flex align-items-center'>
                     <Label for="confirmationCode" sm={2}>Código de Confirmación:</Label>
