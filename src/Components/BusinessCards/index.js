@@ -5,7 +5,7 @@ import {
 // import { FaAngleDoubleRight } from 'react-icons/fa';
 // import "../../assets/global_style.scss"
 
-function BusinessCard({key, id, businessName, address, phoneNumber}) {
+function BusinessCard({id, businessName, address, phoneNumber}) {
     return (
         <>
             
