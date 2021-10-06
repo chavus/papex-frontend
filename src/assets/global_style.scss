@@ -51,9 +51,15 @@ $colors:(
     padding: 16px 16px;
 }
 
-.p-borders{
-    border-radius: 5px;
-    border: solid 1px black;
+.p-card-borders{
+    border-radius: 7px;
+    border: solid 2px $primary;
+    box-shadow: black;
+}
+
+.p-container-borders{
+    border-radius: 7px;
+    border: solid 1px $primary;
     box-shadow: black;
 }
 

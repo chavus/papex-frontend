@@ -31,15 +31,18 @@
         }     
     }    
 
+.nav-item{
+    .nav-link{
+        color: white;
+        :focus {
+            color: white;
+        }
+        &:hover{
+            color: $secondary;
+        }
+    }
+    
 
-.nav-link{
-    color: white;
-    &:hover{
-        color: $secondary;
-    }
-    :valid {
-        color: $secondary;
-    }
 }
 
 .nav-btn{
