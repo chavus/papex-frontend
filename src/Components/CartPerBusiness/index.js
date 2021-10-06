@@ -60,24 +60,6 @@ export default function CartPerBusiness(props){
                             </FormGroup>
                         )
                     })}
-                    {/* <FormGroup check>
-                    <Label check>
-                        <Input type="radio" name={`deliveryMethod-${business._id}`} value="Pickup" 
-                        data-business-id={ business._id }
-                        checked={deliveryMethod == "Pickup" && true} 
-                        onChange={props.onDeliveryChange}/>
-                        Pickup
-                    </Label>
-                    </FormGroup>
-                    <FormGroup check>
-                    <Label check>
-                        <Input type="radio" name={`deliveryMethod-${business._id}`} value="Delivery" 
-                        data-business-id={ business._id }
-                        checked={deliveryMethod == "Delivery" && true}
-                        onChange={props.onDeliveryChange}/>
-                        Domicilio  ($30.00)
-                    </Label>
-                    </FormGroup> */}
                 </div>
                 <div className="">
                     <p className="m-0 fw-bold">Subtotal</p>
