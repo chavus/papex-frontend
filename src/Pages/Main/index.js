@@ -1,20 +1,24 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { UserContext } from '../../App'
 import { GiAlarmClock } from 'react-icons/gi';
-import Search from  '../../Components/Search'
+import { FiArrowRight } from 'react-icons/fi'
+import { Popover, PopoverHeader, PopoverBody } from 'reactstrap';
+// import Search from  '../../Pages/Busqueda'
 import api from '../../assets/lib/api'
+import PapexSpinner from '../../Components/PapexSpinner'
 import "./styles.scss"
-import { Spinner } from 'reactstrap';
+
 
 function Main() {
 
     const [userData] = useContext(UserContext)
     const [negocios, setNegocios] = useState(null)
-    const [loading, setLoading] = useState(false)
+    const [popoverOpen, setPopoverOpen] = useState(false);
+    const toggle = () => setPopoverOpen(!popoverOpen);
 
     useEffect( async()=> {
         if (userData){
-            setLoading(true)
+            // setLoading(true)
             console.log('yes, you are logged in as', userData.name)
             console.log('this is your id', userData._id)
             // como el usuario está loggeado, enviarle el id al metodo getNearBusinesses
@@ -29,10 +33,10 @@ function Main() {
             // const dataB = nearBusiness.map( (item)=>{
             //     console.log("estos son los negocios cercanos: " , item.businessName)
             // })
-            setLoading(false)
+            // setLoading(false)
             
         }else{
-            setLoading(true)
+         
             navigator.geolocation.getCurrentPosition(
                 async(position) => {
                     console.log("Position: ", position.coords.latitude, position.coords.longitude)
@@ -46,7 +50,7 @@ function Main() {
                     setNegocios(arrayBusiness)
                 })
         }
-        setLoading(false)
+      
         
     },[])
 
@@ -82,30 +86,50 @@ function Main() {
                     </div>
                 </div>
                 
-                <Search/>
+                {/* <Search/> */}
                 <div className="row">
-                    {loading && <Spinner color="primary" children=""/>}
+                    {!negocios && <PapexSpinner text="Buscando negocios cercanos..."/>}
                     {negocios && negocios.map((negocio) =>{
-                        console.log("la información de los negocios: ", negocios)
+                        console.log("la información de los negocios: ", negocio._id)
                         return(
-                        <div className="col-12 col-md-4 mb-4">
-                            <div className="card">
+                        <div className="b-container col-12 col-md-4 mb-4">
+                            <div className="card p-card-borders">
                                 <div className="card-body">
                                     <div className="card-title p-titles">{negocio.businessName}</div>
                                     <div className="card-text">
                                         <p><span>Domicilio: </span> {negocio.address}</p>
-                                        <p><span>Horario de servicio:  <GiAlarmClock/> </span>
+                                        {/* <p><span>Conoce el horario de servicio < FiArrowRight/> <GiAlarmClock className="pop-button" id="Popover1"/> </span>
                                              {negocio.schedule ? negocio.schedule.map( (horario) => {
                                                 // console.log("Esta es la info del horario: ", horario.day)
                                                 return(
-                                                    <p>{dia(horario.day)} : De las {horario.openTime} a las {horario.closeTime}</p>
+                                                    <Popover placement="bottom" isOpen={popoverOpen} target="Popover1" toggle={toggle}>
+                                                        <PopoverHeader>Horarios de Negocio</PopoverHeader>
+                                                        <PopoverBody>{dia(horario.day)} : De las {horario.openTime} a las {horario.closeTime}</PopoverBody>
+                                                    </Popover>
+                                                    // <p className="b-schedule">{dia(horario.day)} : De las {horario.openTime} a las {horario.closeTime}</p>
                                                 )
                                                 //  (<p>si entre al map </p>)
                                              }) : (<p>No hay horarios establecidos por el negocio</p>)} 
                                                  
-                                        </p>
+                                        </p> */}
                                         <p><span>Entrega: </span> {negocio.deliveryMethod.length > 1 ? `${negocio.deliveryMethod[0]} / ${negocio.deliveryMethod[1]}` : negocio.deliveryMethod }</p>
                                         <p><span>Distancia: </span>{negocio.dist / 1000} km</p>
+
+                                        <p><span>Conoce el horario de servicio < FiArrowRight/> <GiAlarmClock className="pop-button" id={`popover${negocio._id}`}/> </span></p>
+                                        <Popover placement="bottom" isOpen={popoverOpen} target={`popover${negocio._id}`} toggle={toggle}>
+                                                    <PopoverHeader>Horarios de Negocio</PopoverHeader>
+                                                        <PopoverBody>
+                                                            {/* {dia(horario.day)} : De las {horario.openTime} a las {horario.closeTime} */}
+                                                            {negocio.schedule ? negocio.schedule.map( (horario) => {
+                                                                // console.log("Esta es la info del horario: ", horario.day)
+                                                                return(
+                                                                    
+                                                                    <p className="b-schedule">{dia(horario.day)} : De las {horario.openTime} a las {horario.closeTime}</p>
+                                                                )
+                                                                //  (<p>si entre al map </p>)
+                                                            }) : (<p>No hay horarios establecidos por el negocio</p>)}
+                                                        </PopoverBody>
+                                        </Popover>
                                     </div>
                                 </div>
                             </div>
