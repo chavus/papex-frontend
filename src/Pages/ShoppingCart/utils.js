@@ -32,25 +32,6 @@ function getTotal(eCart){
     return eCart.reduce( (acc, cPB) => acc + getSubTotal(cPB), 0)
 }
 
-/*
-ordenData: {
-    parentOrder-> backend,
-    confirmation_code -> backend,
-    status -> backend,
-
-    business: _Id,
-    client: _Id,
-    products: [
-        {product:_id, price: int, qty: in}
-    ],
-    deliveryMethod: "Pickup",
-    deliveryCost: number,
-    total: number,
-    comment: string
-}
-
-*/
-
 async function createOrders(shoppingCart, clientId){
     const expandedShoppingCart = await getExpandedShoppingCartInfo(shoppingCart)
     const ordersArray = expandedShoppingCart.map( cart =>{

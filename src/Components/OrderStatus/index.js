@@ -3,6 +3,7 @@ import { Collapse, Button, CardBody, Card, CardText,
           CardTitle, CardSubtitle, Input , FormGroup, Label, Col, Alert} from 'reactstrap';
 import './styles.scss'
 import api from '../../assets/lib/api'
+import { createPortal } from 'react-dom';
 
 const OrderDetail = (props) => {
 
@@ -10,12 +11,9 @@ const OrderDetail = (props) => {
   const toggle = () => setIsOpen(!isOpen);
 
   const [confirmCode, setConfirmCode] = useState()
-  const { client, products, total, parentOrder, createdAt, deliveryCost, _id, confirmation_code, status }  = props.order    
+  const { client, products, total, parentOrder, createdAt, deliveryCost, _id, confirmation_code, status, comment }  = props.order    
   const [showMessage, setShowMessage] = useState(false)
-  const [orderStatus, setOrderStatus] = useState(status)
-
-  //const [order, setOrder] = useState(props.order)
-
+  const [orderStatus, setOrderStatus] = useState(status)  
   const [messageClass, setMessageClass] = useState()
   const [messageText, setMessageText] = useState()   
   const date = new Date(createdAt);
@@ -23,13 +21,12 @@ const OrderDetail = (props) => {
 
   const onClickClose = async (event) => {
           const idOrder = event.target.dataset.order
-          //console.log("orden", idOrder)
+
           if (confirmCode === confirmation_code){
 
-              //console.log(order)
               let result = await api.patchOrderById(idOrder, {status:"Entregado"}, props.token  )
 
-              //console.log(result)
+              console.log(result)
               if (result.success){
                 setOrderStatus("Entregado")
                 console.log(result.data)
@@ -61,7 +58,7 @@ const OrderDetail = (props) => {
   
   return (
  
-    <Col className='order-div'>
+    <Col className='order-div p-card-borders'>
         <div className='order-detail rounded border'
            onClick={toggle}>
             <div className='order-client-div'>
@@ -85,21 +82,28 @@ const OrderDetail = (props) => {
                    return (<CardText key={index} tag="h6" className="mb-2 text-muted">  { product.qty } x { product.product.name }  ${ product.price } </CardText>)
                 } )                     
               } 
-              { orderStatus /* order.status */ =="En proceso"   &&            
+              { orderStatus =="En proceso"   &&            
                 <>
-                  <FormGroup row>
-                    <Label for="confirmationCode" sm={2}>Código de Confirmación</Label>
+                  <FormGroup row className='d-flex align-items-center'>
+                    <Label for="confirmationCode" sm={2}>Código de Confirmación:</Label>
                     <Col sm={2}>
                       <Input name="confirmationCode" id="confirmationCode" placeholder="" onChange={onChangeConfirmationCode} />
-                    </Col>
+                    </Col>   
                   </FormGroup>
-                  <Button data-order={_id} onClick={onClickClose} className="btn btn-p-primary" >Cerrar</Button>             
+                  <FormGroup row className='d-flex align-items-center'>
+                    <Label for="confirmationCode" sm={2}>Comentarios:</Label>
+                    <Col sm={2}>
+                    <CardSubtitle tag="h6" className="text-muted">{!comment ? 'Ninguno': comment}</CardSubtitle>
+                    </Col> 
+                    </FormGroup>
+                  <Button data-order={_id} onClick={onClickClose} className="btn btn-p-primary" >Cerrar</Button>  
+                        
                 </>
              }
           </CardBody>
         </Card>
         {   showMessage &&
-                        <div className="d-flex justify-content-center">
+                        <div className="d-flex justify-content-center align-items-center">
                             <Alert color={ messageClass } className=" d-block mt-2 max-width-message " >
                                 { messageText }
                             </Alert>                                         
