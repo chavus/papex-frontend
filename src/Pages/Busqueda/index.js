@@ -47,6 +47,7 @@ const SearchPage = () => {
      <Col xs='12' className='search-container'>
         <div className="b-container-search">
             <h1>Búsqueda</h1>
+
                 <SearchBar
                 productHandler={productHandler}
                 onSearchClick={onSearchClick}
