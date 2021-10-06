@@ -6,19 +6,31 @@ import ProductCard from '../../Components/Cards'
 import { Col, Row, Input } from 'reactstrap'
 import { FaSearch } from 'react-icons/fa';
 import { useLocation, useHistory } from 'react-router-dom';
+import getNearBusinesses from '../../assets/lib/nearBusinesses';
+import PapexSpinner from '../../Components/PapexSpinner'
 
 const SearchPage = () => {
     
     const [ userData ] = useContext(UserContext)
-    const [ products, setProducts] = useState([])
+    const [ products, setProducts] = useState(null)
     const [productName, setProductName] = useState('')
     const [productSearch, setProductSearch] = useState(new URLSearchParams(useLocation().search).get('searchText'))
 
     const history = useHistory()
     
+    // useEffect(async ()=>{
+    //     // const businessArray = await getNearBusinesses(userData)
+    //     // console.log(businessArray);
+    // }, [])
+
     useEffect( async () => {
+        const businessArray = await getNearBusinesses(userData)
+        const businessArrayIds = businessArray.map(busObj => busObj._id)
         const result = await api.getAllProductsBySearch(productSearch)
-        setProducts(result.data) 
+        // console.log(result);
+        const nearProducts = result.data.filter(product => businessArrayIds.includes(product.business._id))
+        // console.log(nearProducts);
+        setProducts(nearProducts) 
         history.push(`/Search?searchText=${productSearch}`)
     }, [productSearch]);
 
@@ -56,8 +68,9 @@ const SearchPage = () => {
                 </div>
        </div>
        <Row>
+            { !products && <PapexSpinner text="Buscando productos..."/> }
             {
-                products.map((item) =>{
+                products && products.map((item) =>{
                     return  <ProductCard
                                 ProductData={item}
                                 key={item._id}
