@@ -1,0 +1,28 @@
+@import '../../assets/global_style.scss';
+
+
+.search-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .container-input{
+        display: flex;
+        align-items: center;
+        background-color: $primary;
+        border-radius: 7px;
+        form{
+            width: 100%;
+           .form-group{
+               display: flex;
+               flex-direction: row;
+               justify-content: center;
+               align-items: center;
+               .search-button{
+                   width: auto;  
+               }
+           } 
+        }
+    }
+
+}

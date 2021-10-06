@@ -4,10 +4,10 @@ import './styles.scss'
 import api from '../../assets/lib/api'
 import ProductCard from '../../Components/Cards'
 import { Col, Row, Input } from 'reactstrap'
-import { FaSearch } from 'react-icons/fa';
 import { useLocation, useHistory } from 'react-router-dom';
 import getNearBusinesses from '../../assets/lib/nearBusinesses';
 import PapexSpinner from '../../Components/PapexSpinner'
+import SearchBar from '../../Components/SearchBar'
 
 const SearchPage = () => {
     
@@ -47,22 +47,11 @@ const SearchPage = () => {
      <Col xs='12' className='search-container'>
         <div className="b-container-search">
             <h1>Búsqueda</h1>
-                <div className="row search-container">
-                    <div className="container-input">
-                        <Input
-                            type="text" 
-                            className="form-control input-buscar" 
-                            placeholder="Búsqueda"
-                            onChange={productHandler}
-                        />
-                        
-                          <FaSearch
-                            className='search-button'
-                            color='white'
-                            onClick={onSearchClick}
-                            />
-                    </div>
-                </div>
+
+                <SearchBar
+                productHandler={productHandler}
+                onSearchClick={onSearchClick}
+                />
        </div>
        <Row>
             { !products && <PapexSpinner text="Buscando productos..."/> }
