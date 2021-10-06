@@ -146,11 +146,11 @@ function ManageProduct(props){
 
     return(
         <>
-        <container>
-
-            { // <h1 className='p-titles mt-5'>{idProduct ? "Editar" : "Agregar"} producto </h1> 
-            }
-           <Row className="add-product-container rounded border p-3  d-flex justify-content-column">
+        {
+         <h1 className='p-titles mt-5'>{idProduct ? "Editar" : "Agregar"} producto </h1> 
+        }
+        <container className="add-product-container" >
+           <Row className="p-card-borders p-4 ">
                <Col className="d-flex xs-12 md-12 lg-6">                
                { /**********************  DIV DE LOS DATOS  ***************************/} 
                    <diV className="image-product-description-container ">                    
@@ -176,7 +176,28 @@ function ManageProduct(props){
                                <FormGroup row>
                                    <Label for="brand" md={12}>Marca</Label>
                                    <Col sm={12}>
-                                   <Input type="text" name="brand" id="brand" placeholder="" onChange={onChangeInputsHandlers} value = { productData? productData.brand : null}/>
+                                   {//<Input type="text" name="brand" id="brand" placeholder="" onChange={onChangeInputsHandlers} value = { productData? productData.brand : null}/>
+                                   }
+                                   <Input type="select"  name="brand" id="brand" onChange={onChangeInputsHandlers} value = { productData? productData.brand : null}>
+                                           <option>Seleccione una...</option>
+                                           <option>3M</option>
+                                           <option>AZOR</option>
+                                           <option>BACO</option>                                      
+                                           <option>BIC</option>                                      
+                                           <option>CANON</option>   
+                                           <option>CRAYOLA</option>   
+                                           <option>DIXON</option>                                              
+                                           <option>HP</option>   
+                                           <option>FABER CASTELL</option>   
+                                           <option>MAPED</option>    
+                                           <option>NORMA</option>  
+                                           <option>PAPERMATE</option>  
+                                           <option>PELIKAN</option> 
+                                           <option>PRITT</option>    
+                                           <option>SCRIBE</option>   
+                                           <option>SHARPIE</option>                                                                                                                                                                                                                                                                                                                                                              
+
+                                       </Input>
                                    </Col>
                                </FormGroup>
 
@@ -198,7 +219,7 @@ function ManageProduct(props){
                                    <Col md={5} >
                                    <FormGroup>
                                            <Label for="price" className="mb-2" >Precio</Label>                                        
-                                           <Input type="text" name="price" id="price" placeholder="" onChange={onChangeInputsHandlers}  value = { productData? productData.price : null} />                                        
+                                           <Input type="number" name="price" id="price" placeholder="" onChange={onChangeInputsHandlers}  value = { productData? productData.price : null} />                                        
                                    </FormGroup>
                                    </Col>                              
                                </div>
@@ -230,15 +251,14 @@ function ManageProduct(props){
                    </diV>
 
                    { /**********************  DIV DE LOS BOTONES ***************************/} 
-                   <diV className="image-product-buttons-container d-flex justify-content-evenly mt-4 mt-md-n1  ">
+
+               </Col>    
+               <diV className="image-product-buttons-container  mt-3 d-flex   justify-content-around justify-content-md-end  ">
                            <Button className="btn btn-p-secondary" onClick={onClickGoCatalog} > Cancelar <FiXSquare/>
                            </Button>                    
                            <Button className="btn btn-p-primary" onClick={onClickSaveProduct}> Guardar <FiSave/>
                            </Button>
-
-
-                   </diV>
-               </Col>       
+              </diV>   
                  
            </Row>            
            {   showMessage &&

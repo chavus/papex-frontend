@@ -8,20 +8,16 @@ $enable-negative-margins: true;
 .add-product-container{
 
     display: flex;
-    justify-content: center;
+    //justify-content: center;
     margin-left: auto;
     margin-right: auto;    
     width: 100%;
     max-width: 900px;
-    border-radius: 5px 5px;
-    //margin-top: 60px;
-    margin-top: 6rem;
+    margin-top: 1rem;
     .image-product-description-container{
-        max-width: 800px;
 
         width: 100%;
         border: 5xp solid orange;
-        //height: 70vh;
         .actions-product{
             margin-left: 1.5rem;
             margin-right:1.5rem;
@@ -31,30 +27,35 @@ $enable-negative-margins: true;
 
     .image-product-container{
         .image-container{
-            height: 250px;
-            width: 250px;
+            height: 350px;
+            width: 350px;
             margin-left: auto;
             margin-right: auto;
 
            .image-preview{
-                height: 250px;
-                width: 250px;
+                height: 350px;
+                width: 350px;
                 object-fit:cover; 
                 
            }
            .image-button{                
                 .align-button{
-                    background: blue;
-                    color: red;
                     display: none;                    
-                    //display: flex;
-                    //justify-content: right !important;
                 }
             }
         }
 
 
     }
+
+    .image-product-buttons-container
+    {
+ 
+        .btn{
+            margin-right: 10px;
+        }
+    } 
+    
 
 }
 
@@ -67,3 +68,22 @@ $enable-negative-margins: true;
     display:none;
 }
 
+
+@media(min-width:768 px){  //967
+   
+
+.add-product-container{
+
+        .image-product-buttons-container
+        {
+            display: flex;
+            justify-content: right;
+            .btn{
+                margin-right: 10px;
+            }
+        } 
+        
+
+    }
+    
+}
