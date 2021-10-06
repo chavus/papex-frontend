@@ -6,6 +6,7 @@ import ProductCard from '../../Components/Cards'
 import { Col, Row, Input } from 'reactstrap'
 import { FaSearch } from 'react-icons/fa';
 import { useLocation, useHistory } from 'react-router-dom';
+import getNearBusinesses from '../../assets/lib/nearBusinesses';
 
 const SearchPage = () => {
     
@@ -16,9 +17,19 @@ const SearchPage = () => {
 
     const history = useHistory()
     
+    // useEffect(async ()=>{
+    //     // const businessArray = await getNearBusinesses(userData)
+    //     // console.log(businessArray);
+    // }, [])
+
     useEffect( async () => {
+        const businessArray = await getNearBusinesses(userData)
+        const businessArrayIds = businessArray.map(busObj => busObj._id)
         const result = await api.getAllProductsBySearch(productSearch)
-        setProducts(result.data) 
+        console.log(result);
+        const nearProducts = result.data.filter(product => businessArrayIds.includes(product.business._id))
+        console.log(nearProducts);
+        setProducts(nearProducts) 
         history.push(`/Search?searchText=${productSearch}`)
     }, [productSearch]);
 
