@@ -16,6 +16,7 @@ export default function ShoppingCart(){
 
     useEffect(async ()=>{
         const expandedShoppingCart= await getExpandedShoppingCartInfo(shoppingCart)   
+        console.log(expandedShoppingCart);
         setExpandedShoppingCart(expandedShoppingCart)
     }, [shoppingCart])
 
@@ -84,9 +85,9 @@ export default function ShoppingCart(){
     return(
         <div className="container-fluid bg-p-light-gray main-padding">
             <h1 className="p-titles">Mi Carrito</h1>
-            <div className="container p-container-borders bg-white">
+            <div className="container p-card-borders bg-white">
             { !expandedShoppingCart && <PapexSpinner text=""/> }
-            { expandedShoppingCart === [] && <h1>Carrito vacío, corre a comprar algo!</h1>}
+            { expandedShoppingCart && expandedShoppingCart.length == 0 && <div><h1>Carrito vacío, corre a comprar algo!</h1></div>}
             { expandedShoppingCart && !!expandedShoppingCart.length && 
                 <>
                     {expandedShoppingCart.map((cartPerBusinessData, idx)=>{

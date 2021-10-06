@@ -61,9 +61,6 @@ const SearchPage = () => {
                             color='white'
                             onClick={onSearchClick}
                             />
-                       
-                           
-                        
                     </div>
                 </div>
        </div>
