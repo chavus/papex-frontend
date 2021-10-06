@@ -11,7 +11,7 @@ const  SearchBar = (props) => {
     <Col className="row search-container">
         <div className="container-input">
             <Form>
-                <FormGroup row>
+                <FormGroup>
                     <Input
                         type="text" 
                         className="form-control input-buscar" 

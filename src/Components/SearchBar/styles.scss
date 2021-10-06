@@ -9,10 +9,13 @@
     .container-input{
         display: flex;
         align-items: center;
+        justify-content: center;
         background-color: $primary;
         border-radius: 7px;
+        padding: .8rem;
         form{
-            width: 100%;
+           width: 70%;
+            
            .form-group{
                display: flex;
                flex-direction: row;
@@ -20,6 +23,8 @@
                align-items: center;
                .search-button{
                    width: auto;  
+                   margin-left: 1rem;
+                   font-size: 1.5rem;
                }
            } 
         }
