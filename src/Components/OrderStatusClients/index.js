@@ -61,7 +61,7 @@ const ClientOrderDetail = (props) => {
   
   return (
  
-    <Col className='order-div'>
+    <Col className='order-div p-card-borders'>
         <div className='order-detail rounded border'
            onClick={toggle}>
             <div className='order-client-div'>

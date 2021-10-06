@@ -31,12 +31,13 @@ const ProductCard = (props) => {
   }
 
   return (
-    <Col xs='12' sm='6' md='4' lg='3' key={_id}>
-       <Card className='product-container'>
-           <div className='product-image'>
-              <CardImg top width="100%" src={imageUrl ? imageUrl : sinImagen} alt="Card image cap" />
-           </div>
-           <CardBody className='product-body'>
+    <Col xs='12' sm='6' md='4' lg='4' key={_id}>
+       <Card className='product-container p-card-borders'>  
+             <div className='col-md-4'>
+               <CardImg className='product-image ' top width="100%" src={imageUrl ? imageUrl : sinImagen} alt="Card image cap" />  
+            </div>  
+                      
+            <CardBody className='product-body'>
                      { location == '/Search' &&
                       <Link to={`/CatalogoNegocio?businessId=${business._id}`}>
                         <CardTitle 
@@ -92,3 +93,4 @@ const ProductCard = (props) => {
 };
 
 export default ProductCard;
+
