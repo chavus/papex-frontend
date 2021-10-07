@@ -146,10 +146,9 @@ function ManageProduct(props){
 
     return(
         <>
-        {
-         <h1 className='p-titles mt-5'>{idProduct ? "Editar" : "Agregar"} producto </h1> 
-        }
-        <container className="add-product-container" >
+           
+        <container className="add-product-container d-flex  flex-column" >
+
            <Row className="p-card-borders p-4 ">
                <Col className="d-flex xs-12 md-12 lg-6">                
                { /**********************  DIV DE LOS DATOS  ***************************/} 
@@ -195,13 +194,12 @@ function ManageProduct(props){
                                            <option>PELIKAN</option> 
                                            <option>PRITT</option>    
                                            <option>SCRIBE</option>   
-                                           <option>SHARPIE</option>                                                                                                                                                                                                                                                                                                                                                              
-
+                                           <option>SHARPIE</option>                                                                                                 
                                        </Input>
                                    </Col>
                                </FormGroup>
 
-                               <div className="d-flex p-4 justify-content-between">
+                               <div className="d-flex  justify-content-between">
                                    <Col md={6}>
                                    <FormGroup>
                                        <Label for="category" className="mb-2" >Categoría</Label>
@@ -242,7 +240,7 @@ function ManageProduct(props){
                        </div>
                         <div className="image-button"  >
                             <FormGroup className="align-button d-flex justify-content-center" >
-                                <Button className="btn btn-p-primary mt-3"  > 
+                                <Button className="btn btn-p-primary mt-4 boton-imagen"  > 
                                     <Label for="imageProduct">Imagen <FiImage /> </Label>
                                     <Input type="file" name="imageProduct" id="imageProduct" accept="image/*" onChange={selectFileHandler} className="hidde-Button-Image" />
                                 </Button>  
@@ -262,11 +260,15 @@ function ManageProduct(props){
                  
            </Row>            
            {   showMessage &&
+            <Row> 
+                <Col> 
                         <div className="d-flex justify-content-center">
                             <Alert color={ messageClass } className=" d-block mt-2 max-width-message " >
                                 { messageText }
                             </Alert>                                         
-                        </div>    
+                        </div> 
+                </Col>    
+            </Row>  
                 } 
        </container>            
       </>
