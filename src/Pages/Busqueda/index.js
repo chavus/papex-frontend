@@ -45,12 +45,11 @@ const SearchPage = () => {
 
     return ( 
         <div className='container-fluid'>
-            <div className='container p-0'>
+            <div className='container'>
                 <Row >
                     <Col xs='12' className='search-container'>
-                        <div className="b-container-search">
-                            <h1 className='p-titles'>Búsqueda</h1>
-
+                        <h1 className='p-titles'>Búsqueda</h1>
+                        <div className= "b-container-search">
                                 <SearchBar
                                 productHandler={productHandler}
                                 onSearchClick={onSearchClick}
