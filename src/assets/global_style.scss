@@ -44,8 +44,9 @@ $colors:(
         text-decoration: none;
         //default paddings
         &:hover{
-            // background-color: $color;
-            background-color: $light-gray;
+            background-color: $color;
+            color: white;
+            // background-color: $light-gray;
             opacity: 65%;
         }
     }
