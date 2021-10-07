@@ -44,29 +44,33 @@ const SearchPage = () => {
     }
 
     return ( 
-     <Col xs='12' className='search-container'>
-        <div className="b-container-search">
-            <h1>Búsqueda</h1>
-
-                <SearchBar
-                productHandler={productHandler}
-                onSearchClick={onSearchClick}
-                />
-       </div>
-       <Row>
-            { !products && <PapexSpinner text="Buscando productos..."/> }
-            {
-                products && products.map((item) =>{
-                    return  <ProductCard
-                                ProductData={item}
-                                key={item._id}
-                            /> })
-                }
-                
-            
-        </Row>
-     </Col>
-      
+        <div className='container-fluid'>
+            <div className='container'>
+                <Row >
+                    <Col xs='12' className='search-container'>
+                        <h1 className='p-titles'>Búsqueda</h1>
+                        <div className= "b-container-search">
+                                <SearchBar
+                                productHandler={productHandler}
+                                onSearchClick={onSearchClick}
+                                />
+                        </div>
+                        <Row className='product-display'>
+                            { !products && <PapexSpinner text="Buscando productos..."/> }
+                            {
+                                products && products.map((item) =>{
+                                    return  <ProductCard
+                                                ProductData={item}
+                                                key={item._id}
+                                            /> })
+                            }
+                        </Row>
+                    </Col>
+                </Row>
+            </div>
+           
+           
+        </div> 
     )
 }
 

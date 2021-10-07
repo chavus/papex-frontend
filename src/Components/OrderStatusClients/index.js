@@ -59,13 +59,14 @@ const ClientOrderDetail = (props) => {
       }, 2000 )  
     }
   
+   
   return (
  
     <Col className='order-div p-card-borders'>
         <div className='order-detail rounded border'
            onClick={toggle}>
             <div className='order-client-div'>
-                <h3 className='order'>Pedido #{parentOrder}</h3>
+                <h3 className='order'>Pedido #{parentOrder}{'-'}{business._id.slice(22,24)}</h3>
                 <h4 className='client d-none d-sm-block'> {business.businessName} </h4>  
             </div>
             <div className='price-pending-div'>

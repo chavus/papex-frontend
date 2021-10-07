@@ -2,9 +2,10 @@ import React, { useState, useEffect, useContext } from 'react'
 import { UserContext } from '../../App'
 import { GiAlarmClock } from 'react-icons/gi';
 import { FiArrowRight } from 'react-icons/fi'
-import { Popover, PopoverHeader, PopoverBody } from 'reactstrap';
+import { UncontrolledPopover, Popover, PopoverHeader, PopoverBody, Button } from 'reactstrap';
 import {
     Link,
+    useHistory
 } from "react-router-dom";
 import Search from '../../Components/SearchBar'
 import api from '../../assets/lib/api'
@@ -17,7 +18,8 @@ function Main() {
     const [userData] = useContext(UserContext)
     const [negocios, setNegocios] = useState(null)
     const [popoverOpen, setPopoverOpen] = useState(false);
-    const toggle = () => setPopoverOpen(!popoverOpen);
+    const [productName, setProductName] = useState('')
+    let history = useHistory()
 
     useEffect( async()=> {
         if (userData){
@@ -80,6 +82,16 @@ function Main() {
         return diaEspanol
     }
 
+    const productHandler = event => {
+        const {value} = event.target
+        setProductName(value)
+    }
+
+    const onSearchClick = () => {
+        // setProductSearch(productName)
+        history.push(`/Search?searchText=${productName}`)
+    }
+
     return (
         <div className="App">
             <div className="container-fluid border border-success">
@@ -90,7 +102,10 @@ function Main() {
                     </div>
                 </div>
                 <div className="row search-bar">
-                   <Search/>
+                   <Search
+                    productHandler={productHandler}
+                    onSearchClick={onSearchClick}
+                   />
                 </div>
                
                 <div className="row">
@@ -104,38 +119,27 @@ function Main() {
                                     <div className="card-title p-titles">{negocio.businessName}</div>
                                     <div className="card-text">
                                         <p><span>Domicilio: </span> {negocio.address}</p>
-                                        {/* <p><span>Conoce el horario de servicio < FiArrowRight/> <GiAlarmClock className="pop-button" id="Popover1"/> </span>
-                                             {negocio.schedule ? negocio.schedule.map( (horario) => {
-                                                // console.log("Esta es la info del horario: ", horario.day)
-                                                return(
-                                                    <Popover placement="bottom" isOpen={popoverOpen} target="Popover1" toggle={toggle}>
-                                                        <PopoverHeader>Horarios de Negocio</PopoverHeader>
-                                                        <PopoverBody>{dia(horario.day)} : De las {horario.openTime} a las {horario.closeTime}</PopoverBody>
-                                                    </Popover>
-                                                    // <p className="b-schedule">{dia(horario.day)} : De las {horario.openTime} a las {horario.closeTime}</p>
-                                                )
-                                                //  (<p>si entre al map </p>)
-                                             }) : (<p>No hay horarios establecidos por el negocio</p>)} 
-                                                 
-                                        </p> */}
                                         <p><span>Entrega: </span> {negocio.deliveryMethod.length > 1 ? `${negocio.deliveryMethod[0]} / ${negocio.deliveryMethod[1]}` : negocio.deliveryMethod }</p>
                                         <p><span>Distancia: </span>{negocio.dist / 1000} km</p>
 
-                                        <p><span>Conoce el horario de servicio < FiArrowRight/> <GiAlarmClock className="pop-button" id={`popover${negocio._id}`}/> </span></p>
-                                        <Popover placement="bottom" isOpen={popoverOpen} target={`popover${negocio._id}`} toggle={toggle}>
+                                        <p><span>Conoce el horario de servicio < FiArrowRight/> 
+                                        <GiAlarmClock className="pop-button" id={`popover${negocio._id}`}/> 
+                                        {/* <Button id={`popover${negocio._id}`} type="button"> Horario</Button> */}
+                                        </span></p>
+
+                                        <UncontrolledPopover trigger="focus" placement="bottom" target={`popover${negocio._id}`}>
                                                     <PopoverHeader>Horarios de Negocio</PopoverHeader>
                                                         <PopoverBody>
                                                             {/* {dia(horario.day)} : De las {horario.openTime} a las {horario.closeTime} */}
                                                             {negocio.schedule ? negocio.schedule.map( (horario) => {
                                                                 // console.log("Esta es la info del horario: ", horario.day)
                                                                 return(
-                                                                    
                                                                     <p className="b-schedule">{dia(horario.day)} : De las {horario.openTime} a las {horario.closeTime}</p>
                                                                 )
                                                                 //  (<p>si entre al map </p>)
                                                             }) : (<p>No hay horarios establecidos por el negocio</p>)}
                                                         </PopoverBody>
-                                        </Popover>
+                                        </UncontrolledPopover>
 
                                         <div className="b-button-details">
                                             <Link to={`/CatalogoNegocio?businessId=${negocio._id}`} className="btn-p-primary">Ver Catálogo</Link>
