@@ -41,9 +41,11 @@ $colors:(
         border: none;
         border-radius: 3px;
         padding: 7px;
+        text-decoration: none;
         //default paddings
         &:hover{
-            background-color: $color;
+            // background-color: $color;
+            background-color: $light-gray;
             opacity: 65%;
         }
     }

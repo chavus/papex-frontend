@@ -3,7 +3,10 @@ import { UserContext } from '../../App'
 import { GiAlarmClock } from 'react-icons/gi';
 import { FiArrowRight } from 'react-icons/fi'
 import { Popover, PopoverHeader, PopoverBody } from 'reactstrap';
-// import Search from  '../../Pages/Busqueda'
+import {
+    Link,
+} from "react-router-dom";
+import Search from '../../Components/SearchBar'
 import api from '../../assets/lib/api'
 import PapexSpinner from '../../Components/PapexSpinner'
 import "./styles.scss"
@@ -80,13 +83,16 @@ function Main() {
     return (
         <div className="App">
             <div className="container-fluid border border-success">
+                <div className="container">
                 <div className="row">
                     <div className="col-12 main-title p-titles">
                         <h1>Inicio</h1>
                     </div>
                 </div>
-                
-                {/* <Search/> */}
+                <div className="row search-bar">
+                   <Search/>
+                </div>
+               
                 <div className="row">
                     {!negocios && <PapexSpinner text="Buscando negocios cercanos..."/>}
                     {negocios && negocios.map((negocio) =>{
@@ -130,6 +136,10 @@ function Main() {
                                                             }) : (<p>No hay horarios establecidos por el negocio</p>)}
                                                         </PopoverBody>
                                         </Popover>
+
+                                        <div className="b-button-details">
+                                            <Link to={`/CatalogoNegocio?businessId=${negocio._id}`} className="btn-p-primary">Ver Catálogo</Link>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -140,6 +150,8 @@ function Main() {
                     }
                         
                 </div>
+                </div>
+                
             </div>
         </div>
     )
