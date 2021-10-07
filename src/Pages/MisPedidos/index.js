@@ -34,7 +34,7 @@ export default function MisPedidos(){
 
     return(
         <Col className='my-orders'>
-           <h1>Mis Pedidos</h1>
+           <h1 className='p-titles'>Mis Pedidos</h1>
            <Row className='container-orders'>
            { userData && 
            userData.rol == 'Negocio' ? 
