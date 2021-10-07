@@ -8,7 +8,7 @@ const  SearchBar = (props) => {
     const {productHandler, onSearchClick} = props
 
     return (
-    <Col className="row search-container">
+    <Col className="search-container">
         <div className="container-input">
             <Form>
                 <FormGroup>
