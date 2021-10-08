@@ -54,22 +54,24 @@ export default function CatalogoNegocio(){
 
     return(
 
-    <Col xs='12' className='catalog-cards container-fluid'>
+    <div className='catalog-cards container-fluid'>
+        <div className="container">
+
         <div className='info-container'>
         <div className='info-catalog'>
-            <h1 
-               className='p-titles mt-2'>
+            <h2  
+               className='p-titles mt-2'>Catálogo de: 
                 { !userData || userData.rol == 'Cliente' ?
                     businessInfo.businessName :
                     userData.businessName  } 
-            </h1>
+            </h2>
             <p 
-                className='p-titles mt-2'>
+                className='p-titles'>
                 {!userData || userData.rol == 'Cliente' ?
                     businessInfo.address :
                     userData.address }
             </p>
-            <ul className='ml-4'>{businessInfo.deliveryMethod && 'Métodos de entrega'}
+            <ul p-titles className='delivery-methods ml-4 p-titles'>{businessInfo.deliveryMethod && 'Métodos de entrega'}
 
             { 
             !userData || userData.rol == 'Cliente' ?
@@ -146,6 +148,8 @@ export default function CatalogoNegocio(){
             <h1>No cuenta con Articulos</h1>
             }
         </Row>
-    </Col>
+        </div>
+
+    </div>
     )
 }

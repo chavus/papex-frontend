@@ -13,6 +13,7 @@
         background-color: $primary;
         border-radius: 7px;
         padding: .8rem;
+        box-shadow: 3px 3px #33658a6e;
         form{
            width: 70%;
             
@@ -25,6 +26,7 @@
                    width: auto;  
                    margin-left: 1rem;
                    font-size: 1.5rem;
+                   cursor: pointer;
                }
            } 
         }

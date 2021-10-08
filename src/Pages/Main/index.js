@@ -11,7 +11,7 @@ import Search from '../../Components/SearchBar'
 import api from '../../assets/lib/api'
 import PapexSpinner from '../../Components/PapexSpinner'
 import "./styles.scss"
-
+import  bannerImg  from '../../img/pngwing.png'
 
 function Main() {
 
@@ -94,12 +94,24 @@ function Main() {
 
     return (
         <div className="App">
-            <div className="container-fluid border border-success">
+            <div className="container-fluid border border-success mb-2">
                 <div className="container">
-                <div className="row">
-                    <div className="col-12 main-title p-titles">
-                        <h1>Inicio</h1>
+
+                <div class="jumbotron p-jumbotron row py-0">
+                <div className="d-none d-md-block col-md-5 jumbo-left">
+                    <div className="img-container">
+                        <img className="p-img" src={ bannerImg}/>
                     </div>
+                </div>
+                <div className="col-sm-12 col-md-7 jumbo-right">
+                    <h1 class="display-4">Bienvenido a Papex!</h1>
+                    <p class="lead">Encuentra papelerias cercanas a ti o busca por producto</p>
+                </div>
+
+                </div>
+                
+                <div className="row">
+                <h3 className="p-titles main-title">Buscar por producto</h3>
                 </div>
                 <div className="row search-bar">
                    <Search
@@ -109,6 +121,7 @@ function Main() {
                 </div>
                
                 <div className="row">
+                <h3 className="p-titles main-title">Papelerías cerca de ti</h3>
                     {!negocios && <PapexSpinner text="Buscando negocios cercanos..."/>}
                     {negocios && negocios.map((negocio) =>{
                         console.log("la información de los negocios: ", negocio._id)

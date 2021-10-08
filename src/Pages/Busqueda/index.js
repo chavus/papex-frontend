@@ -50,7 +50,7 @@ const SearchPage = () => {
             <div className='container'>
                 <Row >
                     <Col xs='12' className='search-container'>
-                        <h1 className='p-titles'>Búsqueda</h1>
+                        <h2 className='p-titles'>Buscar por producto</h2>
                         <div className= "b-container-search">
                                 <SearchBar
                                 productName = {productName}
