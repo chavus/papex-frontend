@@ -16,7 +16,7 @@ const  SearchBar = (props) => {
                         value={productName}
                         type="text" 
                         className="form-control input-buscar" 
-                        placeholder="Búsqueda"
+                        placeholder="Ingresa el nombre de un producto..."
                         onChange={productHandler}
                     />
                         <FaSearch
