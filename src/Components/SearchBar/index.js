@@ -5,7 +5,7 @@ import { Col, Row, Input, FormGroup, Form, Label } from 'reactstrap'
 
 const  SearchBar = (props) => {
 
-    const {productHandler, onSearchClick} = props
+    const {productHandler, onSearchClick, productName} = props
 
     return (
     <div className="search-container">
@@ -13,9 +13,10 @@ const  SearchBar = (props) => {
             <Form>
                 <FormGroup>
                     <Input
+                        value={productName}
                         type="text" 
                         className="form-control input-buscar" 
-                        placeholder="Búsqueda"
+                        placeholder="Ingresa el nombre de un producto..."
                         onChange={productHandler}
                     />
                         <FaSearch

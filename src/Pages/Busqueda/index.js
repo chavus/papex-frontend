@@ -16,22 +16,24 @@ const SearchPage = () => {
     const [productName, setProductName] = useState('')
     const [productSearch, setProductSearch] = useState(new URLSearchParams(useLocation().search).get('searchText'))
 
+    useEffect(()=>{
+        setProductName(productSearch)
+    },[])
+
     const history = useHistory()
     
-    // useEffect(async ()=>{
-    //     // const businessArray = await getNearBusinesses(userData)
-    //     // console.log(businessArray);
-    // }, [])
-
     useEffect( async () => {
-        const businessArray = await getNearBusinesses(userData)
-        const businessArrayIds = businessArray.map(busObj => busObj._id)
-        const result = await api.getAllProductsBySearch(productSearch)
-        // console.log(result);
-        const nearProducts = result.data.filter(product => businessArrayIds.includes(product.business._id))
-        // console.log(nearProducts);
-        setProducts(nearProducts) 
-        history.push(`/Search?searchText=${productSearch}`)
+        setProducts(null) 
+        if (productSearch == ''){
+            setProducts([])
+        }else{
+            const businessArray = await getNearBusinesses(userData)
+            const businessArrayIds = businessArray.map(busObj => busObj._id)
+            const result = await api.getAllProductsBySearch(productSearch)
+            const nearProducts = result.data.filter(product => businessArrayIds.includes(product.business._id))
+            setProducts(nearProducts) 
+            history.push(`/Search?searchText=${productSearch}`)
+        }
     }, [productSearch]);
 
     const productHandler = event => {
@@ -48,15 +50,17 @@ const SearchPage = () => {
             <div className='container'>
                 <Row >
                     <Col xs='12' className='search-container'>
-                        <h1 className='p-titles'>Búsqueda</h1>
+                        <h2 className='p-titles'>Buscar por producto</h2>
                         <div className= "b-container-search">
                                 <SearchBar
+                                productName = {productName}
                                 productHandler={productHandler}
                                 onSearchClick={onSearchClick}
                                 />
                         </div>
                         <Row className='product-display'>
                             { !products && <PapexSpinner text="Buscando productos..."/> }
+                            { products && !products.length && <h2>No se encontraron productos...</h2>}
                             {
                                 products && products.map((item) =>{
                                     return  <ProductCard
