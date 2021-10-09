@@ -9,27 +9,104 @@
     margin-bottom: 1rem;
 }
 
+//estilos de cards negocios
 .b-container{
     display: flex;
 }
 
-.card{
-    flex:1;
+.b-card{
+    display: flex;
+    border: 2px solid $primary;
+    border-radius: 5px;
+    overflow: hidden;
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 29px 5px rgba(211,211,211,0); 
+    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 29px 5px rgba(211,211,211,0);
+    background: white;
+    
 }
 
+.left-column{
+    // background: linear-gradient(360deg, #f9fafa, #2339b8);
+    border-right: 2px solid lightgray;
+    padding: 1rem;
+    
+}
+
+.b-catalog-container{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: .8rem;
+    // border: 1px solid $primary;
+    padding:5px;
+    align-items: center;
+    margin: 1rem 0;
+}
+.b-icon{
+    font-size: 3rem;
+    color: $primary;
+}
+
+.btn-b-card{
+    text-decoration: none;
+    color: blueviolet ;
+}
+
+.b-horarios-container{
+    display: flex;
+}
+
+.right-column{
+    padding: 1.5rem 1rem;
+    text-align: left;
+    font-size: 1rem;
+}
 span{
     font-weight: 600;
 }
 
+.b-horarios-container{
+    // border: 1px solid $primary;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    padding: 5px;
+}
 .pop-button{
-    color: $primary;
-    font-size: 1.4rem;
+    font-size: 2.5rem;
+    align-self: center;
+}
+.b-schedule-title{
+    font-size: .8rem;
+    color: grey;
 }
 
-.b-button-details{
-    display: flex;
-    justify-content: right;
+// .b-container{
+//     display: flex;
+// }
+
+// .card{
+//     flex:1;
+// }
+
+// span{
+//     font-weight: 600;
+// }
+
+.pop-button{
+    &:hover{
+        cursor: pointer;
+        // box-shadow: 5px 10px 20px 1px rgba(255,255,255,0.273);
+    }
 }
+
+// .b-button-details{
+//     display: flex;
+//     justify-content: right;
+// }
+
+
 
 .p-jumbotron{
     *{

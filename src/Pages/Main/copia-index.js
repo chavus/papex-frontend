@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { UserContext } from '../../App'
-
-import { FcShop, FcAlarmClock } from 'react-icons/fc'
+import { GiAlarmClock } from 'react-icons/gi';
 import { FiArrowRight } from 'react-icons/fi'
 import { UncontrolledPopover, Popover, PopoverHeader, PopoverBody, Button } from 'reactstrap';
 import {
@@ -128,25 +127,20 @@ function Main() {
                         console.log("la información de los negocios: ", negocio._id)
                         return(
                         <div className="b-container col-12 col-md-4 mb-4">
-                            <div className="b-card">
-                              
-                                <div className="left-column">
-                                    <h4 className="b-title p-titles">{negocio.businessName}</h4>
+                            <div className="card p-card-borders">
+                                <div className="card-body">
+                                    <div className="card-title">{negocio.businessName}</div>
+                                    <div className="card-text">
+                                        <p><span>Domicilio: </span> {negocio.address}</p>
+                                        <p><span>Entrega: </span> {negocio.deliveryMethod.length > 1 ? `${negocio.deliveryMethod[0]} / ${negocio.deliveryMethod[1]}` : negocio.deliveryMethod }</p>
+                                        <p><span>Distancia: </span>{negocio.dist / 1000} km</p>
 
-                                    <div className="b-catalog-container">
-                                        
-                                        <Link to={`/CatalogoNegocio?businessId=${negocio._id}`} className="btn-b-card"><FcShop className="b-icon"/></Link>
-                                        <p className="b-schedule-title">Ver Productos</p>
-                                        
-                                    </div>
-
-                                    <div className="b-horarios-container">
-                                       
-                                        <FcAlarmClock className="pop-button" id={`popover${negocio._id}`}/> 
+                                        <p><span>Conoce el horario de servicio < FiArrowRight/> 
+                                        <GiAlarmClock className="pop-button" id={`popover${negocio._id}`}/> 
                                         {/* <Button id={`popover${negocio._id}`} type="button"> Horario</Button> */}
-                                        <p className="b-schedule-title">Horarios de Atención </p>
+                                        </span></p>
 
-                                        <UncontrolledPopover trigger="focus"  placement="bottom" target={`popover${negocio._id}`}>
+                                        <UncontrolledPopover trigger="focus" placement="bottom" target={`popover${negocio._id}`}>
                                                     <PopoverHeader>Horarios de Negocio</PopoverHeader>
                                                         <PopoverBody>
                                                             {/* {dia(horario.day)} : De las {horario.openTime} a las {horario.closeTime} */}
@@ -159,18 +153,12 @@ function Main() {
                                                             }) : (<p>No hay horarios establecidos por el negocio</p>)}
                                                         </PopoverBody>
                                         </UncontrolledPopover>
+
+                                        <div className="b-button-details">
+                                            <Link to={`/CatalogoNegocio?businessId=${negocio._id}`} className="btn-p-primary">Ver Catálogo</Link>
+                                        </div>
                                     </div>
-                                    
-                                   
-
                                 </div>
-                                <div className="right-column">
-                                    <p><span>Domicilio: </span> {negocio.address}</p>
-                                    <p><span>Entrega: </span>{negocio.deliveryMethod.length > 1 ? `${negocio.deliveryMethod[0]} / ${negocio.deliveryMethod[1]}` : negocio.deliveryMethod }</p>
-                                    <p><span>Estás a una distancia de: </span>{negocio.dist / 1000} km</p>
-
-                                </div>
-
                             </div>
                         </div>)
 
