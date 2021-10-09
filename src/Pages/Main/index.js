@@ -94,7 +94,7 @@ function Main() {
 
     return (
         <div className="App">
-            <div className="container-fluid border border-success mb-2">
+            <div className="container-fluid border border-success">
                 <div className="container">
 
                 <div class="jumbotron p-jumbotron row py-0">

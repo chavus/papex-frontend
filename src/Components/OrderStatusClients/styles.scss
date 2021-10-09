@@ -6,7 +6,7 @@
     justify-content: center;
     padding: 0px;
     margin-bottom: 1rem;
-    width: 80vw;
+    // width: 80vw;
 
     .order-detail{
         display: flex;
@@ -19,23 +19,26 @@
             display: flex; 
             align-items: center;
             padding: .3rem;
+            *{
 
+                font-weight: 500;
+            }
             .order{
-                padding: .3rem;
+                margin: 0;
+                // padding: .3rem;
             }
     
-            .client{
-                padding: 1rem;
-            }
         }
 
         .price-pending-div{
-            display: flex;
+            // display: flex;
             padding: .3rem;
-            align-items: center;
+            // align-items: center;
             .price{
                 padding: .3rem; 
                 margin-right: 1rem;
+                display: flex;
+                flex-direction: row;
             }
             
             .pending{

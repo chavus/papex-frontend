@@ -60,7 +60,7 @@ export default function CatalogoNegocio(){
         <div className='info-container'>
         <div className='info-catalog'>
             <h2  
-               className='p-titles mt-2'>Catálogo de: 
+               className='p-titles mt-2'>{'Catalogo de: '}
                 { !userData || userData.rol == 'Cliente' ?
                     businessInfo.businessName :
                     userData.businessName  } 
