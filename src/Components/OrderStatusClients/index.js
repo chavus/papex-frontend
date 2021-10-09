@@ -62,12 +62,12 @@ const ClientOrderDetail = (props) => {
    
   return (
  
-    <Col className='order-div p-card-borders'>
+    <div className='order-div p-card-borders'>
         <div className='order-detail rounded border'
            onClick={toggle}>
             <div className='order-client-div'>
-                <h3 className='order'>Pedido #{parentOrder}{'-'}{business._id.slice(22,24)}</h3>
-                <h4 className='client d-none d-sm-block'> {business.businessName} </h4>  
+                <h4 className='order p-titles'>Pedido #{parentOrder}{'-'}{business._id.slice(22,24)}</h4>
+                <h4 className='order  d-none d-sm-block p-titles'> {business.businessName} </h4>  
             </div>
             <div className='price-pending-div'>
                 <h5 className='price'><span className='d-none d-sm-block'>Total:</span>${total}</h5>
@@ -108,7 +108,7 @@ const ClientOrderDetail = (props) => {
                         </div>    
                */ } 
       </Collapse>
-    </Col>
+    </div>
   );
 }
 

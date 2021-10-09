@@ -23,6 +23,7 @@ export default function MisPedidos(){
             }else{
                 orderFiltered = result.filter(order => order.client._id == userData._id)
             }
+            orderFiltered.reverse()
             setOrders(orderFiltered)
             console.log(orderFiltered)
         } else {
@@ -33,9 +34,13 @@ export default function MisPedidos(){
 
 
     return(
-        <Col className='my-orders'>
-           <h1 className='p-titles'>Mis Pedidos</h1>
-           <Row className='container-orders'>
+        <div className="container-fluid">
+            <div className="container">
+
+
+        {/* <div className='my-orders'> */}
+           <h2 className='p-titles'>Mis Pedidos</h2>
+           {/* <div className='container-orders'> */}
            { userData && 
            userData.rol == 'Negocio' ? 
            orders.map((order) => {
@@ -53,10 +58,11 @@ export default function MisPedidos(){
                          />
         })}
 
-           </Row>
+           </div>
           
        
-        </Col>
-     
+        </div>
+        // </div>
+        // </div>
     )
 }

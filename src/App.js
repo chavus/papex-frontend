@@ -85,7 +85,9 @@ function App() {
       <ShoppingCartContext.Provider value={{shoppingCart, changeShoppingCart, addToShoppingCart}}>
         <div>
           <Link to="/micarrito">
-            <ToastContainer/>
+            <ToastContainer
+              autoClose={2000}
+              />
           </Link>      
 
           { location.pathname != "/Login" &&
