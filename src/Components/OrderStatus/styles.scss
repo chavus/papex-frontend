@@ -26,7 +26,7 @@
             }
     
             .client{
-                padding: 1rem;
+                margin-bottom: 0px;
             }
         }
 
@@ -34,6 +34,7 @@
             display: flex;
             padding: .3rem;
             align-items: center;
+        
         
             .price{
                 padding: .3rem; 
@@ -51,6 +52,7 @@
 
         }     
     }
+
 
 
 }
