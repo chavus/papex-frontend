@@ -33,10 +33,12 @@
         .price-pending-div{
             // display: flex;
             padding: .3rem;
+          
             // align-items: center;
             .price{
                 padding: .3rem; 
                 margin-right: 1rem;
+                margin-bottom: 0px;
                 display: flex;
                 flex-direction: row;
             }

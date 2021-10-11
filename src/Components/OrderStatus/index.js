@@ -62,8 +62,8 @@ const OrderDetail = (props) => {
         <div className='order-detail rounded border'
            onClick={toggle}>
             <div className='order-client-div'>
-                <h3 className='order'>Pedido #{parentOrder}</h3>
-                <h4 className='client d-none d-sm-block'>Cliente: { client.name }  { client.lastName } </h4>  
+                <h4 className='order p-titles'>Pedido #{parentOrder}</h4>
+                <h4 className='client d-none d-sm-block p-titles'>Cliente: { client.name }  { client.lastName } </h4>  
             </div>
             <div className='price-pending-div'>
                 <h5 className='price'><span className='d-none d-sm-block'>Total:</span>${total}</h5>
@@ -96,7 +96,7 @@ const OrderDetail = (props) => {
                     <CardSubtitle tag="h6" className="text-muted">{!comment ? 'Ninguno': comment}</CardSubtitle>
                     </Col> 
                     </FormGroup>
-                  <Button data-order={_id} onClick={onClickClose} className="btn btn-p-primary" >Cerrar</Button>  
+                  <Button data-order={_id} onClick={onClickClose} className="btn btn-p-primary mt-2" >Cerrar</Button>  
                         
                 </>
              }
