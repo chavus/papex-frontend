@@ -29,8 +29,8 @@ function Main() {
             console.log('this is your id', userData._id)
             // como el usuario está loggeado, enviarle el id al metodo getNearBusinesses
             const by = "userId"
-            const dataUsr = "614e63be9a04e268f1eb7cc1"
-            // const dataUsr = userData._id
+            // const dataUsr = "614e63be9a04e268f1eb7cc1"
+            const dataUsr = userData._id
             const radius = 3
             
             const arrayBusiness = await api.getNearBusiness(by, dataUsr, radius)
@@ -95,7 +95,7 @@ function Main() {
 
     return (
         <div className="App">
-            <div className="container-fluid border border-success">
+            <div className="container-fluid border">
                 <div className="container">
 
                 <div class="jumbotron p-jumbotron row py-0">
