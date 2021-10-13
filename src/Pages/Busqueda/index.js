@@ -30,6 +30,7 @@ const SearchPage = () => {
             const businessArray = await getNearBusinesses(userData)
             const businessArrayIds = businessArray.map(busObj => busObj._id)
             const result = await api.getAllProductsBySearch(productSearch)
+            console.log(result)
             const nearProducts = result.data.filter(product => businessArrayIds.includes(product.business._id))
             setProducts(nearProducts) 
             history.push(`/Search?searchText=${productSearch}`)

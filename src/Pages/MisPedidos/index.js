@@ -15,10 +15,14 @@ export default function MisPedidos(){
     let history = useHistory()
 
     useEffect( async() => {
-        if (userData ){
+        if (userData){
             const result = await api.getAllOrders()
             let orderFiltered
             if (userData.rol == 'Negocio'){
+                // console.log("in negocio")
+                // console.log(result)
+                // console.log(userData)
+                // console.log(result.map(order => [order._id, order.business]))
                 orderFiltered = result.filter(order => order.business._id == userData._id)
             }else{
                 orderFiltered = result.filter(order => order.client._id == userData._id)
